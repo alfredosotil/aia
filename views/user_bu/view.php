@@ -6,8 +6,9 @@ use yii\widgets\DetailView;
 /* @var $model app\models\User */
 ?>
 <div class="user-view">
- 
-    <?= DetailView::widget([
+
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
@@ -16,7 +17,12 @@ use yii\widgets\DetailView;
             'email:email',
             'username',
             'password',
-            'active',
+            [
+                'label' => 'Active',
+                'type' => 'html',
+                'format' => 'raw',
+                'value' => ($model->active == 1)?'<span class="label label-success">Yes</span>':'<span class="label label-danger">No</span>',
+            ],
             'lastupdate',
             'type_id',
             'state_id',
@@ -25,6 +31,7 @@ use yii\widgets\DetailView;
             'authKey',
             'accessToken',
         ],
-    ]) ?>
+    ])
+    ?>
 
 </div>

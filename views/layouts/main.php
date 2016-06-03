@@ -28,7 +28,7 @@ AppAsset::register($this);
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <![endif]-->        
     </head>
     <body>
         <?php $this->beginBody() ?>
@@ -62,19 +62,24 @@ AppAsset::register($this);
                                 </div>
                             </div>
                             <div class="col-xs-7 col-sm-4">
+                                <?php if (!Yii::$app->user->isGuest): ?>
+                                    <div class="top-social-last pull-right" data-toggle="tooltip" data-placement="bottom" title="Admin Site">
+                                        <a class="top-icon-circle" href="<?= Url::toRoute("site/admin") ?>">
+                                            <i class="fa fa-tachometer"></i>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>                                  
                                 <div class="top-social-last top-dark pull-right" data-toggle="tooltip" data-placement="bottom" title="Login">
                                     <?php if (Yii::$app->user->isGuest): ?>
                                         <a class="top-icon-circle" href="#login-modal" data-toggle="modal">
                                             <i class="fa fa-lock"></i>
                                         </a>
-                                    <?php else: ?>
+                                    <?php else: ?>                                        
                                         <a class="top-icon-circle" href="<?= Url::toRoute("site/logout") ?>" data-method="post">
                                             <i class="fa fa-sign-out"></i>
                                         </a>
                                     <?php endif; ?>
-
                                 </div>
-
                                 <div class="top-social pull-right">
                                     <a class="top-icon-circle" href="#">
                                         <i class="fa fa-facebook"></i>
@@ -476,7 +481,10 @@ AppAsset::register($this);
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        <?php $this->endBody() ?>                
+        <?php $this->endBody() ?> 
+        <script type="text/javascript">
+            var jQuery_2 = $.noConflict(true);
+        </script>
     </body>
 </html>
 <?php $this->endPage() ?>

@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Module;
-use app\models\ModuleSearch;
+use app\models\User;
+use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -14,9 +14,9 @@ use app\assets\AppAsset;
 use yii\filters\AccessControl;
 
 /**
- * ModuleController implements the CRUD actions for Module model.
+ * UserController implements the CRUD actions for User model.
  */
-class ModuleController extends Controller {
+class UserController extends Controller {
 
     /**
      * @inheritdoc
@@ -29,7 +29,7 @@ class ModuleController extends Controller {
                 'rules' => [
                     [
                         'actions' => ["bulkDelete", "create", "delete", "index", "update", "view"],
-                        'allow' => true,//AppAsset::getAccess("module"),
+                        'allow' => true,//AppAsset::getAccess("user"),
                         'roles' => ['@'],
                     ],
                 ],
@@ -45,11 +45,11 @@ class ModuleController extends Controller {
     }
 
     /**
-     * Lists all Module models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new ModuleSearch();
+        $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -59,7 +59,7 @@ class ModuleController extends Controller {
     }
 
     /**
-     * Displays a single Module model.
+     * Displays a single User model.
      * @param integer $id
      * @return mixed
      */
@@ -68,7 +68,7 @@ class ModuleController extends Controller {
         if ($request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                'title' => "Module #" . $id,
+                'title' => "User #" . $id,
                 'content' => $this->renderPartial('view', [
                     'model' => $this->findModel($id),
                 ]),
@@ -83,14 +83,14 @@ class ModuleController extends Controller {
     }
 
     /**
-     * Creates a new Module model.
+     * Creates a new User model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate() {
         $request = Yii::$app->request;
-        $model = new Module();
+        $model = new User();
 
         if ($request->isAjax) {
             /*
@@ -99,7 +99,7 @@ class ModuleController extends Controller {
             Yii::$app->response->format = Response::FORMAT_JSON;
             if ($request->isGet) {
                 return [
-                    'title' => "Create new Module",
+                    'title' => "Create new User",
                     'content' => $this->renderPartial('create', [
                         'model' => $model,
                     ]),
@@ -109,14 +109,14 @@ class ModuleController extends Controller {
             } else if ($model->load($request->post()) && $model->save()) {
                 return [
                     'forceReload' => 'true',
-                    'title' => "Create new Module",
-                    'content' => '<span class="text-success">Create Module success</span>',
+                    'title' => "Create new User",
+                    'content' => '<span class="text-success">Create User success</span>',
                     'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                     Html::a('Create More', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                 ];
             } else {
                 return [
-                    'title' => "Create new Module",
+                    'title' => "Create new User",
                     'content' => $this->renderPartial('create', [
                         'model' => $model,
                     ]),
@@ -139,7 +139,7 @@ class ModuleController extends Controller {
     }
 
     /**
-     * Updates an existing Module model.
+     * Updates an existing User model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -156,7 +156,7 @@ class ModuleController extends Controller {
             Yii::$app->response->format = Response::FORMAT_JSON;
             if ($request->isGet) {
                 return [
-                    'title' => "Update Module #" . $id,
+                    'title' => "Update User #" . $id,
                     'content' => $this->renderPartial('update', [
                         'model' => $this->findModel($id),
                     ]),
@@ -166,7 +166,7 @@ class ModuleController extends Controller {
             } else if ($model->load($request->post()) && $model->save()) {
                 return [
                     'forceReload' => 'true',
-                    'title' => "Module #" . $id,
+                    'title' => "User #" . $id,
                     'content' => $this->renderPartial('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -175,7 +175,7 @@ class ModuleController extends Controller {
                 ];
             } else {
                 return [
-                    'title' => "Update Module #" . $id,
+                    'title' => "Update User #" . $id,
                     'content' => $this->renderPartial('update', [
                         'model' => $this->findModel($id),
                     ]),
@@ -198,7 +198,7 @@ class ModuleController extends Controller {
     }
 
     /**
-     * Delete an existing Module model.
+     * Delete an existing User model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -223,7 +223,7 @@ class ModuleController extends Controller {
     }
 
     /**
-     * Delete multiple existing Module model.
+     * Delete multiple existing User model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -232,7 +232,7 @@ class ModuleController extends Controller {
     public function actionBulkDelete() {
         $request = Yii::$app->request;
         $pks = $request->post('pks'); // Array or selected records primary keys
-        foreach (Module::findAll(json_decode($pks)) as $model) {
+        foreach (User::findAll(json_decode($pks)) as $model) {
             $model->delete();
         }
 
@@ -252,14 +252,14 @@ class ModuleController extends Controller {
     }
 
     /**
-     * Finds the Module model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Module the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = Module::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -25,7 +25,7 @@ class AppAsset extends AssetBundle {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/animate.css',
         'apartment-font/css/font-awesome.min.css',
         'css/plugins.css',
         'css/apartment-layout.css',
@@ -39,28 +39,25 @@ class AppAsset extends AssetBundle {
         'mail/validate.js',
         'bootstrap/bootstrap.min.js',
         'js/plugins.js',
+        'js/wow.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
 //        'macgyer\yii2materializecss\assets\MaterializeAsset',
     ];
-    
-//    public function init() {
-//        $this->jsOptions['position'] = View::POS_BEGIN;
-//        parent::init();
-//    }
 
-    public function getAccess($controller){
+    public function getAccess($controller) {
         $allow = false;
         $accesses = Access::findAll(["profile_id" => Yii::$app->user->identity->profile_id]);
         foreach ($accesses as $accesses) {
             $module = Module::findOne(["id" => $accesses->module_id]);
-            if($module->controller === $controller){
+            if ($module->controller === $controller) {
                 $allow = true;
                 break;
             }
-        }        
+        }
         return $allow;
     }
+
 }
