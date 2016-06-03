@@ -14,6 +14,7 @@ use yii\web\AssetBundle;
 use app\models\Profile;
 use app\models\Access;
 use app\models\Module;
+use yii\web\View;
 
 /**
  * @author Qiang Xue <qiang.xue@gmail.com>
@@ -44,6 +45,11 @@ class AppAsset extends AssetBundle {
         'yii\bootstrap\BootstrapAsset',
 //        'macgyer\yii2materializecss\assets\MaterializeAsset',
     ];
+    
+//    public function init() {
+//        $this->jsOptions['position'] = View::POS_BEGIN;
+//        parent::init();
+//    }
 
     public function getAccess($controller){
         $allow = false;

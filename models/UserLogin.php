@@ -5,35 +5,30 @@ namespace app\models;
 class UserLogin extends \yii\base\Object implements \yii\web\IdentityInterface
 {
     public $id;
+    public $names;
+    public $surnames;
+    public $email;
+    public $lastupdate;
+    public $type_id;
+    public $state_id;
+    public $sex;
+    public $profile_id;
     public $username;
     public $password;
     public $authKey;
     public $accessToken;
-
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
+    public $active;
 
     /**
      * @inheritdoc
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        $user = User::find()
+                ->where("active=:active", [":active" => 1])
+                ->andWhere("id=:id", ["id" => $id])
+                ->one();
+        return isset($user) ? new static($user) : null;
     }
 
     /**
@@ -41,12 +36,15 @@ class UserLogin extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
+        $users = User::find()
+                ->where("active=:active", [":active" => 1])
+                ->andWhere("accessToken=:accessToken", [":accessToken" => $token])
+                ->all();
+        foreach ($users as $user) {
+            if ($user->accessToken === $token) {
                 return new static($user);
             }
         }
-
         return null;
     }
 
@@ -58,12 +56,15 @@ class UserLogin extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
+        $users = User::find()
+                ->where("active=:active", ["active" => 1])
+                ->andWhere("username=:username", [":username" => $username])
+                ->all();
+        foreach ($users as $user) {
+            if (strcasecmp($user->username, $username) === 0) {
                 return new static($user);
             }
         }
-
         return null;
     }
 

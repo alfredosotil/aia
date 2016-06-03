@@ -25,7 +25,6 @@ AppAsset::register($this);
         <!-- Custom styles -->
         <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic,700,700italic&amp;subset=latin,latin-ext'>
         <?php $this->head() ?>
-
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -38,7 +37,7 @@ AppAsset::register($this);
         <div id="wrapper">
             <!-- Page header -->	
             <header>
-                <?php echo var_dump(Yii::$app->user)?>
+                <?php // echo var_dump(Yii::$app->user)  ?>
                 <div class="top-bar-wrapper">
                     <div class="container top-bar">
                         <div class="row">
@@ -63,7 +62,7 @@ AppAsset::register($this);
                                 </div>
                             </div>
                             <div class="col-xs-7 col-sm-4">
-                                <div class="top-social-last top-dark pull-right" data-toggle="tooltip" data-placement="bottom" title="Login/Register">
+                                <div class="top-social-last top-dark pull-right" data-toggle="tooltip" data-placement="bottom" title="Login">
                                     <?php if (Yii::$app->user->isGuest): ?>
                                         <a class="top-icon-circle" href="#login-modal" data-toggle="modal">
                                             <i class="fa fa-lock"></i>
@@ -375,7 +374,10 @@ AppAsset::register($this);
                                 <div class="short-title-separator"></div>
                             </div>
                             <?php
-                            $model = new app\models\LoginForm();
+//                            $model = null;
+                            if (!isset($model)) {
+                                $model = new app\models\LoginForm();
+                            }
                             $form = ActiveForm::begin([
                                         'id' => 'login-form',
                                         'action' => Url::toRoute("site/login"),
@@ -474,7 +476,7 @@ AppAsset::register($this);
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        <?php $this->endBody() ?>        
+        <?php $this->endBody() ?>                
     </body>
 </html>
 <?php $this->endPage() ?>
