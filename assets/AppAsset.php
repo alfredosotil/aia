@@ -34,8 +34,8 @@ class AppAsset extends AssetBundle {
         'css/site.css',
     ];
     public $js = [
-        'js/jQuery/jquery.min.js',
-        'js/jQuery/jquery-ui.min.js',
+//        'js/jQuery/jquery.min.js',
+//        'js/jQuery/jquery-ui.min.js',
         'js/apartment.js',
 //        'mail/validate.js',
         'bootstrap/bootstrap.min.js',

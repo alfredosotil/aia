@@ -40,7 +40,9 @@ AppAsset::register($this);
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
         <!-- Google Maps -->
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;sensor=false&amp;libraries=places"></script>
-
+<!-- jQuery  -->
+        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery.min.js"></script>-->
+        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery-ui.min.js"></script>-->
     </head>
     <body>
         <?php $this->beginBody() ?>
@@ -58,7 +60,7 @@ AppAsset::register($this);
                                     <span class="top-icon-circle">
                                         <i class="fa fa-envelope fa-sm"></i>
                                     </span>
-                                    <span class="top-bar-text">correo@aia.com</span>
+                                    <span class="top-bar-text">informes@aia.com.pe</span>
                                 </div>
                                 <div class="top-phone pull-left hidden-xxs">
                                     <span class="top-icon-circle">
@@ -492,10 +494,7 @@ AppAsset::register($this);
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        <!-- jQuery  -->
-        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery.min.js"></script>-->
-        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery-ui.min.js"></script>-->
+        </div><!-- /.modal -->      
 
         <!-- Bootstrap-->
         <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/bootstrap/bootstrap.min.js"></script>-->
