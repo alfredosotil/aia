@@ -16,55 +16,27 @@ return [
     // ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'names',
+        'attribute'=>'iconfa',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'surnames',
+        'attribute'=>'label',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'email',
+        'attribute'=>'description',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'username',
+        'attribute'=>'controller',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'password',
+        'attribute'=>'active',
     ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'active',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'lastupdate',
-    // ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'type_id',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'state_id',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'sex',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'profile_id',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'authKey',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'accessToken',
     // ],
     [
         'class' => 'kartik\grid\ActionColumn',

@@ -805,7 +805,7 @@
         </footer>    -->
 </div>
 <!-- Google Maps -->
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;sensor=false&amp;libraries=places"></script>
+
 
 <!-- google maps initialization -->
 <script type="text/javascript">

@@ -22,13 +22,25 @@ AppAsset::register($this);
         <meta name="description" content="Download Apartment - Premium Real Estate HMTL Site Template" />
         <link rel="shortcut icon" href="<?= Yii::$app->request->baseUrl; ?>/favicon.ico" type="image/x-icon">
         <link rel="icon" href="<?= Yii::$app->request->baseUrl; ?>/favicon.ico" type="image/x-icon">
+        <!-- Bootstrap -->
+        <!--<link rel="stylesheet" href="<?= Yii::$app->request->baseUrl; ?>/bootstrap/bootstrap.min.css">-->    
+        <!-- Font awesome styles -->    
+        <!--<link rel="stylesheet" href="<?= Yii::$app->request->baseUrl; ?>/apartment-font/css/font-awesome.min.css">-->  
+        <!-- Custom styles -->
+        <!--<link rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl; ?>/css/plugins.css">-->
+        <!--<link rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl; ?>/css/apartment-layout.css">-->
+        <!--<link id="skin" rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl; ?>/css/apartment-colors-blue.css">-->
         <!-- Custom styles -->
         <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic,700,700italic&amp;subset=latin,latin-ext'>
         <?php $this->head() ?>
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->        
+        <![endif]-->   
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+        <!-- Google Maps -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;sensor=false&amp;libraries=places"></script>
+
     </head>
     <body>
         <?php $this->beginBody() ?>
@@ -481,9 +493,22 @@ AppAsset::register($this);
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+        <!-- jQuery  -->
+        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery.min.js"></script>-->
+        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery-ui.min.js"></script>-->
+
+        <!-- Bootstrap-->
+        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/bootstrap/bootstrap.min.js"></script>-->
+
+        <!-- plugins script -->
+        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/plugins.js"></script>-->
+
+        <!-- template scripts -->
+        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/mail/validate.js"></script>-->
+        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/apartment.js"></script>-->
         <?php $this->endBody() ?> 
         <script type="text/javascript">
-            var jQuery_2 = $.noConflict(true);
+//            $.noConflict();
         </script>
     </body>
 </html>

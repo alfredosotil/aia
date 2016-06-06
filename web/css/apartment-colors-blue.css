@@ -6,7 +6,7 @@ Author: Jan Skwara - http://themeforest.net/user/johnnychaos
 
 
 body {
-	background: #3797dd url(../images/bg-pattern5.jpg) repeat;
+	background: #0077BB url(../images/bg-pattern5.jpg) repeat;
 	font-family: 'Roboto', 'Arial', sans-serif;
 }
 
@@ -95,12 +95,12 @@ address.contact-info i.fa,
 .navigation-box-icon:hover,
 .navigation-box-icon2:hover,
 .big-icon {
-	color: #3797dd;
+	color: #0077BB;
 }
 
 .apartment-stacked-tabs .nav-tabs li.active a, 
 .apartment-stacked-tabs .nav-tabs li.active a:hover {
-	color: #3797dd !important;
+	color: #0077BB !important;
 }
 
 .top-icon-circle:hover,
@@ -306,7 +306,7 @@ html.no-pointerevents.no-touchevents .feature:hover .special-color,
 html.no-pointerevents.no-touchevents .feature2:hover .special-color,
 .button-alternative:hover,
 .button-alternative .button-icon {
-	color: #1b2835;
+	color: #223462;
 }
 
 .swiper2-text {
@@ -568,7 +568,7 @@ section.contact-map2,
 .file-input,
 .file-input .file-preview,
 html.no-pointerevents.no-touchevents .feature:hover .feature-text {
-	background: #3797dd;
+	background: #0077BB;
 }
 
 .top-icon-circle:hover,
@@ -616,7 +616,7 @@ html.no-pointerevents.no-touchevents .feature:hover > .feature-icon,
 .button-alternative:active,
 .button-alternative:focus,
 .details-parameters-price {
-	background: #1b2835;
+	background: #223462;
 }
 
 .slider-overlay {
@@ -639,7 +639,7 @@ html.no-pointerevents.no-touchevents .feature:hover > .feature-icon,
 .adv-search-tabs li.active:hover a, 
 .adv-search-tabs li.active:active a, 
 .adv-search-tabs li.active:focus a {
-	background: #3797dd !important;
+	background: #0077BB !important;
 }
 
 .estate-type,
@@ -760,19 +760,19 @@ header.header3 .hover-menu::after {
 }
 
 html.no-pointerevents.no-touchevents #feature1:hover > .feature-text::after {
-	background: #3797dd url(../images/feature-bg1.jpg) no-repeat center center;
+	background: #0077BB url(../images/feature-bg1.jpg) no-repeat center center;
 }
 
 html.no-pointerevents.no-touchevents #feature2:hover > .feature-text::after {
-	background: #3797dd url(../images/feature-bg2.jpg) no-repeat center center;
+	background: #0077BB url(../images/feature-bg2.jpg) no-repeat center center;
 }
 
 html.no-pointerevents.no-touchevents #feature3:hover > .feature-text::after {
-	background: #3797dd url(../images/feature-bg3.jpg) no-repeat center center;
+	background: #0077BB url(../images/feature-bg3.jpg) no-repeat center center;
 }
 
 html.no-pointerevents.no-touchevents #feature4:hover > .feature-text::after {
-	background: #3797dd url(../images/feature-bg4.jpg) no-repeat center center;
+	background: #0077BB url(../images/feature-bg4.jpg) no-repeat center center;
 }
 
 html.no-pointerevents.no-touchevents #feature1.feature2:hover, 
@@ -994,7 +994,7 @@ input[type="checkbox"].main-checkbox:checked + label span,
 .custom-ul .custom-ul-bullet,
 .list-agency-photo,
 .infobox-main {
-	border: 1px solid #3797dd;
+	border: 1px solid #0077BB;
 }
 
 
@@ -1098,7 +1098,7 @@ header.header3 .navbar-nav > li > a:focus {
 }
 
 .button-triangle2 {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .navigation-triangle {
@@ -1110,15 +1110,15 @@ header.header3 .navbar-nav > li > a:focus {
 }
 
 .navigation-box2.secondary .navigation-triangle {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .simple-search-cont .cs-skin-border > span::before {
-	border-color: transparent transparent transparent #3797dd;
+	border-color: transparent transparent transparent #0077BB;
 }
 
 .simple-search-cont span.filter-option::before {
-	border-color: transparent transparent transparent #3797dd;
+	border-color: transparent transparent transparent #0077BB;
 }
 
 .feature-icon {
@@ -1131,7 +1131,7 @@ html.no-pointerevents.no-touchevents .feature:hover > .feature-icon {
 
 .featured-offer-photo,
 .neighbourhood-photo {
-	border-bottom: 2px solid #1b2835;
+	border-bottom: 2px solid #223462;
 }
 
 .team-name {
@@ -1143,7 +1143,7 @@ html.no-pointerevents.no-touchevents .team-member:hover .team-name {
 }
 
 .big-triangle  {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .big-triangle-second-color  {
@@ -1191,7 +1191,7 @@ html.no-pointerevents.no-touchevents .team-member:hover .team-name {
 }
 
 .blog-grid1-button .blog-grid1-triangle, .blog-grid1-button-right .blog-grid1-triangle {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .number_border,
@@ -1237,7 +1237,7 @@ html.no-pointerevents.no-touchevents .team-member:hover .team-name {
 }
 
 .thumb-box .navigation-triangle {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .details-parameters {
@@ -1253,11 +1253,11 @@ html.no-pointerevents.no-touchevents .team-member:hover .team-name {
 }
 
 input[type="checkbox"].main-checkbox + label span::after {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 input[type="checkbox"].main-checkbox:checked + label span::after {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .form-submit-cont {
@@ -1306,7 +1306,7 @@ input[type="checkbox"].main-checkbox:checked + label span::after {
 }
 
 .quote-box .small-triangle  {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .code-box .small-triangle  {
@@ -1326,7 +1326,7 @@ input[type="checkbox"].main-checkbox:checked + label span::after {
 }
 
 .info-box .small-triangle  {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .panel-apartment a[role="button"] {
@@ -1334,7 +1334,7 @@ input[type="checkbox"].main-checkbox:checked + label span::after {
 }
 
 .panel-apartment a[role="button"] .button-triangle {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .panel-apartment a[role="button"] .button-triangle2 {
@@ -1354,7 +1354,7 @@ input[type="checkbox"].main-checkbox:checked + label span::after {
 }
 
 .apartment-tabs .nav-tabs li a .button-triangle2 {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .apartment-tabs .nav-tabs li.active a {
@@ -1373,12 +1373,12 @@ input[type="checkbox"].main-checkbox:checked + label span::after {
 }
 
 .apartment-stacked-tabs .nav-tabs li a .button-triangle2 {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .apartment-stacked-tabs .nav-tabs li a,
 .apartment-stacked-tabs .nav-tabs li a:hover {
-	border-color: #ebebeb #3797dd #ebebeb #ebebeb;
+	border-color: #ebebeb #0077BB #ebebeb #ebebeb;
 	border-width: 1px 2px 1px 1px;
 }
 
@@ -1398,7 +1398,7 @@ input[type="checkbox"].main-checkbox:checked + label span::after {
 }		
 
 .button-secondary .button-triangle {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .button-secondary .button-triangle2 {
@@ -1410,7 +1410,7 @@ input[type="checkbox"].main-checkbox:checked + label span::after {
 }
 
 .button-alternative .button-triangle2 {
-	border-color: transparent transparent #1b2835 transparent;
+	border-color: transparent transparent #223462 transparent;
 }
 
 .button-fourth .button-triangle {
@@ -1426,7 +1426,7 @@ input[type="checkbox"].main-checkbox:checked + label span::after {
 }
 
 .price-table-triangle2 {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .price-table-ul li {
@@ -1434,7 +1434,7 @@ input[type="checkbox"].main-checkbox:checked + label span::after {
 }
 
 .price-table-secondary .price-table-triangle {
-	border-color: transparent transparent transparent #3797dd;
+	border-color: transparent transparent transparent #0077BB;
 }
 
 .price-table-secondary .price-table-triangle2 {
@@ -1458,7 +1458,7 @@ input[type="checkbox"].main-checkbox:checked + label span::after {
 }
 
 .list-agency .small-triangle  {
-	border-color: transparent transparent #3797dd transparent;
+	border-color: transparent transparent #0077BB transparent;
 }
 
 .small-triangle2 {
@@ -1503,7 +1503,7 @@ html.no-pointerevents.no-touchevents .list-agency:hover .list-agency-right-large
 }
 
 .infobox-main::before {
-	border-color: transparent #3797dd transparent transparent;
+	border-color: transparent #0077BB transparent transparent;
 }
 
 .blog-grid2-bottom {
@@ -1546,7 +1546,7 @@ li.ap-submenu {
 	header.header2 .navbar-nav > li > a:hover,
 	header.header3 .navbar-nav > li > a:hover {
 		color: #ffffff;
-		background: #3797dd;
+		background: #0077BB;
 	}
 	
 	.dropdown-submenu a, 

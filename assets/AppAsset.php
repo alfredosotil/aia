@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle {
 
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+//    public $jsOptions = ['position' => \yii\web\View::POS_END];
     public $css = [
         'css/animate.css',
         'apartment-font/css/font-awesome.min.css',
@@ -36,7 +37,7 @@ class AppAsset extends AssetBundle {
         'js/jQuery/jquery.min.js',
         'js/jQuery/jquery-ui.min.js',
         'js/apartment.js',
-        'mail/validate.js',
+//        'mail/validate.js',
         'bootstrap/bootstrap.min.js',
         'js/plugins.js',
         'js/wow.min.js',

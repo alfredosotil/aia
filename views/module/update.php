@@ -2,13 +2,13 @@
 
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
-/* @var $model app\models\User */
-
+/* @var $model app\models\Module */
 ?>
-<div class="user-create">
+<div class="module-update">
+
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
+
 </div>

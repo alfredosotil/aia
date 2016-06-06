@@ -12,6 +12,16 @@ $config = [
         ]
     ],
     'components' => [
+//        'assetManager' => [
+//            'bundles' => [
+//                'yii\web\JqueryAsset' => [
+//                    'sourcePath' => null,   // do not publish the bundle
+//                    'js' => [
+//                        '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
+//                    ]
+//                ],
+//            ],
+//        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'aZz5joDFfm5Gc5EBvzmjY8U-zAtkeKuC',
