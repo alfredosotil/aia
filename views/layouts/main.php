@@ -40,14 +40,13 @@ AppAsset::register($this);
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
         <!-- Google Maps -->
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;sensor=false&amp;libraries=places"></script>
-<!-- jQuery  -->
-        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery.min.js"></script>-->
-        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery-ui.min.js"></script>-->
+        <!-- jQuery  -->        
+                <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery.min.js"></script>-->
+                <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery-ui.min.js"></script>-->
     </head>
     <body>
         <?php $this->beginBody() ?>
 
-        <div class="loader-bg"></div>
         <div id="wrapper">
             <!-- Page header -->	
             <header>
@@ -78,7 +77,7 @@ AppAsset::register($this);
                             <div class="col-xs-7 col-sm-4">
                                 <?php if (!Yii::$app->user->isGuest): ?>
                                     <div class="top-social-last pull-right" data-toggle="tooltip" data-placement="bottom" title="Admin Site">
-                                        <a class="top-icon-circle" href="<?= Url::toRoute("site/admin") ?>">
+                                        <a class="top-icon-circle" href="<?= Url::toRoute("dashboard/index") ?>">
                                             <i class="fa fa-tachometer"></i>
                                         </a>
                                     </div>
@@ -93,20 +92,15 @@ AppAsset::register($this);
                                             <i class="fa fa-sign-out"></i>
                                         </a>
                                     <?php endif; ?>
-                                </div>
+                                </div>                                
                                 <div class="top-social pull-right">
                                     <a class="top-icon-circle" href="#">
+                                        <i class="fa fa-youtube-play"></i>
+                                    </a>
+                                </div>
+                                <div class="top-social pull-right">
+                                    <a class="top-icon-circle" target="_blank" href="https://www.facebook.com/aia.agenciadeasesoriainmobiliaria">
                                         <i class="fa fa-facebook"></i>
-                                    </a>
-                                </div>
-                                <div class="top-social pull-right">
-                                    <a class="top-icon-circle" href="#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </div>
-                                <div class="top-social pull-right">
-                                    <a class="top-icon-circle" href="#">
-                                        <i class="fa fa-google-plus"></i>
                                     </a>
                                 </div>
                                 <div class="top-social pull-right">
@@ -494,21 +488,8 @@ AppAsset::register($this);
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->      
-
-        <!-- Bootstrap-->
-        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/bootstrap/bootstrap.min.js"></script>-->
-
-        <!-- plugins script -->
-        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/plugins.js"></script>-->
-
-        <!-- template scripts -->
-        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/mail/validate.js"></script>-->
-        <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/apartment.js"></script>-->
+        </div><!-- /.modal -->              
         <?php $this->endBody() ?> 
-        <script type="text/javascript">
-//            $.noConflict();
-        </script>
     </body>
 </html>
 <?php $this->endPage() ?>

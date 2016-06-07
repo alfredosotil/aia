@@ -12,16 +12,25 @@ $config = [
         ]
     ],
     'components' => [
-//        'assetManager' => [
-//            'bundles' => [
-//                'yii\web\JqueryAsset' => [
-//                    'sourcePath' => null,   // do not publish the bundle
-//                    'js' => [
-//                        '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
-//                    ]
-//                ],
-//            ],
-//        ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'sourcePath' => null,   // do not publish the bundle
+                    'js' => [
+                        '//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
+                    ]
+                ],
+                'yii\jui\JuiAsset' => [
+                    'sourcePath' => null,   // do not publish the bundle
+                    'css' => [
+                        '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css',
+                    ],
+                    'js' => [
+                        '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js',
+                    ]
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'aZz5joDFfm5Gc5EBvzmjY8U-zAtkeKuC',

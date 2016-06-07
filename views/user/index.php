@@ -10,17 +10,15 @@ use johnitvn\ajaxcrud\BulkButtonWidget;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+CrudAsset::register($this);
 $this->title = 'User';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div id="" class="page-header wow fadeIn" style=""  data-wow-duration="1000ms">
-    <h1><i class='fa fa-fw fa-users'></i><span><?= $this->title; ?></span></h1>    
-</div>
-<?php
-CrudAsset::register($this);
-?>
-<div class="row user-index">
+
+<div class="container user-index">
+    <div id="" class="page-header wow fadeIn" style=""  data-wow-duration="1000ms">
+        <h1><i class='fa fa-fw fa-users'></i><span><?= $this->title; ?></span></h1>    
+    </div>
     <div id="ajaxCrudDatatable">
         <?=
         GridView::widget([

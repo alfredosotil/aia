@@ -20,26 +20,24 @@ use yii\web\View;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle {
+class DashboardAsset extends AssetBundle {
 
     public $basePath = '@webroot';
     public $baseUrl = '@web';
 //    public $jsOptions = ['position' => \yii\web\View::POS_END];
     public $css = [
         'css/animate.css',
-        'apartment-font/css/font-awesome.min.css',
-        'css/plugins.css',
-        'css/apartment-layout.css',
-        'css/apartment-colors-blue.css',
-        'css/site.css',
+//        'apartment-font/css/font-awesome.min.css',
+//        'css/plugins.css',
+//        'css/apartment-layout.css',
+//        'css/apartment-colors-blue.css',
+//        'css/site.css',
+        'css/sb-admin-2.css',
+        'css/timeline.css',
     ];
     public $js = [
-//        'js/jQuery/jquery.min.js',
-//        'js/jQuery/jquery-ui.min.js',
         'js/apartment.js',
-//        'mail/validate.js',
-        'bootstrap/bootstrap.min.js',
-        'js/plugins.js',
+        'js/sb-admin-2.js',
         'js/wow.min.js',
     ];
     public $depends = [
