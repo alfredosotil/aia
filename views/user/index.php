@@ -15,7 +15,7 @@ $this->title = 'User';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="container user-index">
+<div class="user-index">
     <div id="" class="page-header wow fadeIn" style=""  data-wow-duration="1000ms">
         <h1><i class='fa fa-fw fa-users'></i><span><?= $this->title; ?></span></h1>    
     </div>

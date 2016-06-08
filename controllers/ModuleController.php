@@ -21,6 +21,8 @@ class ModuleController extends Controller {
     /**
      * @inheritdoc
      */
+    public $layout = "dashboard";
+
     public function behaviors() {
         return [
             'access' => [
@@ -29,7 +31,7 @@ class ModuleController extends Controller {
                 'rules' => [
                     [
                         'actions' => ["bulkDelete", "create", "delete", "index", "update", "view"],
-                        'allow' => true,//AppAsset::getAccess("module"),
+                        'allow' => true, //AppAsset::getAccess("module"),
                         'roles' => ['@'],
                     ],
                 ],

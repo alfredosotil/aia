@@ -21,6 +21,8 @@ class UserController extends Controller {
     /**
      * @inheritdoc
      */
+    public $layout = "dashboard";
+    
     public function behaviors() {
         return [
             'access' => [

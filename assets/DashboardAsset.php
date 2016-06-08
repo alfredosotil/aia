@@ -27,17 +27,22 @@ class DashboardAsset extends AssetBundle {
 //    public $jsOptions = ['position' => \yii\web\View::POS_END];
     public $css = [
         'css/animate.css',
-//        'apartment-font/css/font-awesome.min.css',
+        'apartment-font/css/font-awesome.min.css',
 //        'css/plugins.css',
 //        'css/apartment-layout.css',
 //        'css/apartment-colors-blue.css',
 //        'css/site.css',
+        'css/metisMenu.min.css',
+        'css/morris.css',
         'css/sb-admin-2.css',
         'css/timeline.css',
     ];
     public $js = [
+        'bootstrap/bootstrap.min.js',
         'js/apartment.js',
         'js/sb-admin-2.js',
+        'js/metisMenu.min.js',
+        'js/raphael-min.js',
         'js/wow.min.js',
     ];
     public $depends = [

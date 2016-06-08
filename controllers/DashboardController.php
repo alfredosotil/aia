@@ -27,7 +27,7 @@ class DashboardController extends Controller {
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['index','logout'],
                 'rules' => [
 //                    [
 //                        'allow' => true,
