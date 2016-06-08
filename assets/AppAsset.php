@@ -51,9 +51,10 @@ class AppAsset extends AssetBundle {
 
     public function getAccess($controller) {
         $allow = false;
+//        select m.id from access a, profile p, module m where a.profile_id=p.id and a.module_id=m.id and p.id=2 and m.controller='users';
         $accesses = Access::findAll(["profile_id" => Yii::$app->user->identity->profile_id]);
-        foreach ($accesses as $accesses) {
-            $module = Module::findOne(["id" => $accesses->module_id]);
+        foreach ($accesses as $access) {
+            $module = Module::findOne(["id" => $access->module_id]);
             if ($module->controller === $controller) {
                 $allow = true;
                 break;
