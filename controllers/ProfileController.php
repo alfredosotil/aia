@@ -72,6 +72,8 @@ class ProfileController extends Controller {
         $dataprovidermodule = new ActiveDataProvider([
             'query' => Access::find()->where(["profile_id" => $id])
                     ->orderBy('id DESC'),
+            'sort' =>false,
+//            'sort' => ['attributes' => ['id','module.label']],
             'pagination' => [
                 'pageSize' => 20,
             ],
@@ -165,6 +167,7 @@ class ProfileController extends Controller {
         $dataprovidermodule = new ActiveDataProvider([
             'query' => Access::find()->where(["profile_id" => $model->id])
                     ->orderBy('id DESC'),
+            'sort' =>false,
             'pagination' => [
                 'pageSize' => 20,
             ],
