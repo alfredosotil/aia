@@ -31,7 +31,7 @@ class UserController extends Controller {
                 'rules' => [
                     [
                         'actions' => ["bulkDelete", "create", "delete", "index", "update", "view"],
-                        'allow' => true,//AppAsset::getAccess("user"),
+                        'allow' => AppAsset::getAccess("user"),
                         'roles' => ['@'],
                     ],
                 ],

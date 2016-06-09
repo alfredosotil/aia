@@ -21,7 +21,7 @@ use app\models\Type;
 
     <?= $form->field($model, 'controller')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'type_id')->dropDownList(ArrayHelper::map(Type::find()->where(["category" => "app"])->all(), 'id', 'type')) ?>
+    <?= $form->field($model, 'type_id')->dropDownList(ArrayHelper::map(Type::find()->where(["category" => "module"])->all(), 'id', 'type')) ?>
     
     <?= $form->field($model, 'active')->checkbox() ?>
 

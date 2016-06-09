@@ -33,7 +33,7 @@ use app\models\Profile;
     
     <?= $form->field($model, 'sex')->radioList(['M' => 'Male', 'F' => 'Female']) ?>
 
-    <?= $form->field($model, 'profile_id')->dropDownList(ArrayHelper::map(Profile::find()->where(["category" => "app"])->all(), 'id', 'name')) ?>
+    <?= $form->field($model, 'profile_id')->dropDownList(ArrayHelper::map(Profile::find()->where(["category" => "user"])->all(), 'id', 'name')) ?>
 
     <?= $form->field($model, 'authKey')->textInput(['maxlength' => true]) ?>
 
