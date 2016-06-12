@@ -14,6 +14,22 @@ $config = [
     'components' => [
         'assetManager' => [
             'bundles' => [
+//                'johnitvn\ajaxcrud\CrudAsset' => [
+////                    'sourcePath' => null,   // do not publish the bundle
+//                    'js' => [
+//                        'bootstrap/bootstrap.min.js',
+//                    ]
+//                ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'basePath' => '@webroot',   // do not publish the bundle
+                    'baseUrl' => '@web',   // do not publish the bundle
+                    'css' => [
+                        'bootstrap/bootstrap.min.css',
+                    ],
+                    'js' => [
+                        'bootstrap/bootstrap.min.js',
+                    ]
+                ],
                 'yii\web\JqueryAsset' => [
                     'sourcePath' => null,   // do not publish the bundle
                     'js' => [

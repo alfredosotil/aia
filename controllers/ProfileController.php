@@ -309,6 +309,7 @@ class ProfileController extends Controller {
         $dataProvider = new ActiveDataProvider([
             'query' => Access::find()->where(["profile_id" => $_POST['profile_id'],])
                     ->orderBy('id DESC'),
+            'sort' =>false,
             'pagination' => [
                 'pageSize' => 20,
             ],

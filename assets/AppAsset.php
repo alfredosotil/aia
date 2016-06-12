@@ -39,7 +39,6 @@ class AppAsset extends AssetBundle {
 //        'js/jQuery/jquery-ui.min.js',
         'js/apartment.js',
 //        'mail/validate.js',
-        'bootstrap/bootstrap.min.js',
         'js/plugins.js',
         'js/wow.min.js',
     ];
