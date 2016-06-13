@@ -310,7 +310,7 @@ DashboardAsset::register($this);
             </footer>
         </div>         
         <?php $this->endBody() ?> 
-        <script src="<?= Yii::$app->request->baseUrl; ?>/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+        <!--<script src="<?= Yii::$app->request->baseUrl; ?>/bootstrap/bootstrap.min.js" type="text/javascript"></script>-->
     </body>
 </html>
 <?php $this->endPage() ?>
