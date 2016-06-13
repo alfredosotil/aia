@@ -48,7 +48,6 @@ DashboardAsset::register($this);
         <?php $this->beginBody() ?>
 
         <div class="loader-bg"></div>
-        <div id="wrapper">
 
             <!-- Navigation -->
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -64,7 +63,7 @@ DashboardAsset::register($this);
                 <!-- /.navbar-header -->
 
                 <ul class="nav navbar-top-links navbar-right">
-                    <li class="dropdown">
+<!--                    <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
                         </a>
@@ -112,10 +111,10 @@ DashboardAsset::register($this);
                                 </a>
                             </li>
                         </ul>
-                        <!-- /.dropdown-messages -->
-                    </li>
+                         /.dropdown-messages 
+                    </li>-->
                     <!-- /.dropdown -->
-                    <li class="dropdown">
+<!--                    <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
                         </a>
@@ -191,10 +190,10 @@ DashboardAsset::register($this);
                                 </a>
                             </li>
                         </ul>
-                        <!-- /.dropdown-tasks -->
-                    </li>
+                         /.dropdown-tasks 
+                    </li>-->
                     <!-- /.dropdown -->
-                    <li class="dropdown">
+<!--                    <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
                         </a>
@@ -251,8 +250,8 @@ DashboardAsset::register($this);
                                 </a>
                             </li>
                         </ul>
-                        <!-- /.dropdown-alerts -->
-                    </li>
+                         /.dropdown-alerts 
+                    </li>-->
                     <!-- /.dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -310,7 +309,6 @@ DashboardAsset::register($this);
                     </div>
                 </div>
             </footer>
-        </div>         
         <?php $this->endBody() ?> 
         <!--<script src="<?= Yii::$app->request->baseUrl; ?>/bootstrap/bootstrap.min.js" type="text/javascript"></script>-->
     </body>
