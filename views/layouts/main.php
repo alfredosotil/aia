@@ -82,17 +82,22 @@ AppAsset::register($this);
                                         </a>
                                     </div>
                                 <?php endif; ?>                                  
-                                <div class="top-social-last top-dark pull-right" data-toggle="tooltip" data-placement="bottom" title="Login">
-                                    <?php if (Yii::$app->user->isGuest): ?>
+                                <?php if (Yii::$app->user->isGuest): ?>
+                                    <div class="top-social-last top-dark pull-right" data-toggle="tooltip" data-placement="bottom" title="Inicia Sesion">
+
                                         <a class="top-icon-circle" href="#login-modal" data-toggle="modal">
                                             <i class="fa fa-lock"></i>
                                         </a>
-                                    <?php else: ?>                                        
+                                    </div>   
+                                <?php else: ?>  
+                                    <div class="top-social-last top-dark pull-right" data-toggle="tooltip" data-placement="bottom" title="Salir">
+
                                         <a class="top-icon-circle" href="<?= Url::toRoute("site/logout") ?>" data-method="post">
                                             <i class="fa fa-sign-out"></i>
                                         </a>
-                                    <?php endif; ?>
-                                </div>                                
+                                    </div>                    
+                                <?php endif; ?>
+
                                 <div class="top-social pull-right">
                                     <a class="top-icon-circle" href="#">
                                         <i class="fa fa-youtube-play"></i>
@@ -361,7 +366,7 @@ AppAsset::register($this);
                             <!--<img src="<?= Yii::$app->request->baseUrl; ?>/images/logo-light.png" alt="" class="img-responsive footer-logo" />-->
                         </div>
                         <div class="col-xs-12 col-md-6 footer-copyrights">
-                            &copy; Copyright <?php echo date("Y");?> <a href="#" target="_blank">SwInn</a>. All rights reserved.
+                            &copy; Copyright <?php echo date("Y"); ?> <a href="#" target="_blank">SwInn</a>. All rights reserved.
                         </div>
                     </div>
                 </div>

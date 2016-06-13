@@ -15,7 +15,7 @@ class SiteController extends Controller {
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'submitproperty'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -23,7 +23,7 @@ class SiteController extends Controller {
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'submitproperty'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
