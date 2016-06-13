@@ -11,21 +11,9 @@ use app\assets\AppAsset;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-CrudAsset::register($this);
 $this->title = 'User';
 $this->params['breadcrumbs'][] = $this->title;
-//$info = AppAsset::executeQuery(Yii::$app->db, "select m.id 
-//            from access a, profile p, module m 
-//            where 
-//            a.profile_id=p.id 
-//            and a.module_id=m.id 
-//            and p.id=:PROFILE_ID 
-//            and m.controller=:CONTROLLER", [':PROFILE_ID' => Yii::$app->user->identity->profile_id, ':CONTROLLER' => "user"]);
-//echo var_dump($info)."<br>";
-//echo print_r($info)."<br>";
-//echo var_dump(Yii::$app->user->identity->profile_id)."<br>";
-//echo var_dump(Yii::$app->user->identity->names)."<br>";
-        
+CrudAsset::register($this);
 ?>
 
 <div class="user-index">
