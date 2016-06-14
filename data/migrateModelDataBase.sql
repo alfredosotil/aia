@@ -147,8 +147,12 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `aia`.`property` (
   `id` INT NOT NULL,
+  `transaction` INT NULL,
   `type_id` INT(11) NOT NULL,
+  `state_id` INT(11) NOT NULL,
   `price` DOUBLE NULL,
+  `money` CHAR(1) NOT NULL,
+  `commission` DOUBLE NOT NULL,
   `area` DOUBLE NULL,
   `bedrooms` DOUBLE NULL,
   `bathrooms` DOUBLE NULL,
@@ -157,9 +161,15 @@ CREATE TABLE IF NOT EXISTS `aia`.`property` (
   `active` TINYINT(1) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_property_type1_idx` (`type_id` ASC),
+  INDEX `fk_property_state1_idx` (`state_id` ASC),
   CONSTRAINT `fk_property_type1`
     FOREIGN KEY (`type_id`)
     REFERENCES `aia`.`type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_property_state1`
+    FOREIGN KEY (`state_id`)
+    REFERENCES `aia`.`state` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

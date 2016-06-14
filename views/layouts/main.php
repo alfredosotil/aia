@@ -493,7 +493,8 @@ AppAsset::register($this);
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->              
+        </div><!-- /.modal -->          
+        <div class="loader-bg"></div>
         <?php $this->endBody() ?> 
     </body>
 </html>

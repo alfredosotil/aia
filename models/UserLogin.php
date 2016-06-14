@@ -17,6 +17,7 @@ class UserLogin extends \yii\base\Object implements \yii\web\IdentityInterface
     public $password;
     public $authKey;
     public $accessToken;
+    public $parent;
     public $active;
 
     /**

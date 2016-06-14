@@ -15,7 +15,7 @@ $config = [
         'assetManager' => [
             'assetMap' => [
                 'bootstrap.js' => '@web/bootstrap/bootstrap.min.js',
-//                'jquery.js' => '//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
+                'jquery.js' => '@web/js/jQuery/jquery.min.js',
             ],
             'bundles' => [                
                 'yii\bootstrap\BootstrapAsset' => [
@@ -28,21 +28,21 @@ $config = [
                         'bootstrap/bootstrap.min.js',
                     ]
                 ],
-                'yii\web\JqueryAsset' => [
-                    'sourcePath' => null,   // do not publish the bundle
-                    'js' => [
-                        '//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
-                    ]
-                ],
-                'yii\jui\JuiAsset' => [
-                    'sourcePath' => null,   // do not publish the bundle
-                    'css' => [
-                        '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css',
-                    ],
-                    'js' => [
-                        '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js',
-                    ]
-                ],
+//                'yii\web\JqueryAsset' => [
+//                    'sourcePath' => null,   // do not publish the bundle
+//                    'js' => [
+//                        '//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
+//                    ]
+//                ],
+//                'yii\jui\JuiAsset' => [
+//                    'sourcePath' => null,   // do not publish the bundle
+//                    'css' => [
+//                        '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css',
+//                    ],
+//                    'js' => [
+//                        '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js',
+//                    ]
+//                ],
             ],
         ],
         'request' => [
@@ -99,7 +99,7 @@ $config = [
     'params' => $params,
 ];
 
-if (true) {
+if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [

@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\User */
+/* @var $model app\models\Property */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Agent'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Properties'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="agent-view">
+<div class="property-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,20 +29,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'names',
-            'surnames',
-            'email:email',
-            'username',
-            'password',
-            'active',
-            'lastupdate',
             'type_id',
             'state_id',
-            'sex',
-            'profile_id',
-            'authKey',
-            'accessToken',
-            'parent',
+            'price',
+            'money',
+            'commission',
+            'area',
+            'bedrooms',
+            'bathrooms',
+            'longitude',
+            'latitude',
+            'active',
         ],
     ]) ?>
 

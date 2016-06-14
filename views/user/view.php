@@ -30,6 +30,7 @@ use yii\widgets\DetailView;
             'profile_id',
             'authKey',
             'accessToken',
+            'parent',
         ],
     ])
     ?>

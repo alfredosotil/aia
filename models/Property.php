@@ -9,7 +9,10 @@ use Yii;
  *
  * @property integer $id
  * @property integer $type_id
+ * @property integer $state_id
  * @property double $price
+ * @property string $money
+ * @property double $commission
  * @property double $area
  * @property double $bedrooms
  * @property double $bathrooms
@@ -37,9 +40,10 @@ class Property extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'type_id'], 'required'],
-            [['id', 'type_id', 'active'], 'integer'],
-            [['price', 'area', 'bedrooms', 'bathrooms'], 'number'],
+            [['id', 'type_id', 'state_id', 'money', 'commission'], 'required'],
+            [['id', 'type_id', 'state_id', 'active'], 'integer'],
+            [['price', 'commission', 'area', 'bedrooms', 'bathrooms'], 'number'],
+            [['money'], 'string', 'max' => 1],
             [['longitude', 'latitude'], 'string', 'max' => 50],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
@@ -53,7 +57,10 @@ class Property extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'type_id' => Yii::t('app', 'Type ID'),
+            'state_id' => Yii::t('app', 'State ID'),
             'price' => Yii::t('app', 'Price'),
+            'money' => Yii::t('app', 'Money'),
+            'commission' => Yii::t('app', 'Commission'),
             'area' => Yii::t('app', 'Area'),
             'bedrooms' => Yii::t('app', 'Bedrooms'),
             'bathrooms' => Yii::t('app', 'Bathrooms'),

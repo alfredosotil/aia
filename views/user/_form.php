@@ -39,6 +39,8 @@ use app\models\Profile;
 
     <?= $form->field($model, 'accessToken')->textInput(['maxlength' => true]) ?>
     
+    <?= $form->field($model, 'parent')->textInput() ?>
+    
     <?= $form->field($model, 'active')->checkbox() ?>
   
 	<?php if (!Yii::$app->request->isAjax){ ?>

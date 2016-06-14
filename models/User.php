@@ -21,6 +21,7 @@ use Yii;
  * @property integer $profile_id
  * @property string $authKey
  * @property string $accessToken
+ * @property integer $parent
  *
  * @property Profile $profile
  * @property State $state
@@ -43,7 +44,7 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['names', 'surnames', 'email', 'username', 'password', 'active', 'type_id', 'state_id', 'sex', 'profile_id'], 'required'],
-            [['active', 'type_id', 'state_id', 'profile_id'], 'integer'],
+            [['active', 'type_id', 'state_id', 'profile_id', 'parent'], 'integer'],
             [['lastupdate'], 'safe'],
             [['names'], 'string', 'max' => 100],
             [['surnames', 'email', 'username', 'password', 'authKey', 'accessToken'], 'string', 'max' => 45],
@@ -71,6 +72,7 @@ class User extends \yii\db\ActiveRecord
             'profile_id' => 'Profile ID',
             'authKey' => 'Auth Key',
             'accessToken' => 'Access Token',
+            'parent' => 'Parent',
         ];
     }
 
