@@ -28,7 +28,7 @@ class DashboardAsset extends AssetBundle {
     public $css = [
         'css/animate.css',
         'apartment-font/css/font-awesome.min.css',
-        'bootstrap/bootstrap.min.css',
+//        'bootstrap/bootstrap.min.css',
 //        'css/plugins.css',
 //        'css/apartment-layout.css',
 //        'css/apartment-colors-blue.css',
@@ -41,7 +41,7 @@ class DashboardAsset extends AssetBundle {
     public $js = [
         'js/apartment.js',
         'js/sb-admin-2.js',
-        'bootstrap/bootstrap.min.js',
+//        'bootstrap/bootstrap.min.js',
         'js/metisMenu.min.js',
         'js/raphael-min.js',
         'js/wow.min.js',

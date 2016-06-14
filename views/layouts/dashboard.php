@@ -46,6 +46,7 @@ DashboardAsset::register($this);
     </head>
     <body>
         <?php $this->beginBody() ?>
+        <div class="loader-bg"></div>
         <div id="wrapper">
             <!-- Navigation -->
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -307,7 +308,6 @@ DashboardAsset::register($this);
             </div>
             <!-- /#page-wrapper -->
         </div>
-        <div class="loader-bg"></div>
         <?php $this->endBody() ?> 
 <!--<script src="<?= Yii::$app->request->baseUrl; ?>/bootstrap/bootstrap.min.js" type="text/javascript"></script>-->
     </body>

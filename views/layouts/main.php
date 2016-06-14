@@ -46,7 +46,7 @@ AppAsset::register($this);
     </head>
     <body>
         <?php $this->beginBody() ?>
-
+        <div class="loader-bg"></div>
         <div id="wrapper">
             <!-- Page header -->	
             <header>
@@ -493,8 +493,7 @@ AppAsset::register($this);
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->          
-        <div class="loader-bg"></div>
+        </div><!-- /.modal -->              
         <?php $this->endBody() ?> 
     </body>
 </html>
