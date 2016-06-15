@@ -127,7 +127,7 @@ AppAsset::register($this);
                                 <span class="icon-bar icon-bar3"></span>
                             </button>
                             <a href="<?= Url::toRoute("site/index") ?>" title="" class="navbar-brand">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/logo-dark.png" alt="AIA Inmobiliaria" />
+                                <img class="responsive-img" src="<?= Yii::$app->request->baseUrl; ?>/images/logo-dark.png" alt="AIA Inmobiliaria" />
                             </a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
@@ -249,37 +249,27 @@ AppAsset::register($this);
                                                                             <li><a href="my-profile.html">My account - Profile</a></li>
                                                                         </ul>-->
                                 </li>
-                                <!--                                <li class="button">
-                                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-                                                                    <a href="#" class="" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><a href="archive-grid.html">Default Grid</a></li>
-                                                                        <li class="dropdown-submenu">
-                                                                            <a tabindex="-1" href="archive-grid2-right-sidebar.html">Masonry Grid</a>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li><a href="archive-grid2-right-sidebar.html">Right Sidebar</a></li>
-                                                                                <li><a href="archive-grid2-left-sidebar.html">Left Sidebar</a></li>
-                                                                                <li><a href="archive-grid2-no-sidebar.html">No Sidebar</a></li>
-                                                                            </ul>
-                                                                        </li>
-                                                                        <li class="dropdown-submenu">
-                                                                            <a tabindex="-1" href="archive-right-sidebar.html">Classic List</a>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li><a href="archive-right-sidebar.html">Right Sidebar</a></li>
-                                                                                <li><a href="archive-left-sidebar.html">Left Sidebar</a></li>
-                                                                                <li><a href="archive-no-sidebar.html">No Sidebar</a></li>
-                                                                            </ul>
-                                                                        </li>
-                                                                        <li class="dropdown-submenu">
-                                                                            <a tabindex="-1" href="blog-right-sidebar.html">Single Post</a>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
-                                                                                <li><a href="blog-left-sidebar.html">Left Sidebar</a></li>
-                                                                                <li><a href="blog-no-sidebar.html">No Sidebar</a></li>
-                                                                            </ul>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>-->
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios</a>
+                                    <!--<a href="#" class="" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>-->
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Servicio 1</a></li>
+                                        <li>
+                                            <a tabindex="-1" href="#">Servicio 2</a>
+                                        </li>
+                                        <li>
+                                            <a tabindex="-1" href="#">Servicio 3</a>
+                                        </li>
+<!--                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="blog-right-sidebar.html">Single Post</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
+                                                <li><a href="blog-left-sidebar.html">Left Sidebar</a></li>
+                                                <li><a href="blog-no-sidebar.html">No Sidebar</a></li>
+                                            </ul>
+                                        </li>-->
+                                    </ul>
+                                </li>
                                 <li class="button">
                                     <a href="<?= Url::toRoute("site/contactus") ?>" class="" role="button" aria-haspopup="true" aria-expanded="false">Contactanos</a>
                                     <!--                                    <ul class="dropdown-menu">
@@ -287,7 +277,7 @@ AppAsset::register($this);
                                                                             <li><a href="contact2.html">Contact version 2</a></li>
                                                                         </ul>-->
                                 </li>
-                                <li><a href="<?= Url::toRoute("site/submitproperty") ?>" class="special-color">Agrega tu propiedad</a></li>
+                                <!--<li><a href="<?= Url::toRoute("site/submitproperty") ?>" class="special-color">Agrega tu propiedad</a></li>-->
                             </ul>
                         </div>
                     </div>

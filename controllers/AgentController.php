@@ -65,8 +65,10 @@ class AgentController extends Controller {
         $model->profile_id = \app\models\Profile::find()->where(['name' => 'Agente', 'category' => 'user'])->one()->id;
         $model->type_id = \app\models\Type::find()->where(['type' => 'Agente', 'category' => 'user'])->one()->id;
         $model->parent = Yii::$app->user->identity->id;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->email = $model->username + '@aia.com.pe';
+            if ($model->save())
+                return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                         'model' => $model,

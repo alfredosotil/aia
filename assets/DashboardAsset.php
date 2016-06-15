@@ -39,7 +39,7 @@ class DashboardAsset extends AssetBundle {
         'css/timeline.css',
     ];
     public $js = [
-        'js/apartment.js',
+//        'js/apartment.js',
         'js/sb-admin-2.js',
 //        'bootstrap/bootstrap.min.js',
         'js/metisMenu.min.js',

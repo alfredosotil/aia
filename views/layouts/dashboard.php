@@ -295,17 +295,17 @@ DashboardAsset::register($this);
                 <!-- /.navbar-static-side -->
             </nav>
             <div id="page-wrapper">
-                <?= $content ?>
-                <footer class="small-cont">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-6 pull-right">
-                                &copy; Copyright <?php echo date("Y"); ?> <a href="#" target="_blank">SwInn</a>. All rights reserved.
-                            </div>
+                <?= $content ?>               
+            </div>
+            <footer class="small-cont">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 pull-right">
+                            &copy; Copyright <?php echo date("Y"); ?> <a href="#" target="_blank">SwInn</a>. All rights reserved.
                         </div>
                     </div>
-                </footer>
-            </div>
+                </div>
+            </footer>
             <!-- /#page-wrapper -->
         </div>
         <?php $this->endBody() ?> 

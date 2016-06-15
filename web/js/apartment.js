@@ -155,8 +155,6 @@ var staticDescHeight = 0;
 
 jQuery(document).ready(function ($) {
 
-
-
     /********** BOXED LAYOUT **********/
 
 
@@ -1136,6 +1134,22 @@ jQuery(window).load(function () {
 
 
         $(".loader-bg").fadeOut('slow');
+                var $window = $(window);
+//                var $pane = $('#pane1');
+                function checkWidth() {
+                var windowsize = $window.width();
+                        if (windowsize < 1200) {
+                //if the window is greater than 440px wide then turn on jScrollPane..
+                $(".navbar-brand img").addClass("fix-image-brand");
+                } else{
+                $(".navbar-brand img").removeClass("fix-image-brand");
+                }
+
+                }
+        // Execute on load
+        checkWidth();
+                // Bind event listener
+                $(window).resize(checkWidth);
     }
 })(jQuery);
 

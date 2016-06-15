@@ -15,7 +15,7 @@ $this->title = 'Types';
 $this->params['breadcrumbs'][] = $this->title;
 CrudAsset::register($this);
 ?>
-<div class="type-index">
+<div class="row type-index">
     <div id="" class="page-header wow fadeIn" style=""  data-wow-duration="1000ms">
         <h1><i class='fa fa-fw fa-cog'></i><span><?= $this->title; ?></span></h1>    
     </div>

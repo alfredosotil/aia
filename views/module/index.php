@@ -15,7 +15,7 @@ $this->title = 'Modules';
 $this->params['breadcrumbs'][] = $this->title;
 CrudAsset::register($this);
 ?>
-<div class="module-index">
+<div class="row module-index">
     <div id="" class="page-header wow fadeIn" style=""  data-wow-duration="1000ms">
         <h1><i class='fa fa-fw fa-cogs'></i><span><?= $this->title; ?></span></h1>    
     </div>

@@ -15,7 +15,7 @@ $this->title = 'Accesses';
 $this->params['breadcrumbs'][] = $this->title;
 CrudAsset::register($this);
 ?>
-<div class="access-index">
+<div class="row access-index">
     <div id="" class="page-header wow fadeIn" style=""  data-wow-duration="1000ms">
         <h1><i class='fa fa-fw fa-users'></i><span><?= $this->title; ?></span></h1>    
     </div>
