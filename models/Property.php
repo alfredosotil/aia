@@ -19,6 +19,12 @@ use Yii;
  * @property string $longitude
  * @property string $latitude
  * @property integer $active
+ * @property string $datecreation
+ * @property string $datestart
+ * @property string $datelasupdate
+ * @property string $owner
+ * @property string $phoneowner
+ * @property string $emailowner
  *
  * @property Accesspropertydetail[] $accesspropertydetails
  * @property ImagesProperty[] $imagesProperties
@@ -40,11 +46,14 @@ class Property extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'type_id', 'state_id', 'money', 'commission'], 'required'],
-            [['id', 'type_id', 'state_id', 'active'], 'integer'],
+            [['type_id', 'state_id', 'money', 'commission', 'owner', 'phoneowner'], 'required'],
+            [['type_id', 'state_id', 'active'], 'integer'],
             [['price', 'commission', 'area', 'bedrooms', 'bathrooms'], 'number'],
+            [['datecreation', 'datestart', 'datelasupdate'], 'safe'],
             [['money'], 'string', 'max' => 1],
-            [['longitude', 'latitude'], 'string', 'max' => 50],
+            [['longitude', 'latitude', 'owner'], 'string', 'max' => 50],
+            [['phoneowner'], 'string', 'max' => 45],
+            [['emailowner'], 'string', 'max' => 100],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
@@ -67,6 +76,12 @@ class Property extends \yii\db\ActiveRecord
             'longitude' => Yii::t('app', 'Longitude'),
             'latitude' => Yii::t('app', 'Latitude'),
             'active' => Yii::t('app', 'Active'),
+            'datecreation' => Yii::t('app', 'Datecreation'),
+            'datestart' => Yii::t('app', 'Datestart'),
+            'datelasupdate' => Yii::t('app', 'Datelasupdate'),
+            'owner' => Yii::t('app', 'Owner'),
+            'phoneowner' => Yii::t('app', 'Phoneowner'),
+            'emailowner' => Yii::t('app', 'Emailowner'),
         ];
     }
 

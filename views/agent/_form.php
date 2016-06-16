@@ -8,8 +8,9 @@ use app\models\State;
 use app\models\Profile;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\User */
+/* @var $model app\models\Agent */
 /* @var $form yii\widgets\ActiveForm */
+//echo var_dump($model)
 ?>
 
 <div class="agent-form">
@@ -20,7 +21,7 @@ use app\models\Profile;
 
     <?= $form->field($model, 'surnames')->textInput(['maxlength' => true]) ?>
 
-    <!--?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?!-->
+    <?= $form->field($model, 'email')->hiddenInput()->label(false) ?>
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
@@ -41,10 +42,15 @@ use app\models\Profile;
     <!--?= $form->field($model, 'authKey')->textInput(['maxlength' => true]) ?!-->
 
     <!--?= $form->field($model, 'accessToken')->textInput(['maxlength' => true]) ?!-->
-    
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+
+    <!--?= $form->field($model, 'parent')->textInput() ?!-->
+
+
+    <?php if (!Yii::$app->request->isAjax) { ?>
+        <div class="form-group">
+            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
+    <?php } ?>
 
     <?php ActiveForm::end(); ?>
 

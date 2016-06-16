@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
@@ -10,6 +9,7 @@ use app\models\Profile;
 /* @var $this yii\web\View */
 /* @var $model app\models\Property */
 /* @var $form yii\widgets\ActiveForm */
+//echo var_dump($model)
 ?>
 
 <div class="property-form">
@@ -40,10 +40,25 @@ use app\models\Profile;
 
     <?= $form->field($model, 'active')->checkbox() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+    <?= $form->field($model, 'datecreation')->textInput() ?>
+
+    <?= $form->field($model, 'datestart')->textInput() ?>
+
+    <?= $form->field($model, 'datelasupdate')->textInput() ?>
+
+    <?= $form->field($model, 'owner')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'phoneowner')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'emailowner')->textInput(['maxlength' => true]) ?>
+
+  
+	<?php if (!Yii::$app->request->isAjax){ ?>
+	  	<div class="form-group">
+	        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	    </div>
+	<?php } ?>
 
     <?php ActiveForm::end(); ?>
-
+    
 </div>

@@ -20,7 +20,7 @@ class PropertySearch extends Property
         return [
             [['id', 'type_id', 'state_id', 'active'], 'integer'],
             [['price', 'commission', 'area', 'bedrooms', 'bathrooms'], 'number'],
-            [['money', 'longitude', 'latitude'], 'safe'],
+            [['money', 'longitude', 'latitude', 'datecreation', 'datestart', 'datelasupdate', 'owner', 'phoneowner', 'emailowner'], 'safe'],
         ];
     }
 
@@ -44,8 +44,6 @@ class PropertySearch extends Property
     {
         $query = Property::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -58,7 +56,6 @@ class PropertySearch extends Property
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'type_id' => $this->type_id,
@@ -69,11 +66,17 @@ class PropertySearch extends Property
             'bedrooms' => $this->bedrooms,
             'bathrooms' => $this->bathrooms,
             'active' => $this->active,
+            'datecreation' => $this->datecreation,
+            'datestart' => $this->datestart,
+            'datelasupdate' => $this->datelasupdate,
         ]);
 
         $query->andFilterWhere(['like', 'money', $this->money])
             ->andFilterWhere(['like', 'longitude', $this->longitude])
-            ->andFilterWhere(['like', 'latitude', $this->latitude]);
+            ->andFilterWhere(['like', 'latitude', $this->latitude])
+            ->andFilterWhere(['like', 'owner', $this->owner])
+            ->andFilterWhere(['like', 'phoneowner', $this->phoneowner])
+            ->andFilterWhere(['like', 'emailowner', $this->emailowner]);
 
         return $dataProvider;
     }

@@ -48,6 +48,7 @@ class User extends \yii\db\ActiveRecord
             [['lastupdate'], 'safe'],
             [['names'], 'string', 'max' => 100],
             [['surnames', 'email', 'username', 'password', 'authKey', 'accessToken'], 'string', 'max' => 45],
+            [['email'], 'email'],
             [['sex'], 'string', 'max' => 1]
         ];
     }
