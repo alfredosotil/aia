@@ -1217,7 +1217,7 @@
         </div>
     </section>
 
-    <section class="testimonials parallax">
+<!--    <section class="testimonials parallax">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-9">
@@ -1272,7 +1272,7 @@
             </div>
         </div>
 
-    </section>
+    </section>-->
 
     <section class="section-light bottom-padding-45 section-top-shadow">
         <div class="container">
@@ -1591,7 +1591,7 @@
         </div>
     </section>
 
-    <section class="section-dark">
+<!--    <section class="section-dark">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-lg-12">
@@ -1684,9 +1684,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
-    <section class="section-light top-padding-45 bottom-padding-45">
+<!--    <section class="section-light top-padding-45 bottom-padding-45">
         <div class="container">
             <div class="row count-container">
                 <div class="col-xs-6 col-lg-3">
@@ -1727,7 +1727,7 @@
                 </div>
             </div>
         </div>
-    </section>	
+    </section>	-->
 </div>
 
 <!--Google Maps--> 

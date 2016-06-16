@@ -290,7 +290,7 @@ AppAsset::register($this);
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-lg-3">
-                            <h4 class="second-color">contact us<span class="special-color">.</span></h4>
+                            <h4 class="second-color">contactanos<span class="special-color">.</span></h4>
                             <div class="footer-title-separator"></div>
                             <p class="footer-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                             <address>
@@ -302,7 +302,7 @@ AppAsset::register($this);
                             </address>
                             <div class="clear"></div>
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-lg-3">
+<!--                        <div class="col-xs-6 col-sm-6 col-lg-3">
                             <h4 class="second-color">quick links<span class="special-color">.</span></h4>
                             <div class="footer-title-separator"></div>
                             <ul class="footer-ul">
@@ -313,8 +313,8 @@ AppAsset::register($this);
                                 <li><span class="custom-ul-bullet"></span><a href="contact1.html">Contact us</a></li>
                                 <li><span class="custom-ul-bullet"></span><a href="submit-property.html">Submit property</a></li>
                             </ul>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-lg-3">
+                        </div>-->
+<!--                        <div class="col-xs-12 col-sm-6 col-lg-3">
                             <h4 class="second-color">from the blog<span class="special-color">.</span></h4>
                             <div class="footer-title-separator"></div>
                             <div class="row">
@@ -336,9 +336,9 @@ AppAsset::register($this);
                                     </article>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-xs-12 col-sm-6 col-lg-3">
-                            <h4 class="second-color">newsletter<span class="special-color">.</span></h4>
+                            <h4 class="second-color">noticias<span class="special-color">.</span></h4>
                             <div class="footer-title-separator"></div>
                             <p class="footer-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                             <form class="form-inline footer-newsletter">
