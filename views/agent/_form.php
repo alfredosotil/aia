@@ -10,7 +10,9 @@ use app\models\Profile;
 /* @var $this yii\web\View */
 /* @var $model app\models\Agent */
 /* @var $form yii\widgets\ActiveForm */
-//echo var_dump($model)
+//echo var_dump(Yii::$app->request->post());
+echo var_dump(ArrayHelper::getValue(Yii::$app->request->post(), 'User.username'));
+echo var_dump($model);
 ?>
 
 <div class="agent-form">
@@ -21,7 +23,7 @@ use app\models\Profile;
 
     <?= $form->field($model, 'surnames')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'email')->hiddenInput()->label(false) ?>
+    <!--?= $form->field($model, 'email')->hiddenInput()->label(false) ?!-->
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 

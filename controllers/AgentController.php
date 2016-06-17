@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 /**
  * AgentController implements the CRUD actions for User model.
@@ -99,9 +100,9 @@ class AgentController extends Controller {
                 $model->profile_id = \app\models\Profile::find()->where(['name' => 'Agente', 'category' => 'user'])->one()->id;
                 $model->type_id = \app\models\Type::find()->where(['type' => 'Agente', 'category' => 'user'])->one()->id;
                 $model->parent = Yii::$app->user->identity->id;
-//                $model->email = $request->post('User[email]User[username]') + '@aia.com.pe';
-                $model->email = $_POST['User[username]'] + '@aia.com.pe';
-//                $request->post('User[email]', $request->post('User[username]') + '@aia.com.pe');
+//                $model->email = $request->post('User')['username'] + '@aia.com.pe';
+                $username = ArrayHelper::getValue($request->post(), 'User.username');
+                $model->email = "$username@aia.com.pe";
                 if ($model->load($request->post()) && $model->save()) {
                     return [
                         'forceReload' => '#crud-datatable-pjax',
