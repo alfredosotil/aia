@@ -68,7 +68,7 @@ return [
     // ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'datelasupdate',
+        // 'attribute'=>'datelastupdate',
     // ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',

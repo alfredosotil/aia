@@ -20,7 +20,10 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "macgyer/yii2-materializecss": "*",
-        "johnitvn/yii2-ajaxcrud": "*"
+        "johnitvn/yii2-ajaxcrud": "*",
+        "kartik-v/yii2-widget-activeform": "*",
+        "2amigos/yii2-google-maps-library": "*",
+        "ibrarturi/yii2-latlng-finder": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

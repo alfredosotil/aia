@@ -20,7 +20,7 @@ class PropertySearch extends Property
         return [
             [['id', 'type_id', 'state_id', 'active'], 'integer'],
             [['price', 'commission', 'area', 'bedrooms', 'bathrooms'], 'number'],
-            [['money', 'longitude', 'latitude', 'datecreation', 'datestart', 'datelasupdate', 'owner', 'phoneowner', 'emailowner'], 'safe'],
+            [['money', 'longitude', 'latitude', 'datecreation', 'datestart', 'datelastupdate', 'owner', 'phoneowner', 'emailowner'], 'safe'],
         ];
     }
 
@@ -68,7 +68,7 @@ class PropertySearch extends Property
             'active' => $this->active,
             'datecreation' => $this->datecreation,
             'datestart' => $this->datestart,
-            'datelasupdate' => $this->datelasupdate,
+            'datelastupdate' => $this->datelastupdate,
         ]);
 
         $query->andFilterWhere(['like', 'money', $this->money])

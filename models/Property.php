@@ -21,10 +21,11 @@ use Yii;
  * @property integer $active
  * @property string $datecreation
  * @property string $datestart
- * @property string $datelasupdate
+ * @property string $datelastupdate
  * @property string $owner
  * @property string $phoneowner
  * @property string $emailowner
+ * @property string $address
  *
  * @property Accesspropertydetail[] $accesspropertydetails
  * @property ImagesProperty[] $imagesProperties
@@ -46,14 +47,14 @@ class Property extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_id', 'state_id', 'money', 'commission', 'owner', 'phoneowner'], 'required'],
+            [['type_id', 'state_id', 'money', 'commission', 'longitude', 'latitude', 'address'], 'required'],
             [['type_id', 'state_id', 'active'], 'integer'],
             [['price', 'commission', 'area', 'bedrooms', 'bathrooms'], 'number'],
-            [['datecreation', 'datestart', 'datelasupdate'], 'safe'],
+            [['datecreation', 'datestart', 'datelastupdate'], 'safe'],
             [['money'], 'string', 'max' => 1],
             [['longitude', 'latitude', 'owner'], 'string', 'max' => 50],
             [['phoneowner'], 'string', 'max' => 45],
-            [['emailowner'], 'string', 'max' => 100],
+            [['emailowner', 'address'], 'string', 'max' => 100],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
@@ -78,10 +79,11 @@ class Property extends \yii\db\ActiveRecord
             'active' => Yii::t('app', 'Active'),
             'datecreation' => Yii::t('app', 'Datecreation'),
             'datestart' => Yii::t('app', 'Datestart'),
-            'datelasupdate' => Yii::t('app', 'Datelasupdate'),
+            'datelastupdate' => Yii::t('app', 'Datelastupdate'),
             'owner' => Yii::t('app', 'Owner'),
             'phoneowner' => Yii::t('app', 'Phoneowner'),
             'emailowner' => Yii::t('app', 'Emailowner'),
+            'address' => Yii::t('app', 'Address'),
         ];
     }
 

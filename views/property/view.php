@@ -24,7 +24,7 @@ use yii\widgets\DetailView;
             'active',
             'datecreation',
             'datestart',
-            'datelasupdate',
+            'datelastupdate',
             'owner',
             'phoneowner',
             'emailowner:email',
