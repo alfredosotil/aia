@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a82cb958e86b41f6ed26fe8e00160d88",
-    "content-hash": "ad4537809b15683d394c0127bf513e80",
+    "hash": "5fde3c77b76416b6e7833226de350eda",
+    "content-hash": "e83fb5af89907e32aad241f35cba93ee",
     "packages": [
         {
             "name": "2amigos/yii2-google-maps-library",
@@ -56,6 +56,51 @@
                 "yii"
             ],
             "time": "2015-10-30 17:33:00"
+        },
+        {
+            "name": "2amigos/yii2-google-places-library",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-google-places-library.git",
+                "reference": "53203043892005ff0e4e470c30768689cf6c5b6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-google-places-library/zipball/53203043892005ff0e4e470c30768689cf6c5b6c",
+                "reference": "53203043892005ff0e4e470c30768689cf6c5b6c",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "4.*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\google\\places\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "ramirez.cobos@gmail.com",
+                    "homepage": "http://2amigos.us"
+                }
+            ],
+            "description": "Google Places API Library for Yii2.",
+            "keywords": [
+                "extension",
+                "google",
+                "library",
+                "places",
+                "yii"
+            ],
+            "time": "2014-05-28 10:00:36"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -1069,6 +1114,51 @@
                 "yii2"
             ],
             "time": "2015-12-11 19:07:50"
+        },
+        {
+            "name": "kolyunya/yii2-map-input-widget",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kolyunya/yii2-map-input-widget.git",
+                "reference": "8ebde833307e630446aa6a482d244cdea5e4cf98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kolyunya/yii2-map-input-widget/zipball/8ebde833307e630446aa6a482d244cdea5e4cf98",
+                "reference": "8ebde833307e630446aa6a482d244cdea5e4cf98",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kolyunya\\yii2\\": "sources"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU GPL v3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Oleynikov Nikolay",
+                    "email": "OleynikovNY@mail.ru",
+                    "homepage": "http://github.com/Kolyunya/"
+                }
+            ],
+            "description": "Yii2 map input widget. Allows you to select geographcal coordinates via a human-friendly inteface.",
+            "homepage": "https://github.com/Kolyunya/yii2-map-input-widget",
+            "keywords": [
+                "coordinates",
+                "extension",
+                "geo-coordinates",
+                "geocoding",
+                "input",
+                "map",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-01-12 21:45:32"
         },
         {
             "name": "macgyer/yii2-materializecss",
