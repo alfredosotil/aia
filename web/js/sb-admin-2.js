@@ -4,6 +4,43 @@ $(function () {
 
 });
 
+var geocoder;
+
+function initialize() {
+    geocoder = new google.maps.Geocoder();
+}
+
+function codeLatLng(lat, lng, element) {
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode({
+        'latLng': latlng
+    }, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+                console.log(results[1]);
+//        var addressmap = results[1]
+//        return addressmap.formatted_address;
+//        return String(results[1]['formatted_address']);
+//        element = JSON.stringify(results[1])
+//        element = Object.keys(results[1])
+//        element = Object.keys(results[1])
+//                console.log(Object.keys(results[1]));
+//                console.log(JSON.stringify(results[1]));
+//                var text = JSON.stringify(results[1]);
+//                var object = JSON.parse(text);
+                element.value = results[1].formatted_address;
+//                return JSON.parse(JSON.stringify(results[1]));
+//                return object;
+            } else {
+                alert('No results found');
+            }
+        } else {
+            alert('Geocoder failed due to: ' + status);
+        }
+    });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
@@ -11,7 +48,6 @@ jQuery(window).load(function () {
 //    $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 //        options.async = true;
 //    });
-    $.ajax({async: false})
     $(".loader-bg").fadeOut('slow');
 });
 

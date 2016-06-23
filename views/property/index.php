@@ -18,12 +18,6 @@ CrudAsset::register($this);
 ?>
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;libraries=places"></script>
 <script src="<?php echo Yii::$app->request->baseUrl?>/js/gmaps.min.js"></script>
-<style type="text/css">
-    #map {
-      width: 65%;
-      height: 400px;
-    }
-  </style>
 <div class="row property-index">
     <div id="title-module" class="page-header wow fadeIn" style=""  data-wow-duration="1000ms">
         <h1><i class='fa fa-fw fa fa-building'></i><span><?= $this->title; ?></span></h1>    

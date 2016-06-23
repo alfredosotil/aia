@@ -8,10 +8,15 @@ use app\models\State;
 use app\models\Profile;
 use kartik\form\ActiveForm;
 use app\assets\LocateAsset;
+use kartik\file\FileInput;
 
 //LocateAsset::register($this);
 ?>
-
+<style type="text/css">
+    #map {
+        width: 100%;        
+    }
+</style>
 <div class="property-form">
 
     <?php
@@ -52,19 +57,18 @@ use app\assets\LocateAsset;
 
     <?= $form->field($model, 'emailowner')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'longitude')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'latitude')->textInput(['maxlength' => true, 'disabled' => true]) ?>
 
-    <?= $form->field($model, 'latitude')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'longitude')->textInput(['maxlength' => true, 'disabled' => true]) ?>
 
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'disabled' => true]) ?>
 
-    <div class="form-group field-property-latitude required">
-        <label class="control-label col-md-2"><a class="btn btn-primary " onclick="<?php $maploader = "mapa_loader";
-    echo $maploader; ?>();">Mapa</a></label>  
-        <div id="map" class="container col-md-offset-2 col-md-10"></div>   
-        <?php
-        //uniqid();
-        $this->registerJs("function $maploader(){
+    <div class="form-group field-property-map">
+        <label class="control-label col-md-2" for="map">
+            <a class="btn btn-primary " onclick="<?php
+            $maploader = "mapa_loader";
+            $this->registerJs("function $maploader(){
+            document.getElementById('map').style.height = '400px';
             var map = new GMaps({
                                     el: '#map',
                                     lat: -12.043333,
@@ -77,8 +81,17 @@ use app\assets\LocateAsset;
                   map.addMarker({
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
-                    draggable: true
-                    });
+                    draggable: true,
+                    dragend: function(e) {
+//                        alert(e.latLng.lat()+','+e.latLng.lng());
+                        document.getElementById('property-latitude').value = e.latLng.lat();
+                        document.getElementById('property-longitude').value = e.latLng.lng();
+                        codeLatLng(e.latLng.lat(), e.latLng.lng(), document.getElementById('property-address'));
+                      }
+                  });
+                  document.getElementById('property-latitude').value = position.coords.latitude;
+                  document.getElementById('property-longitude').value = position.coords.longitude;
+                  codeLatLng(position.coords.latitude, position.coords.longitude, document.getElementById('property-address'));
                 },
                 error: function(error) {
                   alert('Geolocation failed: '+error.message);
@@ -90,24 +103,40 @@ use app\assets\LocateAsset;
                   //alert('Done!');
                 }
             });
-}", yii\web\View::POS_READY, $maploader);
-//        $coord = new LatLng(['lat' => 39.720089311812094, 'lng' => 2.91165944519042]);
-//        $map = new app\assets\Map([
-//            'center' => $coord,
-//            'zoom' => 14,
-//        ]);
-//        // Display the map -finally :)
-//        echo $map->display();
-//    use yii\web\JsExpression;
-        ?>
+        }", yii\web\View::POS_END, $maploader);
+            echo $maploader;
+            ?>();">Mapa</a>
+        </label>
+        <div class="col-md-10">
+            <div id="map"></div>
+        </div>
+        <div class="col-md-offset-2 col-md-10"></div>
+        <div class="col-md-offset-2 col-md-10"><div class="help-block"></div></div>
+    </div>  
 
-    </div>
-        <?php if (!Yii::$app->request->isAjax) { ?>
+    <?=
+    $form->field($model, 'photos')->widget(FileInput::classname(), [
+        'pluginOptions' => [
+            'showCaption' => false,
+            'showRemove' => false,
+            'showUpload' => false,
+            'browseClass' => 'btn btn-primary btn-block',
+            'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
+            'browseLabel' => 'Selecciona las fotos'
+        ],
+        'options' => [
+            'accept' => 'image/*',
+            'multiple' => true
+            ],
+    ]);
+    ?>
+
+    <?php if (!Yii::$app->request->isAjax) { ?>
         <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
     <?php } ?>
 
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

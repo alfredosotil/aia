@@ -36,6 +36,9 @@ class Property extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    
+    public $photos;
+    
     public static function tableName()
     {
         return 'property';
@@ -84,6 +87,7 @@ class Property extends \yii\db\ActiveRecord
             'phoneowner' => Yii::t('app', 'Phoneowner'),
             'emailowner' => Yii::t('app', 'Emailowner'),
             'address' => Yii::t('app', 'Address'),
+            'photos' => Yii::t('app', 'Fotos'),
         ];
     }
 
