@@ -20,7 +20,7 @@ CrudAsset::register($this);
 <script src="<?php echo Yii::$app->request->baseUrl?>/js/gmaps.min.js"></script>
 <style type="text/css">
     #map {
-      width: 400px;
+      width: 65%;
       height: 400px;
     }
   </style>

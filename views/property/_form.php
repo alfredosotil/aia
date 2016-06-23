@@ -59,14 +59,38 @@ use app\assets\LocateAsset;
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group field-property-latitude required">
-        <label class="control-label col-md-2"><a class="btn btn-primary " onclick="<?php $maploader = "mapa_loader"; echo $maploader; ?>();">Mapa</a></label>  
-             <div class="col-md-offset-2 col-md-10"><div id="map"></div></div>   
-        <?php         //uniqid();
-        $this->registerJs("function $maploader(){var map = new GMaps({
-                el: '#map',
-                lat: -12.043333,
-                lng: -77.028333
-            });}", yii\web\View::POS_READY, $maploader);
+        <label class="control-label col-md-2"><a class="btn btn-primary " onclick="<?php $maploader = "mapa_loader";
+    echo $maploader; ?>();">Mapa</a></label>  
+        <div id="map" class="container col-md-offset-2 col-md-10"></div>   
+        <?php
+        //uniqid();
+        $this->registerJs("function $maploader(){
+            var map = new GMaps({
+                                    el: '#map',
+                                    lat: -12.043333,
+                                    lng: -77.028333
+                                });
+            
+            GMaps.geolocate({
+                success: function(position) {
+                  map.setCenter(position.coords.latitude, position.coords.longitude);                  
+                  map.addMarker({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                    draggable: true
+                    });
+                },
+                error: function(error) {
+                  alert('Geolocation failed: '+error.message);
+                },
+                not_supported: function() {
+                  alert('Your browser does not support geolocation');
+                },
+                always: function() {
+                  //alert('Done!');
+                }
+            });
+}", yii\web\View::POS_READY, $maploader);
 //        $coord = new LatLng(['lat' => 39.720089311812094, 'lng' => 2.91165944519042]);
 //        $map = new app\assets\Map([
 //            'center' => $coord,
@@ -78,12 +102,12 @@ use app\assets\LocateAsset;
         ?>
 
     </div>
-    <?php if (!Yii::$app->request->isAjax) { ?>
+        <?php if (!Yii::$app->request->isAjax) { ?>
         <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Crear') : Yii::t('app', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
     <?php } ?>
 
-    <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
 </div>
