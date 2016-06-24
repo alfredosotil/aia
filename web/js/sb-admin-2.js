@@ -10,6 +10,118 @@ function initialize() {
     geocoder = new google.maps.Geocoder();
 }
 
+function getMapProperty() {
+    if (document.getElementById('property-map-view') !== null) {
+        var lat = document.getElementById('property-map-view-latitude').innerHTML;
+        var lng = document.getElementById('property-map-view-longitude').innerHTML;
+        var url = GMaps.staticMapURL({
+            lat: lat,
+            lng: lng,
+            markers: [
+                {
+                    lat: lat, 
+                    lng: lng,
+//                    size: 'medium', 
+                    color: 'blue'},
+            ]
+        });
+        document.getElementById('property-map-view').className = "";
+        var img = document.createElement("img");
+        img.src = url;
+        img.class = "img-responsive";
+        img.style.width = "100%";
+        document.getElementById('property-map-view').appendChild(img);
+    } else {        
+        var map = new GMaps({
+            el: '#property-map',
+            lat: -12.043333,
+            lng: -77.028333,
+        });
+        document.getElementById('property-map').style.height = '400px';
+        document.getElementById('property-map').className = "";
+        if (document.getElementById('property-latitude').value === '' &&
+                document.getElementById('property-longitude').value === '' &&
+                document.getElementById('property-address').value === '') {
+            GMaps.geolocate({
+                success: function (position) {
+                    map.setCenter(position.coords.latitude, position.coords.longitude);
+                    map.addMarker({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                        draggable: true,
+                        dragend: function (e) {
+//                        alert(e.latLng.lat()+','+e.latLng.lng());
+                            document.getElementById('property-latitude').value = e.latLng.lat();
+                            document.getElementById('property-longitude').value = e.latLng.lng();
+                            codeLatLng(e.latLng.lat(), e.latLng.lng(), document.getElementById('property-address'));
+                        }
+                    });
+                    document.getElementById('property-latitude').value = position.coords.latitude;
+                    document.getElementById('property-longitude').value = position.coords.longitude;
+                    codeLatLng(position.coords.latitude, position.coords.longitude, document.getElementById('property-address'));
+//                map.setContextMenu({
+//                    control: 'map',
+//                    options: [{
+//                            title: 'Add marker',
+//                            name: 'add_marker',
+//                            action: function (e) {
+//                                console.log(e.latLng.lat());
+//                                console.log(e.latLng.lng());
+//                                this.addMarker({
+//                                    lat: e.latLng.lat(),
+//                                    lng: e.latLng.lng(),
+//                                    title: 'New marker'
+//                                });
+//                                this.hideContextMenu();
+//                            }
+//                        }, {
+//                            title: 'Center here',
+//                            name: 'center_here',
+//                            action: function (e) {
+//                                this.setCenter(e.latLng.lat(), e.latLng.lng());
+//                            }
+//                        }]
+//                });
+//                map.setContextMenu({
+//                    control: 'marker',
+//                    options: [{
+//                            title: 'Center here',
+//                            name: 'center_here',
+//                            action: function (e) {
+//                                this.setCenter(e.latLng.lat(), e.latLng.lng());
+//                            }
+//                        }]
+//                });
+                },
+                error: function (error) {
+                    alert('Geolocation failed: ' + error.message);
+                },
+                not_supported: function () {
+                    alert('Your browser does not support geolocation');
+                },
+                always: function () {
+                    //alert('Done!');
+                }
+            });
+        } else {
+            var lat = document.getElementById('property-latitude').value;
+            var lng = document.getElementById('property-longitude').value;
+            map.setCenter(lat, lng);
+            map.addMarker({
+                lat: lat,
+                lng: lng,
+                draggable: true,
+                dragend: function (e) {
+//                        alert(e.latLng.lat()+','+e.latLng.lng());
+                    document.getElementById('property-latitude').value = e.latLng.lat();
+                    document.getElementById('property-longitude').value = e.latLng.lng();
+                    codeLatLng(e.latLng.lat(), e.latLng.lng(), document.getElementById('property-address'));
+                }
+            });
+        }
+    }
+}
+
 function codeLatLng(lat, lng, element) {
     var latlng = new google.maps.LatLng(lat, lng);
     geocoder.geocode({
@@ -49,6 +161,12 @@ jQuery(window).load(function () {
 //        options.async = true;
 //    });
     $(".loader-bg").fadeOut('slow');
+    $('div.property').on('shown.bs.modal', function () {
+        setTimeout(function () {
+            getMapProperty();
+        }, 5000);
+
+    });
 });
 
 $(function () {

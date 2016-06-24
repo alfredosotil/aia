@@ -38,6 +38,7 @@ class Property extends \yii\db\ActiveRecord
      */
     
     public $photos;
+    public $map;
     
     public static function tableName()
     {
@@ -88,6 +89,7 @@ class Property extends \yii\db\ActiveRecord
             'emailowner' => Yii::t('app', 'Emailowner'),
             'address' => Yii::t('app', 'Address'),
             'photos' => Yii::t('app', 'Fotos'),
+            'map' => Yii::t('app', 'Mapa'),
         ];
     }
 

@@ -4,15 +4,22 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-.loader-bg {
-	background: #ffffff url(../images/loader.png) no-repeat center center;
+.loader-map {
+    background: #ffffff url(../images/loader-map.gif) no-repeat center center;
+    width: 100%;
+    height: 66px;
+/*    position: fixed;
+    z-index: 10000;*/
 }
 
+
+
 .loader-bg {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	z-index: 10000;
+    background: #ffffff url(../images/loader.png) no-repeat center center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000;
 }
 
 body {

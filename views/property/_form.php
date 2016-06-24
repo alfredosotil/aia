@@ -12,11 +12,7 @@ use kartik\file\FileInput;
 
 //LocateAsset::register($this);
 ?>
-<style type="text/css">
-    #map {
-        width: 100%;        
-    }
-</style>
+
 <div class="property-form">
 
     <?php
@@ -57,57 +53,17 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'emailowner')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'latitude')->textInput(['maxlength' => true, 'disabled' => true]) ?>
+    <?= $form->field($model, 'latitude')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
-    <?= $form->field($model, 'longitude')->textInput(['maxlength' => true, 'disabled' => true]) ?>
+    <?= $form->field($model, 'longitude')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'disabled' => false]) ?>
+    <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
     <div class="form-group field-property-map">
         <label class="control-label col-md-2" for="map">Mapa</label>
         <div class="col-md-10">
-            <a class="btn btn-primary btn-block" onclick="<?php
-            $maploader = "mapa_loader";
-            $this->registerJs("function $maploader(){
-            document.getElementById('map').style.height = '400px';
-            var map = new GMaps({
-                                    el: '#map',
-                                    lat: -12.043333,
-                                    lng: -77.028333
-                                });
-            
-            GMaps.geolocate({
-                success: function(position) {
-                  map.setCenter(position.coords.latitude, position.coords.longitude);                  
-                  map.addMarker({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                    draggable: true,
-                    dragend: function(e) {
-//                        alert(e.latLng.lat()+','+e.latLng.lng());
-                        document.getElementById('property-latitude').value = e.latLng.lat();
-                        document.getElementById('property-longitude').value = e.latLng.lng();
-                        codeLatLng(e.latLng.lat(), e.latLng.lng(), document.getElementById('property-address'));
-                      }
-                  });
-                  document.getElementById('property-latitude').value = position.coords.latitude;
-                  document.getElementById('property-longitude').value = position.coords.longitude;
-                  codeLatLng(position.coords.latitude, position.coords.longitude, document.getElementById('property-address'));
-                },
-                error: function(error) {
-                  alert('Geolocation failed: '+error.message);
-                },
-                not_supported: function() {
-                  alert('Your browser does not support geolocation');
-                },
-                always: function() {
-                  //alert('Done!');
-                }
-            });
-        }", yii\web\View::POS_END, $maploader);
-            echo $maploader;
-            ?>();">Cargar</a>
-            <div id="map"></div>
+            <!--<a class="btn btn-primary btn-block" onclick="getMapProperty()">Cargar</a>-->
+            <div id="property-map" class="loader-map"></div>
         </div>
         <div class="col-md-offset-2 col-md-10"></div>
         <div class="col-md-offset-2 col-md-10"><div class="help-block"></div></div>

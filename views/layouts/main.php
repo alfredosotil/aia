@@ -18,8 +18,8 @@ AppAsset::register($this);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <meta name="keywords" content="Download, Apartment, Premium, Real Estate, HMTL, Site Template, property, mortgage, CSS" />
-        <meta name="description" content="Download Apartment - Premium Real Estate HMTL Site Template" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
         <link rel="shortcut icon" href="<?= Yii::$app->request->baseUrl; ?>/favicon.ico" type="image/x-icon">
         <link rel="icon" href="<?= Yii::$app->request->baseUrl; ?>/favicon.ico" type="image/x-icon">
         <!-- Bootstrap -->
