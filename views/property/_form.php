@@ -61,11 +61,12 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'longitude')->textInput(['maxlength' => true, 'disabled' => true]) ?>
 
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'disabled' => true]) ?>
+    <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'disabled' => false]) ?>
 
     <div class="form-group field-property-map">
-        <label class="control-label col-md-2" for="map">
-            <a class="btn btn-primary " onclick="<?php
+        <label class="control-label col-md-2" for="map">Mapa</label>
+        <div class="col-md-10">
+            <a class="btn btn-primary btn-block" onclick="<?php
             $maploader = "mapa_loader";
             $this->registerJs("function $maploader(){
             document.getElementById('map').style.height = '400px';
@@ -105,9 +106,7 @@ use kartik\file\FileInput;
             });
         }", yii\web\View::POS_END, $maploader);
             echo $maploader;
-            ?>();">Mapa</a>
-        </label>
-        <div class="col-md-10">
+            ?>();">Cargar</a>
             <div id="map"></div>
         </div>
         <div class="col-md-offset-2 col-md-10"></div>
@@ -118,8 +117,8 @@ use kartik\file\FileInput;
     $form->field($model, 'photos')->widget(FileInput::classname(), [
         'pluginOptions' => [
             'showCaption' => false,
-            'showRemove' => false,
-            'showUpload' => false,
+            'showRemove' => true,
+            'showUpload' => true,
             'browseClass' => 'btn btn-primary btn-block',
             'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
             'browseLabel' => 'Selecciona las fotos'
