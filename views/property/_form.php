@@ -7,7 +7,6 @@ use app\models\Type;
 use app\models\State;
 use app\models\Profile;
 use kartik\form\ActiveForm;
-use app\assets\LocateAsset;
 use kartik\file\FileInput;
 
 //LocateAsset::register($this);
@@ -18,6 +17,7 @@ use kartik\file\FileInput;
     <?php
     $form = ActiveForm::begin([
                 'type' => ActiveForm::TYPE_HORIZONTAL,
+                'options'=>['enctype'=>'multipart/form-data']
     ]);
     ?>
 
@@ -72,6 +72,7 @@ use kartik\file\FileInput;
     <?=
     $form->field($model, 'photos')->widget(FileInput::classname(), [
         'pluginOptions' => [
+            'allowedFileExtensions'=>['jpg','gif','png'],
             'showCaption' => false,
             'showRemove' => true,
             'showUpload' => true,

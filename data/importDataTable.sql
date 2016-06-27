@@ -227,7 +227,7 @@ CREATE TABLE `property` (
 
 LOCK TABLES `property` WRITE;
 /*!40000 ALTER TABLE `property` DISABLE KEYS */;
-INSERT INTO `property` (`id`, `type_id`, `state_id`, `price`, `money`, `commission`, `area`, `bedrooms`, `bathrooms`, `longitude`, `latitude`, `active`, `datecreation`, `datestart`, `datelastupdate`, `owner`, `phoneowner`, `emailowner`, `address`) VALUES (1,6,3,250000,'D',3,200,3,2,'-73.93682426452636','40.67771396170544',1,NULL,NULL,NULL,'asotilp','997893527','alfredosotil@gmail.com','');
+INSERT INTO `property` (`id`, `type_id`, `state_id`, `price`, `money`, `commission`, `area`, `bedrooms`, `bathrooms`, `longitude`, `latitude`, `active`, `datecreation`, `datestart`, `datelastupdate`, `owner`, `phoneowner`, `emailowner`, `address`) VALUES (1,6,3,250000,'D',3,200,3,2,'-77.04276658594608','-12.069915970022354',1,NULL,NULL,NULL,'asotilp','997893527','alfredosotil@gmail.com','Jesús María, Perú');
 /*!40000 ALTER TABLE `property` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,6 +331,7 @@ CREATE TABLE `user` (
   `authKey` varchar(45) DEFAULT NULL,
   `accessToken` varchar(45) DEFAULT NULL,
   `parent` int(11) DEFAULT NULL,
+  `avatar` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_usuario_tipo1_idx` (`type_id`),
   KEY `fk_usuario_estado1_idx` (`state_id`),
@@ -338,7 +339,7 @@ CREATE TABLE `user` (
   CONSTRAINT `fk_user_profile1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuario_estado1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuario_tipo1` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -347,7 +348,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`, `names`, `surnames`, `email`, `username`, `password`, `active`, `lastupdate`, `type_id`, `state_id`, `sex`, `profile_id`, `authKey`, `accessToken`, `parent`) VALUES (1,'Alfredo Antonios','Sotil Pastor','alfredosotil@gmail.com','asotilp','asotilp',1,'2016-06-14 20:53:42',1,1,'M',1,'','',NULL),(2,'tested','test','test','test','test',1,'2016-06-14 16:19:21',1,1,'F',2,'','',NULL),(3,'agente','agente agente','agente@aia.com.pe','agente','agente',1,'2016-06-14 20:34:55',9,1,'M',3,'','',NULL),(4,'agente2','agente2','agente2@aia.com.pe','agente2','agente2',1,'2016-06-14 21:50:39',9,1,'M',3,NULL,NULL,1),(5,'agente3','agente3','','agente3','admin',1,'2016-06-16 22:57:44',9,1,'M',3,NULL,NULL,1),(6,'agente333','agente333','agente333@aia.com.pe','agente333','admin',1,'2016-06-17 15:25:05',9,1,'F',3,NULL,NULL,1),(7,'agente344','agente344','agente344@aia.com.pe','agente344','admin',1,'2016-06-17 15:42:02',9,1,'F',3,NULL,NULL,1),(8,'agente3555','agente3555','agente3555@aia.com.pe','agente3555','admin',1,'2016-06-17 15:43:05',9,1,'M',3,NULL,NULL,1),(9,'agente244','agente244','agente244@aia.com.pe','agente244','admin',1,'2016-06-17 15:44:13',9,1,'F',3,NULL,NULL,1);
+INSERT INTO `user` (`id`, `names`, `surnames`, `email`, `username`, `password`, `active`, `lastupdate`, `type_id`, `state_id`, `sex`, `profile_id`, `authKey`, `accessToken`, `parent`, `avatar`) VALUES (1,'Alfredo Antonios','Sotil Pastor','alfredosotil@gmail.com','asotilp','asotilp',1,'2016-06-14 20:53:42',1,1,'M',1,'','',NULL,NULL),(2,'tested','test','test','test','test',1,'2016-06-14 16:19:21',1,1,'F',2,'','',NULL,NULL),(3,'agente','agente agente','agente@aia.com.pe','agente','agente',1,'2016-06-14 20:34:55',9,1,'M',3,'','',NULL,NULL),(4,'agente2','agente2','agente2@aia.com.pe','agente2','agente2',1,'2016-06-14 21:50:39',9,1,'M',3,NULL,NULL,1,NULL),(5,'agente3','agente3','','agente3','admin',1,'2016-06-16 22:57:44',9,1,'M',3,NULL,NULL,1,NULL),(6,'agente333','agente333','agente333@aia.com.pe','agente333','admin',1,'2016-06-17 15:25:05',9,1,'F',3,NULL,NULL,1,NULL),(7,'agente344','agente344','agente344@aia.com.pe','agente344','admin',1,'2016-06-17 15:42:02',9,1,'F',3,NULL,NULL,1,NULL),(8,'agente3555','agente3555','agente3555@aia.com.pe','agente3555','admin',1,'2016-06-17 15:43:05',9,1,'M',3,NULL,NULL,1,NULL),(9,'agente244','agente244','agente244@aia.com.pe','agente244','admin',1,'2016-06-17 15:44:13',9,1,'F',3,NULL,NULL,1,NULL),(10,'antonio','pastor','apastor@aia.com.pe','apastor','apastor',1,'2016-06-27 22:40:14',9,1,'M',3,NULL,NULL,1,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -368,4 +369,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-20 18:06:13
+-- Dump completed on 2016-06-27 17:48:49

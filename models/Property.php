@@ -59,6 +59,9 @@ class Property extends \yii\db\ActiveRecord
             [['longitude', 'latitude', 'owner'], 'string', 'max' => 50],
             [['phoneowner'], 'string', 'max' => 45],
             [['emailowner', 'address'], 'string', 'max' => 100],
+            [['photos'], 'safe'],
+            [['photos'], 'file', 'extensions'=>'jpg, gif, png'],
+            [['photos'], 'file', 'maxSize'=>'2000000'],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }

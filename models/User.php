@@ -22,6 +22,7 @@ use Yii;
  * @property string $authKey
  * @property string $accessToken
  * @property integer $parent
+ * @property string $avatar
  *
  * @property Profile $profile
  * @property State $state
@@ -32,6 +33,9 @@ class User extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    
+    public $photos;
+    
     public static function tableName()
     {
         return 'user';
@@ -47,6 +51,9 @@ class User extends \yii\db\ActiveRecord
             [['active', 'type_id', 'state_id', 'profile_id', 'parent'], 'integer'],
             [['lastupdate'], 'safe'],
             [['names'], 'string', 'max' => 100],
+            [['photos'], 'safe'],
+            [['photos'], 'file', 'extensions'=>'jpg, gif, png'],
+            [['photos'], 'file', 'maxSize'=>'2000000'],
             [['surnames', 'email', 'username', 'password', 'authKey', 'accessToken'], 'string', 'max' => 45],
             [['email'], 'email'],
             [['sex'], 'string', 'max' => 1]
@@ -74,6 +81,8 @@ class User extends \yii\db\ActiveRecord
             'authKey' => 'Auth Key',
             'accessToken' => 'Access Token',
             'parent' => 'Parent',
+            'photos' => 'Fotos',
+            'avatar' => 'Avatar',
         ];
     }
 
