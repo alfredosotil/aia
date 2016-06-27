@@ -11,115 +11,153 @@ function initialize() {
 }
 
 function getMapProperty() {
-    if (document.getElementById('property-map-view') !== null) {
-        var lat = document.getElementById('property-map-view-latitude').innerHTML;
-        var lng = document.getElementById('property-map-view-longitude').innerHTML;
-        var url = GMaps.staticMapURL({
-            lat: lat,
-            lng: lng,
-            markers: [
-                {
-                    lat: lat, 
-                    lng: lng,
-//                    size: 'medium', 
-                    color: 'blue'},
-            ]
-        });
-        document.getElementById('property-map-view').className = "";
-        var img = document.createElement("img");
-        img.src = url;
-        img.class = "img-responsive";
-        img.style.width = "100%";
-        document.getElementById('property-map-view').appendChild(img);
-    } else {        
-        var map = new GMaps({
-            el: '#property-map',
-            lat: -12.043333,
-            lng: -77.028333,
-        });
-        document.getElementById('property-map').style.height = '400px';
-        document.getElementById('property-map').className = "";
-        if (document.getElementById('property-latitude').value === '' &&
-                document.getElementById('property-longitude').value === '' &&
-                document.getElementById('property-address').value === '') {
-            GMaps.geolocate({
-                success: function (position) {
-                    map.setCenter(position.coords.latitude, position.coords.longitude);
-                    map.addMarker({
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                        draggable: true,
-                        dragend: function (e) {
-//                        alert(e.latLng.lat()+','+e.latLng.lng());
+    setTimeout(function () {
+        if (document.getElementById('property-map-view') !== null) {
+            var lat = document.getElementById('property-map-view-latitude').innerHTML;
+            var lng = document.getElementById('property-map-view-longitude').innerHTML;
+            var map;
+            var marker;
+            var myOptions = {
+                zoom: 16,
+                minZoom: 12,
+                maxZoom: 18,
+                center: new google.maps.LatLng(lat, lng),
+                scrollwheel: false,
+                rotateControl: false,
+                panControl: false,
+                streetViewControl: false,
+                keyboardShortcuts: false,
+                mapTypeControl: false,
+                scaleControl: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById('property-map-view'), myOptions);
+            document.getElementById('property-map-view').style.height = '400px';
+            document.getElementById('property-map-view').className = "";
+            var latlng = new google.maps.LatLng(lat, lng)
+            map.setCenter(latlng);
+            marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                draggable: false,
+            });
+
+//            var lat = document.getElementById('property-map-view-latitude').innerHTML;
+//            var lng = document.getElementById('property-map-view-longitude').innerHTML;
+//            var url = GMaps.staticMapURL({
+//                lat: lat,
+//                lng: lng,
+//                markers: [
+//                    {
+//                        lat: lat,
+//                        lng: lng,
+////                    size: 'medium', 
+//                        color: 'blue'},
+//                ]
+//            });
+//            document.getElementById('property-map-view').className = "";
+//            var img = document.createElement("img");
+//            img.src = url;
+//            img.class = "img-responsive";
+//            img.style.width = "100%";
+//            document.getElementById('link-photo-map').href = url;
+//            document.getElementById('property-map-view').appendChild(img);
+        } else {
+            var map;
+            var marker;
+            var myOptions = {
+                zoom: 16,
+//            minZoom: 12,
+//            maxZoom: 18,
+                center: new google.maps.LatLng(-12.043333, -77.028333),
+                scrollwheel: false,
+                rotateControl: true,
+//            panControl: true,
+//            streetViewControl: true,
+//            keyboardShortcuts: false,
+//            mapTypeControl: false,
+//            scaleControl: true,
+//            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            };
+            map = new google.maps.Map(document.getElementById('property-map'), myOptions);
+            document.getElementById('property-map').style.height = '400px';
+            document.getElementById('property-map').className = "";
+            if (document.getElementById('property-latitude').value === '' &&
+                    document.getElementById('property-longitude').value === '' &&
+                    document.getElementById('property-address').value === '') {
+                GMaps.geolocate({
+                    success: function (position) {
+                        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+                        map.setCenter(latlng);
+                        marker = new google.maps.Marker({
+                            position: latlng,
+                            map: map,
+                            draggable: true,
+                        });
+                        google.maps.event.addListener(marker, 'dragend', function (e) {
                             document.getElementById('property-latitude').value = e.latLng.lat();
                             document.getElementById('property-longitude').value = e.latLng.lng();
                             codeLatLng(e.latLng.lat(), e.latLng.lng(), document.getElementById('property-address'));
-                        }
-                    });
-                    document.getElementById('property-latitude').value = position.coords.latitude;
-                    document.getElementById('property-longitude').value = position.coords.longitude;
-                    codeLatLng(position.coords.latitude, position.coords.longitude, document.getElementById('property-address'));
-//                map.setContextMenu({
-//                    control: 'map',
-//                    options: [{
-//                            title: 'Add marker',
-//                            name: 'add_marker',
-//                            action: function (e) {
-//                                console.log(e.latLng.lat());
-//                                console.log(e.latLng.lng());
-//                                this.addMarker({
-//                                    lat: e.latLng.lat(),
-//                                    lng: e.latLng.lng(),
-//                                    title: 'New marker'
-//                                });
-//                                this.hideContextMenu();
-//                            }
-//                        }, {
-//                            title: 'Center here',
-//                            name: 'center_here',
-//                            action: function (e) {
-//                                this.setCenter(e.latLng.lat(), e.latLng.lng());
-//                            }
-//                        }]
-//                });
-//                map.setContextMenu({
-//                    control: 'marker',
-//                    options: [{
-//                            title: 'Center here',
-//                            name: 'center_here',
-//                            action: function (e) {
-//                                this.setCenter(e.latLng.lat(), e.latLng.lng());
-//                            }
-//                        }]
-//                });
-                },
-                error: function (error) {
-                    alert('Geolocation failed: ' + error.message);
-                },
-                not_supported: function () {
-                    alert('Your browser does not support geolocation');
-                },
-                always: function () {
-                    //alert('Done!');
-                }
-            });
-        } else {
-            var lat = document.getElementById('property-latitude').value;
-            var lng = document.getElementById('property-longitude').value;
-            map.setCenter(lat, lng);
-            map.addMarker({
-                lat: lat,
-                lng: lng,
-                draggable: true,
-                dragend: function (e) {
-//                        alert(e.latLng.lat()+','+e.latLng.lng());
+                            map.panTo(e.latLng);
+                        });
+                        google.maps.event.addListener(map, 'click', function (e) {
+                            if (marker) {
+                                marker.setPosition(e.latLng);
+                                document.getElementById('property-latitude').value = e.latLng.lat();
+                                document.getElementById('property-longitude').value = e.latLng.lng();
+                                codeLatLng(e.latLng.lat(), e.latLng.lng(), document.getElementById('property-address'));
+                            }
+                            map.panTo(e.latLng);
+                        });
+
+                        document.getElementById('property-latitude').value = position.coords.latitude;
+                        document.getElementById('property-longitude').value = position.coords.longitude;
+                        codeLatLng(position.coords.latitude, position.coords.longitude, document.getElementById('property-address'));
+                    },
+                    error: function (error) {
+                        alert('Geolocation failed: ' + error.message);
+                    },
+                    not_supported: function () {
+                        alert('Your browser does not support geolocation');
+                    },
+                    always: function () {
+                        //alert('Done!');
+                    }
+                });
+            } else {
+                var lat = document.getElementById('property-latitude').value;
+                var lng = document.getElementById('property-longitude').value;
+                var latlng = new google.maps.LatLng(lat, lng);
+//            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+                map.setCenter(latlng);
+                marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                    draggable: true,
+                });
+                google.maps.event.addListener(marker, 'dragend', function (e) {
                     document.getElementById('property-latitude').value = e.latLng.lat();
                     document.getElementById('property-longitude').value = e.latLng.lng();
                     codeLatLng(e.latLng.lat(), e.latLng.lng(), document.getElementById('property-address'));
-                }
-            });
+                    map.panTo(e.latLng);
+                });
+                google.maps.event.addListener(map, 'click', function (e) {
+                    if (marker) {
+                        marker.setPosition(e.latLng);
+                        document.getElementById('property-latitude').value = e.latLng.lat();
+                        document.getElementById('property-longitude').value = e.latLng.lng();
+                        codeLatLng(e.latLng.lat(), e.latLng.lng(), document.getElementById('property-address'));
+                    }
+                    map.panTo(e.latLng);
+                });
+
+//            document.getElementById('property-latitude').value = position.coords.latitude;
+//            document.getElementById('property-longitude').value = position.coords.longitude;
+//            codeLatLng(position.coords.latitude, position.coords.longitude, document.getElementById('property-address'));
+            }
         }
-    }
+    }, 3000);
+
 }
 
 function codeLatLng(lat, lng, element) {
@@ -130,19 +168,7 @@ function codeLatLng(lat, lng, element) {
         if (status === google.maps.GeocoderStatus.OK) {
             if (results[1]) {
                 console.log(results[1]);
-//        var addressmap = results[1]
-//        return addressmap.formatted_address;
-//        return String(results[1]['formatted_address']);
-//        element = JSON.stringify(results[1])
-//        element = Object.keys(results[1])
-//        element = Object.keys(results[1])
-//                console.log(Object.keys(results[1]));
-//                console.log(JSON.stringify(results[1]));
-//                var text = JSON.stringify(results[1]);
-//                var object = JSON.parse(text);
                 element.value = results[1].formatted_address;
-//                return JSON.parse(JSON.stringify(results[1]));
-//                return object;
             } else {
                 alert('No results found');
             }
@@ -162,10 +188,7 @@ jQuery(window).load(function () {
 //    });
     $(".loader-bg").fadeOut('slow');
     $('div.property').on('shown.bs.modal', function () {
-        setTimeout(function () {
-            getMapProperty();
-        }, 5000);
-
+        getMapProperty();
     });
 });
 

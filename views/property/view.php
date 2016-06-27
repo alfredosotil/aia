@@ -41,7 +41,7 @@ use yii\widgets\DetailView;
             [                      // the owner name of the model
                 'attribute' => 'map',
                 'format' => 'raw',
-                'value' => '<div id="property-map-view" class="loader-map"></div>',
+                'value' => '<a id="link-photo-map" target="_blank"><div id="property-map-view" class="loader-map"></div></a>',
             ],
         ],
     ])
