@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use Yii;
 use app\models\User;
-use app\models\ImagesUser;
 use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -13,7 +12,6 @@ use \yii\web\Response;
 use yii\helpers\Html;
 use app\assets\AppAsset;
 use yii\filters\AccessControl;
-use Imagine\Gmagick\Image;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -24,7 +22,7 @@ class UserController extends Controller {
      * @inheritdoc
      */
     public $layout = "dashboard";
-
+    
     public function behaviors() {
         return [
             'access' => [
@@ -110,50 +108,14 @@ class UserController extends Controller {
                     'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                     Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
                 ];
-            } else if ($model->load($request->post())) {
-                $image = UploadedFile::getInstance($model, 'photos');
-                if (!is_null($image)) {
-                    // save with image
-                    // store the source file name
-                    $imageUser = new ImagesUser();
-                    $imageUser->name = $image->name;
-                    $ext = end((explode(".", $image->name)));
-                    // generate a unique file name to prevent duplicate filenames
-                    $model->avatar = Yii::$app->security->generateRandomString() . ".{$ext}";
-                    // the path to save file, you can set an uploadPath
-                    // in Yii::$app->params (as used in example below)
-                    Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/user/';
-                    $path = Yii::$app->params['uploadPath'] . $model->avatar;
-//                    $model->user_id = Yii::$app->user->getId();
-                    if ($model->save()) {
-                        $imageUser->order = 1;
-                        $imageUser->active = 1;
-                        $imageUser->user_id = $model->primaryKey;
-                        $imageUser->save();
-                        $image->saveAs($path);
-                        Image::thumbnail(Yii::$app->params['uploadPath'] . $model->avatar, 120, 120)
-                                ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $model->avatar, ['quality' => 50]);
-                        Image::thumbnail(Yii::$app->params['uploadPath'] . $model->avatar, 30, 30)
-                                ->save(Yii::$app->params['uploadPath'] . 'sm_' . $model->avatar, ['quality' => 50]);
-                        return [
-                            'forceReload' => 'true',
-                            'title' => "Create new User",
-                            'content' => '<span class="text-success">Create User success</span>',
-                            'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                            Html::a('Create More', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
-                        ];
-                    }
-                } else {
-                    if ($model->save()) {
-                        return [
-                            'forceReload' => 'true',
-                            'title' => "Create new User",
-                            'content' => '<span class="text-success">Create User success</span>',
-                            'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                            Html::a('Create More', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
-                        ];
-                    }
-                }
+            } else if ($model->load($request->post()) && $model->save()) {
+                return [
+                    'forceReload' => 'true',
+                    'title' => "Create new User",
+                    'content' => '<span class="text-success">Create User success</span>',
+                    'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                    Html::a('Create More', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                ];
             } else {
                 return [
                     'title' => "Create new User",

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\User;
+use app\models\ImagesUser;
 use app\models\AgentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -11,6 +12,7 @@ use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use Imagine\Gmagick\Image;
 
 /**
  * AgentController implements the CRUD actions for User model.
@@ -103,14 +105,50 @@ class AgentController extends Controller {
 //                $model->email = $request->post('User')['username'] + '@aia.com.pe';
                 $username = ArrayHelper::getValue($request->post(), 'User.username');
                 $model->email = "$username@aia.com.pe";
-                if ($model->load($request->post()) && $model->save()) {
-                    return [
-                        'forceReload' => '#crud-datatable-pjax',
-                        'title' => "Crear Agente",
-                        'content' => '<span class="text-success">Crear Agente success</span>',
-                        'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                        Html::a('Crear mas', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
-                    ];
+                if ($model->load($request->post())) {
+                    $image = UploadedFile::getInstance($model, 'photos');
+                    if (!is_null($image)) {
+                        // save with image
+                        // store the source file name
+                        $imageUser = new ImagesUser();
+                        $imageUser->name = $image->name;
+                        $ext = end((explode(".", $image->name)));
+                        // generate a unique file name to prevent duplicate filenames
+                        $model->avatar = Yii::$app->security->generateRandomString() . ".{$ext}";
+                        // the path to save file, you can set an uploadPath
+                        // in Yii::$app->params (as used in example below)
+                        Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/user/';
+                        $path = Yii::$app->params['uploadPath'] . $model->avatar;
+//                    $model->user_id = Yii::$app->user->getId();
+                        if ($model->save()) {
+                            $imageUser->order = 1;
+                            $imageUser->active = 1;
+                            $imageUser->user_id = $model->primaryKey;
+                            $imageUser->save();
+                            $image->saveAs($path);
+                            Image::thumbnail(Yii::$app->params['uploadPath'] . $model->avatar, 120, 120)
+                                    ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $model->avatar, ['quality' => 50]);
+                            Image::thumbnail(Yii::$app->params['uploadPath'] . $model->avatar, 30, 30)
+                                    ->save(Yii::$app->params['uploadPath'] . 'sm_' . $model->avatar, ['quality' => 50]);
+                            return [
+                                'forceReload' => '#crud-datatable-pjax',
+                                'title' => "Crear Agente",
+                                'content' => '<span class="text-success">Crear Agente success</span>',
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::a('Crear mas', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                            ];
+                        }
+                    } else {
+                        if ($model->save()) {
+                            return [
+                                'forceReload' => '#crud-datatable-pjax',
+                                'title' => "Crear Agente",
+                                'content' => '<span class="text-success">Crear Agente success</span>',
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::a('Crear mas', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                            ];
+                        }
+                    }
                 } else {
                     return [
                         'title' => "Crear Agente",
