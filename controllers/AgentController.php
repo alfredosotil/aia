@@ -12,7 +12,8 @@ use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use Imagine\Gmagick\Image;
+use yii\imagine\Image;
+use yii\web\UploadedFile;
 
 /**
  * AgentController implements the CRUD actions for User model.
@@ -108,15 +109,15 @@ class AgentController extends Controller {
                 if ($model->load($request->post())) {
                     $image = UploadedFile::getInstance($model, 'photos');
                     if (!is_null($image)) {
+                        $imageUser = new ImagesUser();
                         // save with image
                         // store the source file name
-                        $imageUser = new ImagesUser();
-                        $imageUser->name = $image->name;
                         $ext = end((explode(".", $image->name)));
                         // generate a unique file name to prevent duplicate filenames
                         $model->avatar = Yii::$app->security->generateRandomString() . ".{$ext}";
+                        $imageUser->name = $model->avatar;
                         // the path to save file, you can set an uploadPath
-                        // in Yii::$app->params (as used in example below)
+                        // in Yii::$app->params 
                         Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/user/';
                         $path = Yii::$app->params['uploadPath'] . $model->avatar;
 //                    $model->user_id = Yii::$app->user->getId();
@@ -125,6 +126,10 @@ class AgentController extends Controller {
                             $imageUser->active = 1;
                             $imageUser->user_id = $model->primaryKey;
                             $imageUser->save();
+//                            ob_start();
+//                            var_dump($imageUser->save());
+//                            $result = ob_get_clean();
+//                            $valorx = $result;
                             $image->saveAs($path);
                             Image::thumbnail(Yii::$app->params['uploadPath'] . $model->avatar, 120, 120)
                                     ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $model->avatar, ['quality' => 50]);
@@ -133,7 +138,7 @@ class AgentController extends Controller {
                             return [
                                 'forceReload' => '#crud-datatable-pjax',
                                 'title' => "Crear Agente",
-                                'content' => '<span class="text-success">Crear Agente success</span>',
+                                'content' => "<span class='text-success'>Crear Agente success</span>",
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                                 Html::a('Crear mas', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                             ];
@@ -199,25 +204,58 @@ class AgentController extends Controller {
                     'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                     Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
                 ];
-            } else if ($model->load($request->post()) && $model->save()) {
-                return [
-                    'forceReload' => '#crud-datatable-pjax',
-                    'title' => "Agente #" . $id,
-                    'content' => $this->renderAjax('view', [
-                        'model' => $model,
-                    ]),
-                    'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
-                ];
             } else {
-                return [
-                    'title' => "Actualizar Agente #" . $id,
-                    'content' => $this->renderAjax('update', [
-                        'model' => $model,
-                    ]),
-                    'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
-                ];
+                if ($model->load($request->post())) {
+                    $image = UploadedFile::getInstance($model, 'photos');
+                    if (!is_null($image)) {
+                        $imageUser = ImagesUser::find()->where(['user_id' => $model->id])->one();
+                        $ext = end((explode(".", $image->name)));
+                        // generate a unique file name to prevent duplicate filenames
+                        $model->avatar = Yii::$app->security->generateRandomString() . ".{$ext}";
+                        $imageUser->name = $model->avatar;
+                        // the path to save file, you can set an uploadPath
+                        // in Yii::$app->params 
+                        Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/user/';
+                        $path = Yii::$app->params['uploadPath'] . $model->avatar;
+                        if ($model->save()) {
+                            $image_delete = $model->avatar;
+                            $model->deleteImage(Yii::$app->params['uploadPath'], $image_delete);
+                            $image->saveAs($path);
+                            Image::thumbnail(Yii::$app->params['uploadPath'] . $model->avatar, 120, 120)
+                                    ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $model->avatar, ['quality' => 50]);
+                            Image::thumbnail(Yii::$app->params['uploadPath'] . $model->avatar, 30, 30)
+                                    ->save(Yii::$app->params['uploadPath'] . 'sm_' . $model->avatar, ['quality' => 50]);
+                            return [
+                                'forceReload' => '#crud-datatable-pjax',
+                                'title' => "Agente #" . $id,
+                                'content' => $this->renderAjax('view', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                            ];
+                        }
+                    } else {
+                        return [
+                            'forceReload' => '#crud-datatable-pjax',
+                            'title' => "Agente #" . $id,
+                            'content' => $this->renderAjax('view', [
+                                'model' => $model,
+                            ]),
+                            'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                            Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                        ];
+                    }
+                } else {
+                    return [
+                        'title' => "Actualizar Agente #" . $id,
+                        'content' => $this->renderAjax('update', [
+                            'model' => $model,
+                        ]),
+                        'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                        Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                    ];
+                }
             }
         } else {
             /*

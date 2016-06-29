@@ -26,6 +26,8 @@ use kartik\file\FileInput;
     ]);
     ?>
 
+    <?= $form->field($model, 'id')->hiddenInput() ?>
+    
     <?= $form->field($model, 'names')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'surnames')->textInput(['maxlength' => true]) ?>

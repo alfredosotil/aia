@@ -13,14 +13,15 @@ $config = [
     ],
     'components' => [
         'assetManager' => [
+            'linkAssets' => true,
             'assetMap' => [
                 'bootstrap.js' => '@web/bootstrap/bootstrap.min.js',
                 'jquery.js' => '@web/js/jQuery/jquery.min.js',
             ],
-            'bundles' => [                
+            'bundles' => [
                 'yii\bootstrap\BootstrapAsset' => [
-                    'basePath' => '@webroot',   // do not publish the bundle
-                    'baseUrl' => '@web',   // do not publish the bundle
+                    'basePath' => '@webroot', // do not publish the bundle
+                    'baseUrl' => '@web', // do not publish the bundle
                     'css' => [
                         'bootstrap/bootstrap.min.css',
                     ],

@@ -28,32 +28,29 @@ use Yii;
  * @property State $state
  * @property Type $type
  */
-class User extends \yii\db\ActiveRecord
-{
+class User extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    
     public $photos;
-    
-    public static function tableName()
-    {
+
+    public static function tableName() {
         return 'user';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['names', 'surnames', 'email', 'username', 'password', 'active', 'type_id', 'state_id', 'sex', 'profile_id'], 'required'],
             [['active', 'type_id', 'state_id', 'profile_id', 'parent'], 'integer'],
             [['lastupdate'], 'safe'],
             [['names'], 'string', 'max' => 100],
             [['photos'], 'safe'],
-            [['photos'], 'file', 'extensions'=>'jpg, gif, png'],
-            [['photos'], 'file', 'maxSize'=>'2000000'],
+            [['photos'], 'file', 'extensions' => 'jpg, gif, png'],
+            [['photos'], 'file', 'maxSize' => '2000000'],
             [['surnames', 'email', 'username', 'password', 'authKey', 'accessToken'], 'string', 'max' => 45],
             [['email'], 'email'],
             [['sex'], 'string', 'max' => 1]
@@ -63,8 +60,7 @@ class User extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'names' => 'Names',
@@ -89,24 +85,36 @@ class User extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProfile()
-    {
+    public function getProfile() {
         return $this->hasOne(Profile::className(), ['id' => 'profile_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getState()
-    {
+    public function getState() {
         return $this->hasOne(State::className(), ['id' => 'state_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->hasOne(Type::className(), ['id' => 'type_id']);
     }
+
+    public function deleteImage($path, $filename) {
+        $file = [];
+        $file[] = $path . $filename;
+        $file[] = $path . 'sqr_' . $filename;
+        $file[] = $path . 'sm_' . $filename;
+        foreach ($file as $f) {
+            // check if file exists on server
+            if (!empty($f) && file_exists($f)) {
+                // delete file
+                unlink($f);
+            }
+        }
+    }
+
 }

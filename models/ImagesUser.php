@@ -31,7 +31,7 @@ class ImagesUser extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'required'],
+            [['user_id'], 'required'],
             [['id', 'order', 'active', 'user_id'], 'integer'],
             [['name'], 'string', 'max' => 150],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
