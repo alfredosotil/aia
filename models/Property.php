@@ -48,7 +48,7 @@ class Property extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['type_id', 'state_id', 'money', 'commission', 'longitude', 'latitude', 'address'], 'required'],
+            [['type_id', 'state_id', 'money', 'commission', 'longitude', 'latitude', 'address', 'owner', 'phoneowner'], 'required'],
             [['type_id', 'state_id', 'active'], 'integer'],
             [['price', 'commission', 'area', 'bedrooms', 'bathrooms'], 'number'],
             [['datecreation', 'datestart', 'datelastupdate'], 'safe'],

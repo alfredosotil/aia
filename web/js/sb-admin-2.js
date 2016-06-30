@@ -1,3 +1,17 @@
+google.maps.event.addDomListener(window, 'load', initialize);
+//Loads the correct sidebar on window load,
+//collapses the sidebar on window resize.
+// Sets the min-height of #page-wrapper to window size
+jQuery(window).load(function () {
+//    $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+//        options.async = true;
+//    });
+    $(".loader-bg").fadeOut('slow');
+    $('div.property').on('shown.bs.modal', function () {
+        getMapProperty();
+    });
+});
+
 $(function () {
 
     $('#side-menu').metisMenu();
@@ -177,20 +191,6 @@ function codeLatLng(lat, lng, element) {
         }
     });
 }
-
-google.maps.event.addDomListener(window, 'load', initialize);
-//Loads the correct sidebar on window load,
-//collapses the sidebar on window resize.
-// Sets the min-height of #page-wrapper to window size
-jQuery(window).load(function () {
-//    $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-//        options.async = true;
-//    });
-    $(".loader-bg").fadeOut('slow');
-    $('div.property').on('shown.bs.modal', function () {
-        getMapProperty();
-    });
-});
 
 $(function () {
     $(window).bind("load resize", function () {

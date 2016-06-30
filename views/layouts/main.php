@@ -32,6 +32,7 @@ AppAsset::register($this);
         <!--<link id="skin" rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl; ?>/css/apartment-colors-blue.css">-->
         <!-- Custom styles -->
         <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic,700,700italic&amp;subset=latin,latin-ext'>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;sensor=false&amp;libraries=places"></script>
         <?php $this->head() ?>
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -39,7 +40,6 @@ AppAsset::register($this);
         <![endif]-->   
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
         <!-- Google Maps -->
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;sensor=false&amp;libraries=places"></script>
         <!-- jQuery  -->        
                 <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery.min.js"></script>-->
                 <!--<script type="text/javascript" src="<?= Yii::$app->request->baseUrl; ?>/js/jQuery/jquery-ui.min.js"></script>-->
@@ -65,13 +65,13 @@ AppAsset::register($this);
                                     <span class="top-icon-circle">
                                         <i class="fa fa-phone"></i>
                                     </span>
-                                    <span class="top-bar-text">(0)-123-456-789</span>
+                                    <span class="top-bar-text">+51(01)4785767</span>
                                 </div>
                                 <div class="top-localization pull-left hidden-sm hidden-md hidden-xs">
                                     <span class="top-icon-circle pull-left">
                                         <i class="fa fa-map-marker"></i>
                                     </span>
-                                    <span class="top-bar-text">Jesus Maria, San Miguel.</span>
+                                    <span class="top-bar-text">Calle Coronel Inclan 425 int. 104.</span>
                                 </div>
                             </div>
                             <div class="col-xs-7 col-sm-4">
@@ -260,14 +260,14 @@ AppAsset::register($this);
                                         <li>
                                             <a tabindex="-1" href="#">Servicio 3</a>
                                         </li>
-<!--                                        <li class="dropdown-submenu">
-                                            <a tabindex="-1" href="blog-right-sidebar.html">Single Post</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
-                                                <li><a href="blog-left-sidebar.html">Left Sidebar</a></li>
-                                                <li><a href="blog-no-sidebar.html">No Sidebar</a></li>
-                                            </ul>
-                                        </li>-->
+                                        <!--                                        <li class="dropdown-submenu">
+                                                                                    <a tabindex="-1" href="blog-right-sidebar.html">Single Post</a>
+                                                                                    <ul class="dropdown-menu">
+                                                                                        <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
+                                                                                        <li><a href="blog-left-sidebar.html">Left Sidebar</a></li>
+                                                                                        <li><a href="blog-no-sidebar.html">No Sidebar</a></li>
+                                                                                    </ul>
+                                                                                </li>-->
                                     </ul>
                                 </li>
                                 <li class="button">
@@ -292,60 +292,60 @@ AppAsset::register($this);
                         <div class="col-xs-6 col-sm-6 col-lg-3">
                             <h4 class="second-color">contactanos<span class="special-color">.</span></h4>
                             <div class="footer-title-separator"></div>
-                            <p class="footer-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <!--<p class="footer-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
                             <address>
-                                <span><i class="fa fa-map-marker"></i>00456 Some Address line</span>
+                                <span><i class="fa fa-map-marker"></i>Calle Coronel Inclan 425 int. 104.</span>
                                 <div class="footer-separator"></div>
-                                <span><i class="fa fa-envelope fa-sm"></i><a href="#">email@domain.tld</a></span>
+                                <span><i class="fa fa-envelope fa-sm"></i><a href="mailto:informes@aia.com.pe?Subject=Informes%20AIA">informes@aia.com.pe</a></span>
                                 <div class="footer-separator"></div>
-                                <span><i class="fa fa-phone"></i>01-23456789</span>
+                                <span><i class="fa fa-phone"></i>+51(01)4785767</span>
                             </address>
                             <div class="clear"></div>
                         </div>
-<!--                        <div class="col-xs-6 col-sm-6 col-lg-3">
-                            <h4 class="second-color">quick links<span class="special-color">.</span></h4>
-                            <div class="footer-title-separator"></div>
-                            <ul class="footer-ul">
-                                <li><span class="custom-ul-bullet"></span><a href="index-2.html">Home</a></li>
-                                <li><span class="custom-ul-bullet"></span><a href="listing-grid-right-sidebar.html">Listing</a></li>
-                                <li><span class="custom-ul-bullet"></span><a href="agencies-listing-right-sidebar.html">Agencies</a></li>
-                                <li><span class="custom-ul-bullet"></span><a href="archive-grid.html">Blog</a></li>
-                                <li><span class="custom-ul-bullet"></span><a href="contact1.html">Contact us</a></li>
-                                <li><span class="custom-ul-bullet"></span><a href="submit-property.html">Submit property</a></li>
-                            </ul>
-                        </div>-->
-<!--                        <div class="col-xs-12 col-sm-6 col-lg-3">
-                            <h4 class="second-color">from the blog<span class="special-color">.</span></h4>
-                            <div class="footer-title-separator"></div>
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-12">
-                                    <article>
-                                        <a href="blog-right-sidebar.html"><img src="<?= Yii::$app->request->baseUrl; ?>/images/footer-blog1.jpg" alt="" class="footer-blog-image" /></a>
-                                        <div class="footer-blog-title"><a href="blog-right-sidebar.html">This post title, lorem ipsum dolor sit</a></div>
-                                        <div class="footer-blog-date"><i class="fa fa-calendar-o"></i>28/09/15</div>
-                                        <div class="clearfix"></div>					
-                                    </article>
-                                    <div class="footer-blog-separator hidden-xs"></div>
-                                </div>
-                                <div class="col-xs-6 col-sm-12">
-                                    <article>
-                                        <a href="blog-right-sidebar.html"><img src="<?= Yii::$app->request->baseUrl; ?>/images/footer-blog2.jpg" alt="" class="footer-blog-image" /></a>
-                                        <div class="footer-blog-title"><a href="blog-right-sidebar.html">This post title, lorem ipsum dolor sit</a></div>
-                                        <div class="footer-blog-date"><i class="fa fa-calendar-o"></i>28/09/15</div>
-                                        <div class="clearfix"></div>					
-                                    </article>
-                                </div>
-                            </div>
-                        </div>-->
-<!--                        <div class="col-xs-12 col-sm-6 col-lg-3">
-                            <h4 class="second-color">noticias<span class="special-color">.</span></h4>
-                            <div class="footer-title-separator"></div>
-                            <p class="footer-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <form class="form-inline footer-newsletter">
-                                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="enter your email">
-                                <button type="submit" class="btn"><i class="fa fa-lg fa-paper-plane"></i></button>
-                            </form>
-                        </div>-->
+                        <!--                        <div class="col-xs-6 col-sm-6 col-lg-3">
+                                                    <h4 class="second-color">quick links<span class="special-color">.</span></h4>
+                                                    <div class="footer-title-separator"></div>
+                                                    <ul class="footer-ul">
+                                                        <li><span class="custom-ul-bullet"></span><a href="index-2.html">Home</a></li>
+                                                        <li><span class="custom-ul-bullet"></span><a href="listing-grid-right-sidebar.html">Listing</a></li>
+                                                        <li><span class="custom-ul-bullet"></span><a href="agencies-listing-right-sidebar.html">Agencies</a></li>
+                                                        <li><span class="custom-ul-bullet"></span><a href="archive-grid.html">Blog</a></li>
+                                                        <li><span class="custom-ul-bullet"></span><a href="contact1.html">Contact us</a></li>
+                                                        <li><span class="custom-ul-bullet"></span><a href="submit-property.html">Submit property</a></li>
+                                                    </ul>
+                                                </div>-->
+                        <!--                        <div class="col-xs-12 col-sm-6 col-lg-3">
+                                                    <h4 class="second-color">from the blog<span class="special-color">.</span></h4>
+                                                    <div class="footer-title-separator"></div>
+                                                    <div class="row">
+                                                        <div class="col-xs-6 col-sm-12">
+                                                            <article>
+                                                                <a href="blog-right-sidebar.html"><img src="<?= Yii::$app->request->baseUrl; ?>/images/footer-blog1.jpg" alt="" class="footer-blog-image" /></a>
+                                                                <div class="footer-blog-title"><a href="blog-right-sidebar.html">This post title, lorem ipsum dolor sit</a></div>
+                                                                <div class="footer-blog-date"><i class="fa fa-calendar-o"></i>28/09/15</div>
+                                                                <div class="clearfix"></div>					
+                                                            </article>
+                                                            <div class="footer-blog-separator hidden-xs"></div>
+                                                        </div>
+                                                        <div class="col-xs-6 col-sm-12">
+                                                            <article>
+                                                                <a href="blog-right-sidebar.html"><img src="<?= Yii::$app->request->baseUrl; ?>/images/footer-blog2.jpg" alt="" class="footer-blog-image" /></a>
+                                                                <div class="footer-blog-title"><a href="blog-right-sidebar.html">This post title, lorem ipsum dolor sit</a></div>
+                                                                <div class="footer-blog-date"><i class="fa fa-calendar-o"></i>28/09/15</div>
+                                                                <div class="clearfix"></div>					
+                                                            </article>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+                        <!--                        <div class="col-xs-12 col-sm-6 col-lg-3">
+                                                    <h4 class="second-color">noticias<span class="special-color">.</span></h4>
+                                                    <div class="footer-title-separator"></div>
+                                                    <p class="footer-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    <form class="form-inline footer-newsletter">
+                                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="enter your email">
+                                                        <button type="submit" class="btn"><i class="fa fa-lg fa-paper-plane"></i></button>
+                                                    </form>
+                                                </div>-->
                     </div>
                 </div>
             </footer>

@@ -26,7 +26,7 @@ use kartik\file\FileInput;
     ]);
     ?>
 
-    <?= $form->field($model, 'id')->hiddenInput() ?>
+    <!--?= $form->field($model, 'id')->hiddenInput() ?!-->
     
     <?= $form->field($model, 'names')->textInput(['maxlength' => true]) ?>
 
@@ -57,7 +57,7 @@ use kartik\file\FileInput;
     <!--?= $form->field($model, 'parent')->textInput() ?!-->
 
     <?=
-    $form->field($model, 'photos')->widget(FileInput::classname(), [
+    $form->field($model, 'photo')->widget(FileInput::classname(), [
         'pluginOptions' => [
             'allowedFileExtensions' => ['jpg', 'gif', 'png'],
 //            'showCaption' => false,

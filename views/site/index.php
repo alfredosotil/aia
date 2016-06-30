@@ -1734,8 +1734,7 @@
 
 
 <!--google maps initialization--> 
-<script type="text/javascript">
-    google.maps.event.addDomListener(window, 'load', init);
+<script type="text/javascript">    
     function init() {
 
         mapInitAddress("narodowa 18 Pruszków", "featured-map1", "<?= Yii::$app->request->baseUrl; ?>/images/pin-house.png", false);
@@ -1755,5 +1754,5 @@
         mapInit(34.0254, -84.3560, "grid-map5", "<?= Yii::$app->request->baseUrl; ?>/images/pin-apartment.png", false);
         mapInit(40.6128, -73.9976, "grid-map6", "<?= Yii::$app->request->baseUrl; ?>/images/pin-house.png", false);
     }
-
+    google.maps.event.addDomListener(window, 'load', init);
 </script>

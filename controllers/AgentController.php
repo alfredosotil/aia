@@ -107,7 +107,7 @@ class AgentController extends Controller {
                 $username = ArrayHelper::getValue($request->post(), 'User.username');
                 $model->email = "$username@aia.com.pe";
                 if ($model->load($request->post())) {
-                    $image = UploadedFile::getInstance($model, 'photos');
+                    $image = UploadedFile::getInstance($model, 'photo');
                     if (!is_null($image)) {
                         $imageUser = new ImagesUser();
                         // save with image
@@ -206,10 +206,15 @@ class AgentController extends Controller {
                 ];
             } else {
                 if ($model->load($request->post())) {
-                    $image = UploadedFile::getInstance($model, 'photos');
+                    $image = UploadedFile::getInstance($model, 'photo');
                     if (!is_null($image)) {
-                        $imageUser = ImagesUser::find()->where(['user_id' => $model->id])->one();
+                        $imageUser = ImagesUser::find()->where(['user_id' => $model->primaryKey])->one();
+                        if (!isset($imageUser)) {
+                            $imageUser = new ImagesUser();
+                            $imageUser->user_id = $model->primaryKey;
+                        }
                         $ext = end((explode(".", $image->name)));
+                        $hasimage = $model->avatar;
                         // generate a unique file name to prevent duplicate filenames
                         $model->avatar = Yii::$app->security->generateRandomString() . ".{$ext}";
                         $imageUser->name = $model->avatar;
@@ -218,8 +223,12 @@ class AgentController extends Controller {
                         Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/user/';
                         $path = Yii::$app->params['uploadPath'] . $model->avatar;
                         if ($model->save()) {
-                            $image_delete = $model->avatar;
-                            $model->deleteImage(Yii::$app->params['uploadPath'], $image_delete);
+                            if (isset($hasimage)) {
+                                $model->deleteImage(Yii::$app->params['uploadPath'], $hasimage);
+                            }
+                            $imageUser->order = 1;
+                            $imageUser->active = 1;
+                            $imageUser->save();
                             $image->saveAs($path);
                             Image::thumbnail(Yii::$app->params['uploadPath'] . $model->avatar, 120, 120)
                                     ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $model->avatar, ['quality' => 50]);
@@ -234,8 +243,19 @@ class AgentController extends Controller {
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                                 Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                             ];
+                        } else {
+                            return [
+                                'forceReload' => '#crud-datatable-pjax',
+                                'title' => "Agente #" . $id,
+                                'content' => $this->renderAjax('view', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                            ];
                         }
-                    } else {
+                    }
+                    if ($model->save()) {
                         return [
                             'forceReload' => '#crud-datatable-pjax',
                             'title' => "Agente #" . $id,
@@ -243,18 +263,18 @@ class AgentController extends Controller {
                                 'model' => $model,
                             ]),
                             'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                            Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                            Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                        ];
+                    } else {
+                        return [
+                            'title' => "Actualizar Agente #" . $id,
+                            'content' => $this->renderAjax('update', [
+                                'model' => $model,
+                            ]),
+                            'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                            Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
                         ];
                     }
-                } else {
-                    return [
-                        'title' => "Actualizar Agente #" . $id,
-                        'content' => $this->renderAjax('update', [
-                            'model' => $model,
-                        ]),
-                        'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                        Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
-                    ];
                 }
             }
         } else {
@@ -280,7 +300,12 @@ class AgentController extends Controller {
      */
     public function actionDelete($id) {
         $request = Yii::$app->request;
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $hasimage = $model->avatar;
+        $model->delete();
+        if (isset($hasimage)) {
+            $model->deleteImage(Yii::$app->basePath . '/web/uploads/user/', $hasimage);
+        }
 
         if ($request->isAjax) {
             /*
