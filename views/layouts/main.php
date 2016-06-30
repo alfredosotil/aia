@@ -337,7 +337,7 @@ AppAsset::register($this);
                                 </div>
                             </div>
                         </div>-->
-                        <div class="col-xs-12 col-sm-6 col-lg-3">
+<!--                        <div class="col-xs-12 col-sm-6 col-lg-3">
                             <h4 class="second-color">noticias<span class="special-color">.</span></h4>
                             <div class="footer-title-separator"></div>
                             <p class="footer-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -345,7 +345,7 @@ AppAsset::register($this);
                                 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="enter your email">
                                 <button type="submit" class="btn"><i class="fa fa-lg fa-paper-plane"></i></button>
                             </form>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </footer>

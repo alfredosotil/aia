@@ -504,7 +504,7 @@
         </form>
     </section>
 
-    <section class="section-light bottom-padding-45 section-both-shadow">
+<!--    <section class="section-light bottom-padding-45 section-both-shadow">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-lg-3">
@@ -553,7 +553,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
     <section class="featured-offers parallax">
 
@@ -1274,7 +1274,7 @@
 
     </section>-->
 
-    <section class="section-light bottom-padding-45 section-top-shadow">
+<!--    <section class="section-light bottom-padding-45 section-top-shadow">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-9">
@@ -1589,7 +1589,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
 <!--    <section class="section-dark">
         <div class="container">

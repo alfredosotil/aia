@@ -146,8 +146,95 @@
         </div>
         <div class="clearfix"></div>
     </section>
+    <section class="neighbourhood">		
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
+                    <h5 class="subtitle-margin">what's in the</h5>
+                    <h1 class="">neighbourhood<span class="special-color">.</span></h1>
+                </div>
+                <div class="col-xs-12 col-sm-3 navigation-box2-cont">
+                    <a href="#" class="navigation-box navigation-box-next" id="neighbourhood-owl-next"><div class="navigation-triangle"></div><div class="navigation-box-icon"><i class="jfont">&#xe802;</i></div></a>
+                    <a href="#" class="navigation-box navigation-box-prev" id="neighbourhood-owl-prev"><div class="navigation-triangle"></div><div class="navigation-box-icon"><i class="jfont">&#xe800;</i></div></a>								
+                </div>
+                <div class="col-xs-8 col-xs-offset-2 col-sm-offset-4 col-sm-4">
+                    <div class="title-separator-primary2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="neighbourhood-container">
+            <div class="owl-carousel" id="neighbourhood-owl">
+                <div class="neighbourhood-col">
+                    <div class="neighbourhood-item">
+                        <div class="neighbourhood-photo">
+                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near1.jpg" alt="" />
+                        </div>
+                        <div class="neighbourhood-text">
+                            <h4 class="neighbourhood-title">Beautiful Beach</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="neighbourhood-col">
+                    <div class="neighbourhood-item">
+                        <div class="neighbourhood-photo">
+                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near2.jpg" alt="" />
+                        </div>
+                        <div class="neighbourhood-text">
+                            <h4 class="neighbourhood-title">Schools and University</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="neighbourhood-col">
+                    <div class="neighbourhood-item">
+                        <div class="neighbourhood-photo">
+                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near3.jpg" alt="" />
+                        </div>
+                        <div class="neighbourhood-text">
+                            <h4 class="neighbourhood-title">Parks and green places</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="neighbourhood-col">
+                    <div class="neighbourhood-item">
+                        <div class="neighbourhood-photo">
+                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near4.jpg" alt="" />
+                        </div>
+                        <div class="neighbourhood-text">
+                            <h4 class="neighbourhood-title">Swimming pool</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="neighbourhood-col">
+                    <div class="neighbourhood-item">
+                        <div class="neighbourhood-photo">
+                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near5.jpg" alt="" />
+                        </div>
+                        <div class="neighbourhood-text">
+                            <h4 class="neighbourhood-title">Entertainment Places</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="neighbourhood-col">
+                    <div class="neighbourhood-item">
+                        <div class="neighbourhood-photo">
+                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near6.jpg" alt="" />
+                        </div>
+                        <div class="neighbourhood-text">
+                            <h4 class="neighbourhood-title">Shops and markets around</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section class="section-color top-padding-45 bottom-padding-45 section-bottom-shadow">
+<!--    <section class="section-color top-padding-45 bottom-padding-45 section-bottom-shadow">
         <div class="container">
             <div class="row count-container count-second-color">
                 <div class="col-xs-6 col-lg-3">
@@ -221,10 +308,10 @@
                 </div>
             </div>
         </div>
-    </section>	
+    </section>	-->
 
-    <a id="rooms"></a>	
-    <section class="rooms parallax">
+    <!--<a id="rooms"></a>-->	
+<!--    <section class="rooms parallax">
 
         <div class="container">
             <div class="row">
@@ -566,10 +653,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
-    <a id="gallery"></a>
-    <section class="section-light section-both-shadow">
+    <!--<a id="gallery"></a>-->
+<!--    <section class="section-light section-both-shadow">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-lg-12 text-center">
@@ -611,96 +698,7 @@
             </div>
         </div>
 
-    </section>
-
-    <a id="neighbourhood"></a>
-    <section class="neighbourhood">		
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-offset-3 col-sm-6 text-center">
-                    <h5 class="subtitle-margin">what's in the</h5>
-                    <h1 class="">neighbourhood<span class="special-color">.</span></h1>
-                </div>
-                <div class="col-xs-12 col-sm-3 navigation-box2-cont">
-                    <a href="#" class="navigation-box navigation-box-next" id="neighbourhood-owl-next"><div class="navigation-triangle"></div><div class="navigation-box-icon"><i class="jfont">&#xe802;</i></div></a>
-                    <a href="#" class="navigation-box navigation-box-prev" id="neighbourhood-owl-prev"><div class="navigation-triangle"></div><div class="navigation-box-icon"><i class="jfont">&#xe800;</i></div></a>								
-                </div>
-                <div class="col-xs-8 col-xs-offset-2 col-sm-offset-4 col-sm-4">
-                    <div class="title-separator-primary2"></div>
-                </div>
-            </div>
-        </div>
-        <div class="neighbourhood-container">
-            <div class="owl-carousel" id="neighbourhood-owl">
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
-                        <div class="neighbourhood-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near1.jpg" alt="" />
-                        </div>
-                        <div class="neighbourhood-text">
-                            <h4 class="neighbourhood-title">Beautiful Beach</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
-                        <div class="neighbourhood-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near2.jpg" alt="" />
-                        </div>
-                        <div class="neighbourhood-text">
-                            <h4 class="neighbourhood-title">Schools and University</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
-                        <div class="neighbourhood-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near3.jpg" alt="" />
-                        </div>
-                        <div class="neighbourhood-text">
-                            <h4 class="neighbourhood-title">Parks and green places</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
-                        <div class="neighbourhood-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near4.jpg" alt="" />
-                        </div>
-                        <div class="neighbourhood-text">
-                            <h4 class="neighbourhood-title">Swimming pool</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
-                        <div class="neighbourhood-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near5.jpg" alt="" />
-                        </div>
-                        <div class="neighbourhood-text">
-                            <h4 class="neighbourhood-title">Entertainment Places</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
-                        <div class="neighbourhood-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near6.jpg" alt="" />
-                        </div>
-                        <div class="neighbourhood-text">
-                            <h4 class="neighbourhood-title">Shops and markets around</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </section>  -->
 
     <a id="localization"></a>
     <section class="contact-page-1 section-dark no-padding">
