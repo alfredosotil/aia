@@ -109,19 +109,19 @@ class AgentController extends Controller {
                 if ($model->load($request->post())) {
                     $image = UploadedFile::getInstance($model, 'photo');
                     if (!is_null($image)) {
-                        $imageUser = new ImagesUser();
-                        // save with image
-                        // store the source file name
                         $ext = end((explode(".", $image->name)));
                         // generate a unique file name to prevent duplicate filenames
                         $model->avatar = Yii::$app->security->generateRandomString() . ".{$ext}";
-                        $imageUser->name = $model->avatar;
-                        // the path to save file, you can set an uploadPath
-                        // in Yii::$app->params 
-                        Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/user/';
-                        $path = Yii::$app->params['uploadPath'] . $model->avatar;
-//                    $model->user_id = Yii::$app->user->getId();
                         if ($model->save()) {
+                            $imageUser = new ImagesUser();
+                            // save with image
+                            // store the source file name                            
+                            $imageUser->name = $model->avatar;
+                            // the path to save file, you can set an uploadPath
+                            // in Yii::$app->params 
+                            Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/user/';
+                            $path = Yii::$app->params['uploadPath'] . $model->avatar;
+
                             $imageUser->order = 1;
                             $imageUser->active = 1;
                             $imageUser->user_id = $model->primaryKey;
@@ -142,6 +142,15 @@ class AgentController extends Controller {
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                                 Html::a('Crear mas', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                             ];
+                        } else {
+                            return [
+                                'title' => "Crear Agente",
+                                'content' => $this->renderAjax('create', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                            ];
                         }
                     } else {
                         if ($model->save()) {
@@ -151,6 +160,15 @@ class AgentController extends Controller {
                                 'content' => '<span class="text-success">Crear Agente success</span>',
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                                 Html::a('Crear mas', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                            ];
+                        } else {
+                            return [
+                                'title' => "Crear Agente",
+                                'content' => $this->renderAjax('create', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
                             ];
                         }
                     }
@@ -254,26 +272,27 @@ class AgentController extends Controller {
                                 Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                             ];
                         }
-                    }
-                    if ($model->save()) {
-                        return [
-                            'forceReload' => '#crud-datatable-pjax',
-                            'title' => "Agente #" . $id,
-                            'content' => $this->renderAjax('view', [
-                                'model' => $model,
-                            ]),
-                            'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                            Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
-                        ];
                     } else {
-                        return [
-                            'title' => "Actualizar Agente #" . $id,
-                            'content' => $this->renderAjax('update', [
-                                'model' => $model,
-                            ]),
-                            'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                            Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
-                        ];
+                        if ($model->save()) {
+                            return [
+                                'forceReload' => '#crud-datatable-pjax',
+                                'title' => "Agente #" . $id,
+                                'content' => $this->renderAjax('view', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                            ];
+                        } else {
+                            return [
+                                'title' => "Actualizar Agente #" . $id,
+                                'content' => $this->renderAjax('update', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                            ];
+                        }
                     }
                 }
             }

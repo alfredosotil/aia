@@ -41,11 +41,11 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'active')->checkbox() ?>
 
-    <?= $form->field($model, 'datecreation')->textInput() ?>
+    <?= $form->field($model, 'datecreation')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
     <?= $form->field($model, 'datestart')->textInput() ?>
 
-    <?= $form->field($model, 'datelastupdate')->textInput() ?>
+    <?= $form->field($model, 'datelastupdate')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
     <?= $form->field($model, 'owner')->textInput(['maxlength' => true]) ?>
 
@@ -62,7 +62,6 @@ use kartik\file\FileInput;
     <div class="form-group field-property-map">
         <label class="control-label col-md-2" for="map">Mapa</label>
         <div class="col-md-10">
-            <!--<a class="btn btn-primary btn-block" onclick="getMapProperty()">Cargar</a>-->
             <div id="property-map" class="loader-map"></div>
         </div>
         <div class="col-md-offset-2 col-md-10"></div>
@@ -70,12 +69,12 @@ use kartik\file\FileInput;
     </div>  
 
     <?=
-    $form->field($model, 'photos')->widget(FileInput::classname(), [
+    $form->field($model, 'photos[]')->widget(FileInput::classname(), [
         'pluginOptions' => [
             'allowedFileExtensions'=>['jpg','gif','png'],
             'showCaption' => false,
             'showRemove' => true,
-            'showUpload' => true,
+            'showUpload' => false,
             'browseClass' => 'btn btn-primary btn-block',
             'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
             'browseLabel' => 'Selecciona las fotos'

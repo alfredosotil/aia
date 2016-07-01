@@ -90,8 +90,8 @@ CREATE TABLE `images_property` (
   `active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`,`property_id`),
   KEY `fk_images_property_property1_idx` (`property_id`),
-  CONSTRAINT `fk_images_property_property1` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_images_property_property1` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,8 +118,8 @@ CREATE TABLE `images_user` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`,`user_id`),
   KEY `fk_images_user_user1_idx` (`user_id`),
-  CONSTRAINT `fk_images_user_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_images_user_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,6 +128,7 @@ CREATE TABLE `images_user` (
 
 LOCK TABLES `images_user` WRITE;
 /*!40000 ALTER TABLE `images_user` DISABLE KEYS */;
+INSERT INTO `images_user` (`id`, `name`, `order`, `active`, `user_id`) VALUES (6,'ykMk3vJFa31xQQ8UVVxNxhUtBZMJMg87.png',1,1,31);
 /*!40000 ALTER TABLE `images_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,17 +209,18 @@ CREATE TABLE `property` (
   `longitude` varchar(50) NOT NULL,
   `latitude` varchar(50) NOT NULL,
   `active` tinyint(1) DEFAULT NULL,
-  `datecreation` timestamp NULL DEFAULT NULL,
-  `datestart` timestamp NULL DEFAULT NULL,
+  `datecreation` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `datestart` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `datelastupdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `owner` varchar(50) DEFAULT NULL,
   `phoneowner` varchar(45) DEFAULT NULL,
   `emailowner` varchar(100) DEFAULT NULL,
   `address` varchar(100) NOT NULL,
+  `priority` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_property_type1_idx` (`type_id`),
   CONSTRAINT `fk_property_type1` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +229,7 @@ CREATE TABLE `property` (
 
 LOCK TABLES `property` WRITE;
 /*!40000 ALTER TABLE `property` DISABLE KEYS */;
-INSERT INTO `property` (`id`, `type_id`, `state_id`, `price`, `money`, `commission`, `area`, `bedrooms`, `bathrooms`, `longitude`, `latitude`, `active`, `datecreation`, `datestart`, `datelastupdate`, `owner`, `phoneowner`, `emailowner`, `address`) VALUES (1,6,3,250000,'D',3,200,3,2,'-77.04276658594608','-12.069915970022354',1,NULL,NULL,NULL,'asotilp','997893527','alfredosotil@gmail.com','Jesús María, Perú');
+INSERT INTO `property` (`id`, `type_id`, `state_id`, `price`, `money`, `commission`, `area`, `bedrooms`, `bathrooms`, `longitude`, `latitude`, `active`, `datecreation`, `datestart`, `datelastupdate`, `owner`, `phoneowner`, `emailowner`, `address`, `priority`) VALUES (1,6,3,250000,'D',3,200,3,2,'-77.04276658594608','-12.069915970022354',1,NULL,NULL,NULL,'asotilp','997893527','alfredosotil@gmail.com','Jesús María, Perú',NULL),(2,7,3,130000,'D',3,200,4,2,'-77.05015875399113','-12.094318448616118',1,NULL,NULL,NULL,'alfredo sotil ','997893527','alfredosotil@gmail.com','Country Club, San Isidro, Perú',NULL),(3,5,2,3000,'D',3,200,3,NULL,'-77.04151131212711','-12.096248730265987',0,NULL,NULL,NULL,'asotilp','997893527','alfredosotil@gmail.com','Orrantia, San Isidro, Perú',NULL);
 /*!40000 ALTER TABLE `property` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -339,7 +341,7 @@ CREATE TABLE `user` (
   CONSTRAINT `fk_user_profile1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuario_estado1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuario_tipo1` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -348,7 +350,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`, `names`, `surnames`, `email`, `username`, `password`, `active`, `lastupdate`, `type_id`, `state_id`, `sex`, `profile_id`, `authKey`, `accessToken`, `parent`, `avatar`) VALUES (1,'Alfredo Antonios','Sotil Pastor','alfredosotil@gmail.com','asotilp','asotilp',1,'2016-06-14 20:53:42',1,1,'M',1,'','',NULL,NULL),(2,'tested','test','test','test','test',1,'2016-06-14 16:19:21',1,1,'F',2,'','',NULL,NULL),(3,'agente','agente agente','agente@aia.com.pe','agente','agente',1,'2016-06-14 20:34:55',9,1,'M',3,'','',NULL,NULL),(4,'agente2','agente2','agente2@aia.com.pe','agente2','agente2',1,'2016-06-14 21:50:39',9,1,'M',3,NULL,NULL,1,NULL),(5,'agente3','agente3','','agente3','admin',1,'2016-06-16 22:57:44',9,1,'M',3,NULL,NULL,1,NULL),(6,'agente333','agente333','agente333@aia.com.pe','agente333','admin',1,'2016-06-17 15:25:05',9,1,'F',3,NULL,NULL,1,NULL),(7,'agente344','agente344','agente344@aia.com.pe','agente344','admin',1,'2016-06-17 15:42:02',9,1,'F',3,NULL,NULL,1,NULL),(8,'agente3555','agente3555','agente3555@aia.com.pe','agente3555','admin',1,'2016-06-17 15:43:05',9,1,'M',3,NULL,NULL,1,NULL),(9,'agente244','agente244','agente244@aia.com.pe','agente244','admin',1,'2016-06-17 15:44:13',9,1,'F',3,NULL,NULL,1,NULL),(10,'antonio','pastor','apastor@aia.com.pe','apastor','apastor',1,'2016-06-27 22:40:14',9,1,'M',3,NULL,NULL,1,NULL);
+INSERT INTO `user` (`id`, `names`, `surnames`, `email`, `username`, `password`, `active`, `lastupdate`, `type_id`, `state_id`, `sex`, `profile_id`, `authKey`, `accessToken`, `parent`, `avatar`) VALUES (1,'Alfredo Antonios','Sotil Pastor','alfredosotil@gmail.com','asotilp','asotilp',1,'2016-06-14 20:53:42',1,1,'M',1,'','',NULL,NULL),(2,'tested','test','test','test','test',1,'2016-06-14 16:19:21',1,1,'F',2,'','',NULL,NULL),(31,'anton','zonov','admin@aia.com.pe','admin','admin',1,'2016-06-30 23:29:56',9,1,'M',3,NULL,NULL,1,'ykMk3vJFa31xQQ8UVVxNxhUtBZMJMg87.png');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,4 +371,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-27 17:48:49
+-- Dump completed on 2016-07-01 17:12:32

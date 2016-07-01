@@ -26,6 +26,7 @@ use Yii;
  * @property string $phoneowner
  * @property string $emailowner
  * @property string $address
+ * @property integer $priority
  *
  * @property Accesspropertydetail[] $accesspropertydetails
  * @property ImagesProperty[] $imagesProperties
@@ -49,7 +50,7 @@ class Property extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['type_id', 'state_id', 'money', 'commission', 'longitude', 'latitude', 'address', 'owner', 'phoneowner'], 'required'],
-            [['type_id', 'state_id', 'active'], 'integer'],
+            [['priority', 'type_id', 'state_id', 'active'], 'integer'],
             [['price', 'commission', 'area', 'bedrooms', 'bathrooms'], 'number'],
             [['datecreation', 'datestart', 'datelastupdate'], 'safe'],
             [['money'], 'string', 'max' => 1],
@@ -57,7 +58,7 @@ class Property extends \yii\db\ActiveRecord {
             [['phoneowner'], 'string', 'max' => 45],
             [['emailowner', 'address'], 'string', 'max' => 100],
             [['photos'], 'safe'],
-            [['photos'], 'file', 'extensions' => 'jpg, gif, png'],
+            [['photos'], 'file', 'extensions' => 'jpg, gif, png', 'maxFiles' => 10],
             [['photos'], 'file', 'maxSize' => '2000000'],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
@@ -89,6 +90,7 @@ class Property extends \yii\db\ActiveRecord {
             'address' => Yii::t('app', 'Address'),
             'photos' => Yii::t('app', 'Fotos'),
             'map' => Yii::t('app', 'Mapa'),
+            'priority' => Yii::t('app', 'Prioridad'),
         ];
     }
 

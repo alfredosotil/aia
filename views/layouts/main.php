@@ -249,17 +249,17 @@ AppAsset::register($this);
                                                                             <li><a href="my-profile.html">My account - Profile</a></li>
                                                                         </ul>-->
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios</a>
+                                <li class="button">
+                                    <a href="<?= Url::toRoute("site/services") ?>" class="" role="button" aria-haspopup="true" aria-expanded="false">Servicios</a>
                                     <!--<a href="#" class="" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>-->
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Servicio 1</a></li>
+                                    <!--<ul class="dropdown-menu">-->
+<!--                                        <li><a href="#">Servicio 1</a></li>
                                         <li>
                                             <a tabindex="-1" href="#">Servicio 2</a>
                                         </li>
                                         <li>
                                             <a tabindex="-1" href="#">Servicio 3</a>
-                                        </li>
+                                        </li>-->
                                         <!--                                        <li class="dropdown-submenu">
                                                                                     <a tabindex="-1" href="blog-right-sidebar.html">Single Post</a>
                                                                                     <ul class="dropdown-menu">
@@ -268,7 +268,7 @@ AppAsset::register($this);
                                                                                         <li><a href="blog-no-sidebar.html">No Sidebar</a></li>
                                                                                     </ul>
                                                                                 </li>-->
-                                    </ul>
+                                    <!--</ul>-->
                                 </li>
                                 <li class="button">
                                     <a href="<?= Url::toRoute("site/contactus") ?>" class="" role="button" aria-haspopup="true" aria-expanded="false">Contactanos</a>

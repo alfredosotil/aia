@@ -62,6 +62,10 @@ class SiteController extends Controller {
     public function actionAboutus() {
         return $this->render('aboutus');
     }
+    
+    public function actionServices() {
+        return $this->render('services');
+    }
 
     public function actionWorkwithus() {
         return $this->render('workwithus');

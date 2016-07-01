@@ -10,6 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
+use yii\imagine\Image;
+use yii\web\UploadedFile;
 
 /**
  * PropertyController implements the CRUD actions for Property model.
@@ -95,23 +97,77 @@ class PropertyController extends Controller {
                     'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                     Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
                 ];
-            } else if ($model->load($request->post()) && $model->save()) {
-                return [
-                    'forceReload' => '#crud-datatable-pjax',
-                    'title' => "Crear Propiedad",
-                    'content' => '<span class="text-success">Crear Propiedad success</span>',
-                    'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::a('Crear mas', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
-                ];
             } else {
-                return [
-                    'title' => "Crear Propiedad",
-                    'content' => $this->renderAjax('create', [
-                        'model' => $model,
-                    ]),
-                    'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
-                ];
+                if ($model->load($request->post())) {
+                    $images = UploadedFile::getInstances($model, 'photos');
+                    if (!is_null($images)) {
+                        if ($model->save()) {
+                            Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/property/';
+                            $property_id = $model->primaryKey;
+                            $imageOrder = 1;
+                            foreach ($images as $image) {
+                                $ext = end((explode(".", $image->name)));
+                                $imagename = Yii::$app->security->generateRandomString() . ".{$ext}";
+                                $path = Yii::$app->params['uploadPath'] . $imagename;
+                                $imageProperty = new \app\models\ImagesProperty();
+                                $imageProperty->name = $imagename;
+                                $imageProperty->order = $imageOrder++;
+                                $imageProperty->active = 1;
+                                $imageProperty->property_id = $property_id;
+                                $imageProperty->save();
+                                $image->saveAs($path);
+                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 120, 120)
+                                        ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $imagename, ['quality' => 50]);
+                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 30, 30)
+                                        ->save(Yii::$app->params['uploadPath'] . 'sm_' . $imagename, ['quality' => 50]);
+                            }
+                            return [
+                                'forceReload' => '#crud-datatable-pjax',
+                                'title' => "Crear Propiedad",
+                                'content' => '<span class="text-success">Crear Propiedad success</span>',
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::a('Crear mas', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote', 'onclick' => 'getMapProperty();'])
+                            ];
+                        } else {
+                            return [
+                                'title' => "Crear Propiedad",
+                                'content' => $this->renderAjax('create', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                            ];
+                        }
+                    } else {
+                        if ($model->save()) {
+                            return [
+                                'forceReload' => '#crud-datatable-pjax',
+                                'title' => "Crear Propiedad",
+                                'content' => 'sin imagen <span class="text-success">Crear Propiedad success</span>',
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::a('Crear mas', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                            ];
+                        } else {
+                            return [
+                                'title' => "Crear Propiedad",
+                                'content' => $this->renderAjax('create', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                            ];
+                        }
+                    }
+                } else {
+                    return [
+                        'title' => "Crear Propiedad",
+                        'content' => $this->renderAjax('create', [
+                            'model' => $model,
+                        ]),
+                        'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                        Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                    ];
+                }
             }
         } else {
             /*
@@ -150,27 +206,90 @@ class PropertyController extends Controller {
                         'model' => $model,
                     ]),
                     'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit" , 'onclick' => 'getMapProperty();'])
-                ];
-            } else if ($model->load($request->post()) && $model->save()) {
-                return [
-                    'forceReload' => '#crud-datatable-pjax',
-                    'title' => "Propiedad #" . $id,
-                    'content' => $this->renderAjax('view', [
-                        'model' => $model,
-                    ]),
-                    'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
-                ];
-            } else {
-                return [
-                    'title' => "Actualizar Propiedad #" . $id,
-                    'content' => $this->renderAjax('update', [
-                        'model' => $model,
-                    ]),
-                    'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                     Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit", 'onclick' => 'getMapProperty();'])
                 ];
+            } else {
+                if ($model->load($request->post())) {
+                    $images = UploadedFile::getInstances($model, 'photos');
+                    if (!is_null($images)) {
+                        $imagesProperty = \app\models\ImagesProperty::find()->where(['property_id' => $id])->all();
+                        if (count($imagesProperty) > 0) {
+                            foreach ($imagesProperty as $image) {
+                                $model->deleteImages(Yii::$app->basePath . '/web/uploads/property/', $image->name);
+                            }
+                            \app\models\ImagesProperty::deleteAll(['property_id' => $id]);
+                        }
+                        if ($model->save()) {
+                            Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/property/';
+                            $property_id = $model->primaryKey;
+                            $imageOrder = 1;
+                            foreach ($images as $image) {
+                                $ext = end((explode(".", $image->name)));
+                                $imagename = Yii::$app->security->generateRandomString() . ".{$ext}";
+                                $path = Yii::$app->params['uploadPath'] . $imagename;
+                                $imageProperty = new \app\models\ImagesProperty();
+                                $imageProperty->name = $imagename;
+                                $imageProperty->order = $imageOrder++;
+                                $imageProperty->active = 1;
+                                $imageProperty->property_id = $property_id;
+                                $imageProperty->save();
+                                $image->saveAs($path);
+                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 120, 120)
+                                        ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $imagename, ['quality' => 50]);
+                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 30, 30)
+                                        ->save(Yii::$app->params['uploadPath'] . 'sm_' . $imagename, ['quality' => 50]);
+                            }
+                            return [
+                                'forceReload' => '#crud-datatable-pjax',
+                                'title' => "Propiedad #" . $id,
+                                'content' => $this->renderAjax('view', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote', 'onclick' => 'getMapProperty();'])
+                            ];
+                        } else {
+                            return [
+                                'title' => "Actualizar Propiedad #" . $id,
+                                'content' => $this->renderAjax('update', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit", 'onclick' => 'getMapProperty();'])
+                            ];
+                        }
+                    } else {
+                        if ($model->save()) {
+                            return [
+                                'forceReload' => '#crud-datatable-pjax',
+                                'title' => "Propiedad #" . $id,
+                                'content' => $this->renderAjax('view', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote','onclick' => 'getMapProperty();'])
+                            ];
+                        } else {
+                            return [
+                                'title' => "Actualizar Propiedad #" . $id,
+                                'content' => $this->renderAjax('update', [
+                                    'model' => $model,
+                                ]),
+                                'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit", 'onclick' => 'getMapProperty();'])
+                            ];
+                        }
+                    }
+                } else {
+                    return [
+                        'title' => "Actualizar Propiedad #" . $id,
+                        'content' => $this->renderAjax('update', [
+                            'model' => $model,
+                        ]),
+                        'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                        Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit", 'onclick' => 'getMapProperty();'])
+                    ];
+                }
             }
         } else {
             /*
@@ -195,7 +314,14 @@ class PropertyController extends Controller {
      */
     public function actionDelete($id) {
         $request = Yii::$app->request;
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $imagesProperty = \app\models\ImagesProperty::find()->where(['property_id' => $id])->all();
+        if (count($imagesProperty) > 0) {
+            foreach ($imagesProperty as $image) {
+                $model->deleteImages(Yii::$app->basePath . '/web/uploads/property/', $image->name);
+            }
+        }
+        $model->delete();
 
         if ($request->isAjax) {
             /*
