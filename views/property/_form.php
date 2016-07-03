@@ -8,6 +8,9 @@ use app\models\State;
 use app\models\Profile;
 use kartik\form\ActiveForm;
 use kartik\file\FileInput;
+use kartik\date\DatePicker;
+use kartik\widgets\StarRating;
+use yii\web\JsExpression;
 
 //LocateAsset::register($this);
 ?>
@@ -17,7 +20,7 @@ use kartik\file\FileInput;
     <?php
     $form = ActiveForm::begin([
                 'type' => ActiveForm::TYPE_HORIZONTAL,
-                'options'=>['enctype'=>'multipart/form-data']
+                'options' => ['enctype' => 'multipart/form-data']
     ]);
     ?>
 
@@ -31,7 +34,7 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'money')->radioList(['S' => 'Soles', 'D' => 'Dolares']) ?>
 
-    <?= $form->field($model, 'commission')->textInput() ?>
+    <?= $form->field($model, 'commission', ['addon' => ['prepend' => ['content' => '%']]])->textInput() ?>
 
     <?= $form->field($model, 'area')->textInput() ?>
 
@@ -43,7 +46,17 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'datecreation')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
-    <?= $form->field($model, 'datestart')->textInput() ?>
+    <?=
+    $form->field($model, 'datestart')->widget(DatePicker::classname(), [
+//        'name' => 'anniversary',
+        'value' => date('Y/m/d'),
+        'readonly' => true,
+        'pluginOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy/mm/dd'
+        ]
+    ]);
+    ?>
 
     <?= $form->field($model, 'datelastupdate')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
@@ -52,6 +65,35 @@ use kartik\file\FileInput;
     <?= $form->field($model, 'phoneowner')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'emailowner')->textInput(['maxlength' => true]) ?>
+
+    <?=
+    $form->field($model, 'priority')->widget(StarRating::classname(), [
+        'language' => 'es',
+        'pluginOptions' => [
+            'min' => 0,
+            'max' => 5,
+            'step' => 1,
+            'size' => 'lg',
+            'starCaptions' => [
+                0 => 'sin prioridad',
+                1 => 'baja',
+                2 => 'media baja',
+                3 => 'media',
+                4 => 'media alta',
+                5 => 'alta',
+            ],
+            'starCaptionClasses' => [
+                0 => 'text-danger',
+                1 => 'text-danger',
+                2 => 'text-danger',
+                3 => 'text-warning',
+                4 => 'text-info',
+                5 => 'text-success',
+            ],
+        ]
+    ]);
+    $this->registerJsFile('@web/js/star-rating_locale_es.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+    ?>
 
     <?= $form->field($model, 'latitude')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
@@ -71,7 +113,7 @@ use kartik\file\FileInput;
     <?=
     $form->field($model, 'photos[]')->widget(FileInput::classname(), [
         'pluginOptions' => [
-            'allowedFileExtensions'=>['jpg','gif','png'],
+            'allowedFileExtensions' => ['jpg', 'gif', 'png'],
             'showCaption' => false,
             'showRemove' => true,
             'showUpload' => false,
@@ -82,7 +124,7 @@ use kartik\file\FileInput;
         'options' => [
             'accept' => 'image/*',
             'multiple' => true
-            ],
+        ],
     ]);
     ?>
 

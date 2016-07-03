@@ -164,8 +164,8 @@
         </div>
         <div class="neighbourhood-container">
             <div class="owl-carousel" id="neighbourhood-owl">
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
+                <!--<div class="neighbourhood-col">-->
+                    <div class="hero item">
                         <div class="neighbourhood-photo">
                             <img src="<?= Yii::$app->request->baseUrl; ?>/images/near1.jpg" alt="" />
                         </div>
@@ -174,9 +174,9 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         </div>
                     </div>
-                </div>
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
+                <!--</div>-->
+                <!--<div class="neighbourhood-col">-->
+                    <div class="hero item">
                         <div class="neighbourhood-photo">
                             <img src="<?= Yii::$app->request->baseUrl; ?>/images/near2.jpg" alt="" />
                         </div>
@@ -185,51 +185,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         </div>
                     </div>
-                </div>
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
-                        <div class="neighbourhood-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near3.jpg" alt="" />
-                        </div>
-                        <div class="neighbourhood-text">
-                            <h4 class="neighbourhood-title">Parks and green places</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
-                        <div class="neighbourhood-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near4.jpg" alt="" />
-                        </div>
-                        <div class="neighbourhood-text">
-                            <h4 class="neighbourhood-title">Swimming pool</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
-                        <div class="neighbourhood-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near5.jpg" alt="" />
-                        </div>
-                        <div class="neighbourhood-text">
-                            <h4 class="neighbourhood-title">Entertainment Places</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="neighbourhood-col">
-                    <div class="neighbourhood-item">
-                        <div class="neighbourhood-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/near6.jpg" alt="" />
-                        </div>
-                        <div class="neighbourhood-text">
-                            <h4 class="neighbourhood-title">Shops and markets around</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
+                <!--</div>-->                
             </div>
         </div>
     </section>

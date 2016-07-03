@@ -45,6 +45,7 @@ class DashboardAsset extends AssetBundle {
         'js/metisMenu.min.js',
         'js/raphael-min.js',
         'js/wow.min.js',
+//        'js/star-rating_locale_es.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
