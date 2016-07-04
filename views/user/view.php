@@ -31,6 +31,11 @@ use yii\widgets\DetailView;
             'authKey',
             'accessToken',
             'parent',
+            [// the owner name of the model
+                'attribute' => 'avatar',
+                'format' => 'raw',
+                'value' => yii\helpers\Html::img(isset($model->avatar)?"@web/uploads/user/sqr_$model->avatar":"@web/images/avatar-generic.jpg", ['class' => 'pull-left img-responsive'])
+            ]
         ],
     ])
     ?>

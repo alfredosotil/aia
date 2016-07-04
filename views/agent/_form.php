@@ -60,10 +60,10 @@ use kartik\file\FileInput;
     $form->field($model, 'photo')->widget(FileInput::classname(), [
         'pluginOptions' => [
             'allowedFileExtensions' => ['jpg', 'gif', 'png'],
-//            'showCaption' => false,
-//            'showRemove' => true,
-////            'showUpload' => true,
-//            'browseClass' => 'btn btn-primary btn-block',
+            'showCaption' => false,
+            'showRemove' => true,
+            'showUpload' => false,
+            'browseClass' => 'btn btn-primary btn-block',
             'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
             'browseLabel' => 'Selecciona la foto'
         ],

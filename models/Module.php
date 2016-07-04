@@ -50,10 +50,10 @@ class Module extends \yii\db\ActiveRecord
             'id' => 'ID',
             'iconfa' => 'Iconfa',
             'label' => 'Label',
-            'description' => 'Description',
-            'controller' => 'Controller',
-            'active' => 'Active',
-            'type_id' => 'Type ID',
+            'description' => 'Descripcion',
+            'controller' => 'Controlador',
+            'active' => 'Activo',
+            'type_id' => 'Tipo ID',
         ];
     }
 

@@ -100,6 +100,8 @@ use yii\web\JsExpression;
     <?= $form->field($model, 'longitude')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+    
+    <?= $form->field($model, 'references')->textArea(['maxlength' => true, 'rows' => '6']) ?>
 
     <div class="form-group field-property-map">
         <label class="control-label col-md-2" for="map">Mapa</label>

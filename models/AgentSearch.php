@@ -61,7 +61,7 @@ class AgentSearch extends User
             'lastupdate' => $this->lastupdate,
             'type_id' => $this->type_id,
             'state_id' => $this->state_id,
-            'profile_id' => $this->profile_id,
+            'profile_id' => 3,//$this->profile_id,
             'parent' => $this->parent,
         ]);
 
