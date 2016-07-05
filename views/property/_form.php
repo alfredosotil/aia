@@ -44,21 +44,21 @@ use yii\web\JsExpression;
 
     <?= $form->field($model, 'active')->checkbox() ?>
 
-    <?= $form->field($model, 'datecreation')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+    <!--?= $form->field($model, 'datecreation')->textInput(['maxlength' => true, 'readonly' => true]) ?!-->
 
     <?=
     $form->field($model, 'datestart')->widget(DatePicker::classname(), [
 //        'name' => 'anniversary',
-        'value' => date('Y/m/d'),
+//        'value' => date('Y-m-d'),
         'readonly' => true,
         'pluginOptions' => [
             'autoclose' => true,
-            'format' => 'yyyy/mm/dd'
+            'format' => 'yyyy-mm-dd'
         ]
     ]);
     ?>
 
-    <?= $form->field($model, 'datelastupdate')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+    <!--?= $form->field($model, 'datelastupdate')->textInput(['maxlength' => true, 'readonly' => true]) ?!-->
 
     <?= $form->field($model, 'owner')->textInput(['maxlength' => true]) ?>
 

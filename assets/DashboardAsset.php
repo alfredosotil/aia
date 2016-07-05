@@ -40,6 +40,7 @@ class DashboardAsset extends AssetBundle {
     ];
     public $js = [
 //        'js/apartment.js',
+        'js/plugins.js',
         'js/sb-admin-2.js',
 //        'bootstrap/bootstrap.min.js',
         'js/metisMenu.min.js',

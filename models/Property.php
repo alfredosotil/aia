@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Html;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "property".
@@ -39,9 +41,24 @@ class Property extends \yii\db\ActiveRecord {
      */
     public $photos;
     public $map;
+    public $path = '/web/uploads/property/';
+    public $imageFiles;
 
     public static function tableName() {
         return 'property';
+    }
+
+    public function behaviors() {
+        return [            
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['datecreation'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['datelastupdate'],
+                ],
+                'value' => function() { return date('Y-m-d H:i:s');},
+            ],
+        ];
     }
 
     /**
@@ -118,6 +135,13 @@ class Property extends \yii\db\ActiveRecord {
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getState() {
+        return $this->hasOne(State::className(), ['id' => 'state_id']);
+    }
+
+    /**
      * @inheritdoc
      * @return PropertyQuery the active query used by this AR class.
      */
@@ -125,18 +149,36 @@ class Property extends \yii\db\ActiveRecord {
         return new PropertyQuery(get_called_class());
     }
 
-    public function deleteImages($path, $filename) {
-        $file = array();
-        $file[] = $path . $filename;
-        $file[] = $path . 'sqr_' . $filename;
-        $file[] = $path . 'sm_' . $filename;
-        foreach ($file as $f) {
-            // check if file exists on server
-            if (!empty($f) && file_exists($f)) {
-                // delete file
-                unlink($f);
+    public function deleteImages() {
+        $images = $this->getImagesProperties()->orderBy('order')->all();
+        foreach ($images as $image) {
+            $path = Yii::$app->basePath . $this->path;
+            $filename = $image->name;
+            $file = array();
+            $file[] = $path . $filename;
+            $file[] = $path . 'sqr_' . $filename;
+            $file[] = $path . 'sm_' . $filename;
+            foreach ($file as $f) {
+                // check if file exists on server
+                if (!empty($f) && file_exists($f)) {
+                    // delete file
+                    unlink($f);
+                }
             }
         }
+    }
+
+    public function getImagesCarousel() {
+        $images = $this->getImagesProperties()->orderBy('order')->all();
+        if (count($images) > 0) {
+            $divContent = "";
+            foreach ($images as $image) {
+                $img = Html::img("@web/uploads/property/sqr_$image->name", ['class' => 'img-responsive', 'alt' => $image->order]);
+                $divContent .= Html::tag('div', $img, ['class' => 'item pull-left']);
+            }
+            return Html::tag('div', $divContent, ['id' => 'owl-images-property']);
+        }
+        return Html::tag('div', "No hay imagenes", ['id' => 'owl-images-property', 'class' => 'alert alert-warning']);
     }
 
 }

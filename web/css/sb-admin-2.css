@@ -12,7 +12,15 @@
     z-index: 10000;*/
 }
 
-
+#owl-images-property .item{
+  margin: 3px;
+  border: 2px black solid;
+}
+/*#owl-images-property .item img{
+  display: block;
+  width: 100px;
+  height: auto;
+}*/
 
 .loader-bg {
     background: #ffffff url(../images/loader.png) no-repeat center center;

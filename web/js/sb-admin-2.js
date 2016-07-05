@@ -9,6 +9,7 @@ jQuery(window).load(function () {
     $(".loader-bg").fadeOut('slow');
     $('div.property').on('shown.bs.modal', function () {
         getMapProperty();
+//        initOwlProperty();
     });
 });
 
@@ -22,6 +23,19 @@ var geocoder;
 
 function initialize() {
     geocoder = new google.maps.Geocoder();
+}
+
+function initOwlProperty() {
+    setTimeout(function () {
+        if ($("#owl-images-property").length) {
+            $("#owl-images-property").owlCarousel({
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+                items: 2,
+                itemsDesktop: [1199, 3],
+                itemsDesktopSmall: [979, 3]
+            });
+        }
+    }, 1000);
 }
 
 function getMapProperty() {
@@ -46,8 +60,9 @@ function getMapProperty() {
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             map = new google.maps.Map(document.getElementById('property-map-view'), myOptions);
-            document.getElementById('property-map-view').style.height = '400px';
             document.getElementById('property-map-view').className = "";
+            document.getElementById('property-map-view').style.height = '400px';
+            google.maps.event.trigger(map, "resize");
             var latlng = new google.maps.LatLng(lat, lng)
             map.setCenter(latlng);
             marker = new google.maps.Marker({
@@ -94,8 +109,9 @@ function getMapProperty() {
 //            mapTypeId: google.maps.MapTypeId.ROADMAP,
             };
             map = new google.maps.Map(document.getElementById('property-map'), myOptions);
-            document.getElementById('property-map').style.height = '400px';
             document.getElementById('property-map').className = "";
+            document.getElementById('property-map').style.height = '400px';
+            google.maps.event.trigger(map, "resize");
             if (document.getElementById('property-latitude').value === '' &&
                     document.getElementById('property-longitude').value === '' &&
                     document.getElementById('property-address').value === '') {

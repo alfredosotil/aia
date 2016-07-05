@@ -209,14 +209,14 @@ class PropertyController extends Controller {
                     Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit", 'onclick' => 'getMapProperty();'])
                 ];
             } else {
+//                $model->datecreation = Property::findOne(['id' => $id])->datecreation;
+//                $model->datelastupdate = date('Y-m-d H:i:s');
                 if ($model->load($request->post())) {
                     $images = UploadedFile::getInstances($model, 'photos');
-                    if (!is_null($images)) {
+                    if (!is_null($images) && count($images) > 0) {
                         $imagesProperty = \app\models\ImagesProperty::find()->where(['property_id' => $id])->all();
                         if (count($imagesProperty) > 0) {
-                            foreach ($imagesProperty as $image) {
-                                $model->deleteImages(Yii::$app->basePath . '/web/uploads/property/', $image->name);
-                            }
+                            $model->deleteImages();
                             \app\models\ImagesProperty::deleteAll(['property_id' => $id]);
                         }
                         if ($model->save()) {
@@ -267,7 +267,7 @@ class PropertyController extends Controller {
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote','onclick' => 'getMapProperty();'])
+                                Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote', 'onclick' => 'getMapProperty();'])
                             ];
                         } else {
                             return [
@@ -317,9 +317,7 @@ class PropertyController extends Controller {
         $model = $this->findModel($id);
         $imagesProperty = \app\models\ImagesProperty::find()->where(['property_id' => $id])->all();
         if (count($imagesProperty) > 0) {
-            foreach ($imagesProperty as $image) {
-                $model->deleteImages(Yii::$app->basePath . '/web/uploads/property/', $image->name);
-            }
+            $model->deleteImages();
         }
         $model->delete();
 
