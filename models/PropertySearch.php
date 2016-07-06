@@ -5,30 +5,32 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use app\assets\AppAsset;
 use app\models\Property;
 
 /**
  * PropertySearch represents the model behind the search form about `app\models\Property`.
  */
-class PropertySearch extends Property
-{
+class PropertySearch extends Property {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public $type;
+    public $state;
+    
+    public function rules() {
         return [
             [['id', 'type_id', 'state_id', 'active'], 'integer'],
             [['price', 'commission', 'area', 'bedrooms', 'bathrooms'], 'number'],
-            [['money', 'longitude', 'latitude', 'datecreation', 'datestart', 'datelastupdate', 'owner', 'phoneowner', 'emailowner'], 'safe'],
+            [['money', 'longitude', 'latitude', 'datecreation', 'datestart', 'datelastupdate', 'owner', 'phoneowner', 'emailowner', 'type', 'state'], 'safe'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -40,10 +42,9 @@ class PropertySearch extends Property
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Property::find();
-
+        $query->joinWith(['type', 'state']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -72,12 +73,15 @@ class PropertySearch extends Property
         ]);
 
         $query->andFilterWhere(['like', 'money', $this->money])
-            ->andFilterWhere(['like', 'longitude', $this->longitude])
-            ->andFilterWhere(['like', 'latitude', $this->latitude])
-            ->andFilterWhere(['like', 'owner', $this->owner])
-            ->andFilterWhere(['like', 'phoneowner', $this->phoneowner])
-            ->andFilterWhere(['like', 'emailowner', $this->emailowner]);
+                ->andFilterWhere(['like', 'longitude', $this->longitude])
+                ->andFilterWhere(['like', 'latitude', $this->latitude])
+                ->andFilterWhere(['like', 'owner', $this->owner])
+                ->andFilterWhere(['like', 'phoneowner', $this->phoneowner])
+                ->andFilterWhere(['like', 'emailowner', $this->emailowner])
+                ->andFilterWhere(['like', 'type.type', $this->type])
+                ->andFilterWhere(['like', 'state.state', $this->state]);
 
         return $dataProvider;
     }
+
 }

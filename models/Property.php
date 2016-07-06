@@ -53,7 +53,7 @@ class Property extends \yii\db\ActiveRecord {
             'timestamp' => [
                 'class' => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['datecreation'],
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['datecreation', 'datelastupdate'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['datelastupdate'],
                 ],
                 'value' => function() { return date('Y-m-d H:i:s');},
@@ -77,7 +77,7 @@ class Property extends \yii\db\ActiveRecord {
             [['references'], 'string', 'max' => 500],
             [['photos'], 'safe'],
             [['photos'], 'file', 'extensions' => 'jpg, gif, png', 'maxFiles' => 10],
-            [['photos'], 'file', 'maxSize' => '2000000'],
+//            [['photos'], 'file', 'maxSize' => '2000000'],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }

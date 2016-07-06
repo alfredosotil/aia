@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user".
@@ -34,9 +35,24 @@ class User extends \yii\db\ActiveRecord {
      * @inheritdoc
      */
     public $photo;
+    public $path = '/web/uploads/user/';
 
     public static function tableName() {
         return 'user';
+    }
+
+    public function behaviors() {
+        return [
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['lastupdate'],
+                ],
+                'value' => function() {
+            return date('Y-m-d H:i:s');
+        },
+            ],
+        ];
     }
 
     /**
@@ -50,7 +66,7 @@ class User extends \yii\db\ActiveRecord {
             [['names'], 'string', 'max' => 100],
             [['photo'], 'safe'],
             [['photo'], 'file', 'extensions' => 'jpg, gif, png'],
-            [['photo'], 'file', 'maxSize' => '2000000'],
+//            [['photo'], 'file', 'maxSize' => '2000000'],
             [['surnames', 'email', 'username', 'password', 'authKey', 'accessToken'], 'string', 'max' => 45],
             [['email'], 'email'],
             [['sex'], 'string', 'max' => 1]

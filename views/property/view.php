@@ -16,16 +16,8 @@ use kartik\widgets\StarRating;
         'hover' => true,
         'attributes' => [
             'id',
-            [
-                'attribute' => 'type_id',
-//                'format' => 'raw',
-                'value' => $model->getType()->one()->type,
-            ],
-            [
-                'attribute' => 'state_id',
-//                'format' => 'raw',
-                'value' => $model->getState()->one()->state,
-            ],
+            'type.type',
+            'state.state',
             'price',
             'money',
             [

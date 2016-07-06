@@ -53,15 +53,20 @@ class AppAsset extends AssetBundle {
 
     public function getAccess($controller) {
         $allow = false;
-        $info = AppAsset::executeQuery(Yii::$app->db, "select m.id 
+        if (Yii::$app->getUser()->isGuest &&
+            Yii::$app->getRequest()->url !== Url::to(Yii::$app->getUser()->loginUrl)) {
+            Yii::$app->getResponse()->redirect(Yii::$app->getUser()->loginUrl);
+        }else{
+          $info = AppAsset::executeQuery(Yii::$app->db, "select m.id 
             from access a, profile p, module m 
             where 
             a.profile_id=p.id 
             and a.module_id=m.id 
             and p.id=:PROFILE_ID 
             and m.controller=:CONTROLLER", [':PROFILE_ID' => Yii::$app->user->identity->profile_id, ':CONTROLLER' => $controller]);
-        if (count($info) > 0) {
-            $allow = true;
+            if (count($info) > 0) {
+                $allow = true;
+            }  
         }
         return $allow;
     }

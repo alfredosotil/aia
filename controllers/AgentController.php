@@ -14,6 +14,8 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\imagine\Image;
 use yii\web\UploadedFile;
+use app\assets\AppAsset;
+use yii\filters\AccessControl;
 
 /**
  * AgentController implements the CRUD actions for User model.
@@ -27,6 +29,17 @@ class AgentController extends Controller {
 
     public function behaviors() {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ["bulkDelete", "create", "delete", "index", "update", "view"],
+                'rules' => [
+                    [
+                        'actions' => ["bulkDelete", "create", "delete", "index", "update", "view"],
+                        'allow' => AppAsset::getAccess("agent"),
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -66,7 +79,7 @@ class AgentController extends Controller {
                     'model' => $this->findModel($id),
                 ]),
                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
             ];
         } else {
             return $this->render('view', [
@@ -259,7 +272,7 @@ class AgentController extends Controller {
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                                Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                             ];
                         } else {
                             return [
@@ -269,7 +282,7 @@ class AgentController extends Controller {
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::a('Edit', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
+                                Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                             ];
                         }
                     } else {
@@ -352,7 +365,11 @@ class AgentController extends Controller {
         $pks = explode(',', $request->post('pks')); // Array or selected records primary keys
         foreach ($pks as $pk) {
             $model = $this->findModel($pk);
+            $hasimage = $model->avatar;
             $model->delete();
+            if (isset($hasimage)) {
+                $model->deleteImage(Yii::$app->basePath . '/web/uploads/user/', $hasimage);
+            }
         }
 
         if ($request->isAjax) {

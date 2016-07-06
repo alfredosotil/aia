@@ -186,7 +186,7 @@ function getMapProperty() {
 //            codeLatLng(position.coords.latitude, position.coords.longitude, document.getElementById('property-address'));
             }
         }
-    }, 3000);
+    }, 1000);
 
 }
 

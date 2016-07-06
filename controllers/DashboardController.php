@@ -9,11 +9,12 @@
 namespace app\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\assets\AppAsset;
+use yii\filters\AccessControl;
 
 /**
  * Description of DashboardController
@@ -29,14 +30,10 @@ class DashboardController extends Controller {
                 'class' => AccessControl::className(),
                 'only' => ['index','logout'],
                 'rules' => [
-//                    [
-//                        'allow' => true,
-//                        'actions' => ['index'],
-//                        'roles' => [''],
-//                    ],
+
                     [
                         'actions' => ['index','logout'],
-                        'allow' => true,
+                        'allow' => (Yii::$app->getUser()->isGuest)? false:true,
                         'roles' => ['@'],
                     ],
                 ],
