@@ -60,7 +60,15 @@ class SiteController extends Controller {
     }
 
     public function actionAboutus() {
-        return $this->render('aboutus');
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('aboutus', [
+                    'model' => $model,
+        ]);
     }
     
     public function actionServices() {

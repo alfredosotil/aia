@@ -261,12 +261,12 @@ DashboardAsset::register($this);
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="<?= Url::toRoute("site/index") ?>"><i class="fa fa-home fa-fw"></i> Inicio AIA</a>
                             </li>
-                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                            </li>
+<!--                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>-->
+<!--                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>-->
                             <li class="divider"></li>
-                            <li><a href="<?= Url::toRoute("site/logout") ?>" data-method="post"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="<?= Url::toRoute("site/logout") ?>" data-method="post"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesion</a>
                             </li>
                         </ul>
                         <!-- /.dropdown-user -->

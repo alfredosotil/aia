@@ -59,7 +59,7 @@ AppAsset::register($this);
                                     <span class="top-icon-circle">
                                         <i class="fa fa-envelope fa-sm"></i>
                                     </span>
-                                    <span class="top-bar-text">informes@aia.com.pe</span>
+                                    <a class="top-bar-text" href="mailto:informes@aia.com.pe?Subject=Informes%20AIA">informes@aia.com.pe</a>
                                 </div>
                                 <div class="top-phone pull-left hidden-xxs">
                                     <span class="top-icon-circle">
@@ -144,10 +144,10 @@ AppAsset::register($this);
                                                                             <li><a href="index3-street-view.html">One Page Single Propery - panorama!</a></li>
                                                                         </ul>-->
                                 </li>
-                                <li class="button">
-                                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings</a>-->
+<!--                                <li class="button">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings</a>
                                     <a href="<?= Url::toRoute("site/findproperty") ?>" class="" role="button" aria-haspopup="true" aria-expanded="true">Buscar Inmueble</a>
-                                    <!--                                    <ul class="dropdown-menu">
+                                                                        <ul class="dropdown-menu">
                                                                             <li class="dropdown-submenu">
                                                                                 <a tabindex="-1" href="listing-grid-right-sidebar.html">Grid Listing</a>
                                                                                 <ul class="dropdown-menu">
@@ -180,8 +180,8 @@ AppAsset::register($this);
                                                                                     <li><a href="estate-details-no-sidebar.html">No Sidebar</a></li>
                                                                                 </ul>
                                                                             </li>
-                                                                        </ul>-->
-                                </li>
+                                                                        </ul>
+                                </li>-->
                                 <li class="button">
                                     <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agencies</a>-->
                                     <a href="<?= Url::toRoute("site/aboutus") ?>" class="" role="button" aria-haspopup="true" aria-expanded="true">Quienes Somos?</a>
@@ -356,7 +356,7 @@ AppAsset::register($this);
                             <!--<img src="<?= Yii::$app->request->baseUrl; ?>/images/logo-light.png" alt="" class="img-responsive footer-logo" />-->
                         </div>
                         <div class="col-xs-12 col-md-6 footer-copyrights">
-                            &copy; Copyright <?php echo date("Y"); ?> <a href="#" target="_blank">SwInn</a>. All rights reserved.
+                            &copy; Copyright <?php echo date("Y"); ?> <a href="#" target="_blank">SwInn</a>. Todos los derechos Reservados.
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,7 @@ use yii\base\Model;
 class ContactForm extends Model
 {
     public $name;
+    public $phone;
     public $email;
     public $subject;
     public $body;
@@ -24,11 +25,12 @@ class ContactForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email', 'subject', 'body'], 'required'],
+            [['name', 'email', 'phone', 'body'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
+            ['phone', 'number'],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+//            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -38,6 +40,10 @@ class ContactForm extends Model
     public function attributeLabels()
     {
         return [
+            'name' => 'Nombre',
+            'phone' => 'Telefono',
+            'email' => 'Correo Electronico',
+            'body' => 'Cuerpo de la consulta',
             'verifyCode' => 'Verification Code',
         ];
     }
