@@ -61,9 +61,9 @@ CREATE TABLE `accesspropertydetail` (
   PRIMARY KEY (`id`),
   KEY `fk_accesspropertydetail_property1_idx` (`property_id`),
   KEY `fk_accesspropertydetail_property_detail1_idx` (`property_detail_id`),
-  CONSTRAINT `fk_accesspropertydetail_property1` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_accesspropertydetail_property_detail1` FOREIGN KEY (`property_detail_id`) REFERENCES `property_detail` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_accesspropertydetail_property1` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_accesspropertydetail_property_detail1` FOREIGN KEY (`property_detail_id`) REFERENCES `property_detail` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +72,7 @@ CREATE TABLE `accesspropertydetail` (
 
 LOCK TABLES `accesspropertydetail` WRITE;
 /*!40000 ALTER TABLE `accesspropertydetail` DISABLE KEYS */;
+INSERT INTO `accesspropertydetail` (`id`, `property_id`, `property_detail_id`, `active`) VALUES (5,1,1,1),(6,1,2,1),(7,1,3,1),(8,1,4,1),(9,1,5,1);
 /*!40000 ALTER TABLE `accesspropertydetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +92,7 @@ CREATE TABLE `images_property` (
   PRIMARY KEY (`id`,`property_id`),
   KEY `fk_images_property_property1_idx` (`property_id`),
   CONSTRAINT `fk_images_property_property1` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +101,7 @@ CREATE TABLE `images_property` (
 
 LOCK TABLES `images_property` WRITE;
 /*!40000 ALTER TABLE `images_property` DISABLE KEYS */;
-INSERT INTO `images_property` (`id`, `property_id`, `name`, `order`, `active`) VALUES (1,1,'GuQ1-mic7R1EZPlUD2-DGqIZiaNgcFkS.jpg',1,1),(2,1,'p8NUnaQf3mQs3SuVI-TS5yvanIHzupuM.jpg',2,1);
+INSERT INTO `images_property` (`id`, `property_id`, `name`, `order`, `active`) VALUES (1,1,'GuQ1-mic7R1EZPlUD2-DGqIZiaNgcFkS.jpg',1,1),(2,1,'p8NUnaQf3mQs3SuVI-TS5yvanIHzupuM.jpg',2,1),(3,2,'XJMmfpK5i6eC7Y9D6vTV70ypOpZIsPnV.jpg',1,1),(4,2,'uk8o4dUII4VcYkW8KbTozpLLafsGPLK0.jpg',2,1),(5,2,'9-oTgV8VJcRY7Jb4jidiEx5AJaFkNfkM.png',3,1),(6,2,'J-a7ussbZhwGG8a8A2fM7VOkCgGgOCXY.png',4,1);
 /*!40000 ALTER TABLE `images_property` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,10 +220,14 @@ CREATE TABLE `property` (
   `address` varchar(100) NOT NULL,
   `references` varchar(500) DEFAULT NULL,
   `priority` int(11) DEFAULT NULL,
+  `garages` double DEFAULT NULL,
+  `yearsold` double DEFAULT NULL,
+  `furnished` tinyint(1) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_property_type1_idx` (`type_id`),
   CONSTRAINT `fk_property_type1` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +236,7 @@ CREATE TABLE `property` (
 
 LOCK TABLES `property` WRITE;
 /*!40000 ALTER TABLE `property` DISABLE KEYS */;
-INSERT INTO `property` (`id`, `type_id`, `state_id`, `price`, `money`, `commission`, `area`, `bedrooms`, `bathrooms`, `longitude`, `latitude`, `active`, `datecreation`, `datestart`, `datelastupdate`, `owner`, `phoneowner`, `emailowner`, `address`, `references`, `priority`) VALUES (1,6,3,130000,'S',3,34,4,3,'-77.03299261629581','-12.094717094881275',1,'2016-07-06 19:13:10','2016-07-07 05:00:00','2016-07-06 19:15:04','alfredo sotil ','997893527','alfredosotil@gmail.com','San Isidro, 15073, Perú','calle arica\r\nsan miguel',4);
+INSERT INTO `property` (`id`, `type_id`, `state_id`, `price`, `money`, `commission`, `area`, `bedrooms`, `bathrooms`, `longitude`, `latitude`, `active`, `datecreation`, `datestart`, `datelastupdate`, `owner`, `phoneowner`, `emailowner`, `address`, `references`, `priority`, `garages`, `yearsold`, `furnished`, `description`) VALUES (1,6,3,130000,'S',3,34,4,3,'-77.03299261629581','-12.094717094881275',1,'2016-07-06 19:13:10','2016-07-07 05:00:00','2016-07-08 21:11:53','alfredo sotil ','997893527','alfredosotil@gmail.com','San Isidro, 15073, Perú','calle aricasan miguel',4,NULL,NULL,0,''),(2,5,2,3000,'S',3,200,4,3,'-77.0361645','-12.094376599999999',1,'2016-07-08 15:21:05','2016-07-13 05:00:00','2016-07-08 15:21:05','alfredo sotil ','997893527','alfredosotil@gmail.com','Sector 3, San Isidro, Perú','calle san miguel',4,1,5,1,'casa grande y acojedora');
 /*!40000 ALTER TABLE `property` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,7 +253,7 @@ CREATE TABLE `property_detail` (
   `description` varchar(100) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,6 +262,7 @@ CREATE TABLE `property_detail` (
 
 LOCK TABLES `property_detail` WRITE;
 /*!40000 ALTER TABLE `property_detail` DISABLE KEYS */;
+INSERT INTO `property_detail` (`id`, `name`, `description`, `active`) VALUES (1,'Terraza',NULL,1),(2,'Patio',NULL,1),(3,'Cable',NULL,1),(4,'Jacuzzi',NULL,1),(5,'Walk in Closet',NULL,1),(6,'Caseta de Seguridad',NULL,1),(7,'Piscina',NULL,1),(8,'Internet',NULL,1),(9,'Deposito',NULL,1),(10,'Cuarto y Baño de Servicio',NULL,1),(11,'Club house',NULL,1),(12,'Ascensor',NULL,1),(13,'Frente a parque',NULL,1),(14,'Vista a calle',NULL,1),(15,'Balcon',NULL,1),(16,'Kitchenette',NULL,1),(17,'Portero electrico',NULL,1),(18,'Area BBQ',NULL,1),(19,'Area deportiva',NULL,1);
 /*!40000 ALTER TABLE `property_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -374,4 +380,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-06 17:08:23
+-- Dump completed on 2016-07-08 17:57:30
