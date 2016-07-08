@@ -14,6 +14,7 @@ use yii\imagine\Image;
 use yii\web\UploadedFile;
 use app\assets\AppAsset;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 
 /**
  * PropertyController implements the CRUD actions for Property model.
@@ -77,7 +78,7 @@ class PropertyController extends Controller {
                     'model' => $this->findModel($id),
                 ]),
                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote', 'onclick' => 'getMapProperty();'])
+                Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
             ];
         } else {
             return $this->render('view', [
@@ -112,9 +113,11 @@ class PropertyController extends Controller {
                 ];
             } else {
                 if ($model->load($request->post())) {
+                    $extras = ArrayHelper::getValue($request->post(), 'Property.extras');
                     $images = UploadedFile::getInstances($model, 'photos');
-                    if (!is_null($images)) {
+                    if (!is_null($images) && count($images) > 0) {
                         if ($model->save()) {
+                            $model->savePropertyDetails($extras);
                             Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/property/';
                             $property_id = $model->primaryKey;
                             $imageOrder = 1;
@@ -139,7 +142,7 @@ class PropertyController extends Controller {
                                 'title' => "Crear Propiedad",
                                 'content' => '<span class="text-success">Crear Propiedad success</span>',
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::a('Crear mas', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote', 'onclick' => 'getMapProperty();'])
+                                Html::a('Crear mas', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                             ];
                         } else {
                             return [
@@ -153,6 +156,7 @@ class PropertyController extends Controller {
                         }
                     } else {
                         if ($model->save()) {
+                            $model->savePropertyDetails($extras);
                             return [
                                 'forceReload' => '#crud-datatable-pjax',
                                 'title' => "Crear Propiedad",
@@ -219,12 +223,12 @@ class PropertyController extends Controller {
                         'model' => $model,
                     ]),
                     'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit", 'onclick' => 'getMapProperty();'])
+                    Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
                 ];
             } else {
-//                $model->datecreation = Property::findOne(['id' => $id])->datecreation;
-//                $model->datelastupdate = date('Y-m-d H:i:s');
+
                 if ($model->load($request->post())) {
+                    $extras = ArrayHelper::getValue($request->post(), 'Property.extras');
                     $images = UploadedFile::getInstances($model, 'photos');
                     if (!is_null($images) && count($images) > 0) {
                         $imagesProperty = \app\models\ImagesProperty::find()->where(['property_id' => $id])->all();
@@ -233,6 +237,7 @@ class PropertyController extends Controller {
                             \app\models\ImagesProperty::deleteAll(['property_id' => $id]);
                         }
                         if ($model->save()) {
+                            $model->savePropertyDetails($extras);
                             Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/property/';
                             $property_id = $model->primaryKey;
                             $imageOrder = 1;
@@ -259,7 +264,7 @@ class PropertyController extends Controller {
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote', 'onclick' => 'getMapProperty();'])
+                                Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                             ];
                         } else {
                             return [
@@ -268,11 +273,12 @@ class PropertyController extends Controller {
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit", 'onclick' => 'getMapProperty();'])
+                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
                             ];
                         }
                     } else {
-                        if ($model->save()) {
+                        if ($model->save()) { 
+                            $model->savePropertyDetails($extras);
                             return [
                                 'forceReload' => '#crud-datatable-pjax',
                                 'title' => "Propiedad #" . $id,
@@ -280,7 +286,7 @@ class PropertyController extends Controller {
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote', 'onclick' => 'getMapProperty();'])
+                                Html::a('Editar', ['update', 'id' => $id], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                             ];
                         } else {
                             return [
@@ -289,7 +295,7 @@ class PropertyController extends Controller {
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit", 'onclick' => 'getMapProperty();'])
+                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
                             ];
                         }
                     }
@@ -300,7 +306,7 @@ class PropertyController extends Controller {
                             'model' => $model,
                         ]),
                         'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                        Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit", 'onclick' => 'getMapProperty();'])
+                        Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
                     ];
                 }
             }

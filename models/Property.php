@@ -29,6 +29,10 @@ use yii\db\ActiveRecord;
  * @property string $emailowner
  * @property string $address
  * @property integer $priority
+ * @property double $garages
+ * @property double $yearsold
+ * @property integer $furnished
+ * @property string $description
  *
  * @property Accesspropertydetail[] $accesspropertydetails
  * @property ImagesProperty[] $imagesProperties
@@ -43,20 +47,23 @@ class Property extends \yii\db\ActiveRecord {
     public $map;
     public $path = '/web/uploads/property/';
     public $imageFiles;
+    public $extras;
 
     public static function tableName() {
         return 'property';
     }
 
     public function behaviors() {
-        return [            
+        return [
             'timestamp' => [
                 'class' => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => ['datecreation', 'datelastupdate'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['datelastupdate'],
                 ],
-                'value' => function() { return date('Y-m-d H:i:s');},
+                'value' => function() {
+            return date('Y-m-d H:i:s');
+        },
             ],
         ];
     }
@@ -67,14 +74,15 @@ class Property extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['type_id', 'state_id', 'money', 'commission', 'longitude', 'latitude', 'address', 'owner', 'phoneowner'], 'required'],
-            [['priority', 'type_id', 'state_id', 'active'], 'integer'],
-            [['price', 'commission', 'area', 'bedrooms', 'bathrooms'], 'number'],
+            [['priority', 'type_id', 'state_id', 'active', 'priority', 'furnished'], 'integer'],
+            [['price', 'commission', 'area', 'bedrooms', 'bathrooms', 'garages', 'yearsold'], 'number'],
             [['datecreation', 'datestart', 'datelastupdate'], 'safe'],
             [['money'], 'string', 'max' => 1],
             [['longitude', 'latitude', 'owner'], 'string', 'max' => 50],
             [['phoneowner'], 'string', 'max' => 45],
             [['emailowner', 'address'], 'string', 'max' => 100],
             [['references'], 'string', 'max' => 500],
+            [['description'], 'string', 'max' => 1000],
             [['photos'], 'safe'],
             [['photos'], 'file', 'extensions' => 'jpg, gif, png', 'maxFiles' => 10],
 //            [['photos'], 'file', 'maxSize' => '2000000'],
@@ -106,10 +114,16 @@ class Property extends \yii\db\ActiveRecord {
             'phoneowner' => Yii::t('app', 'Telefono propietario'),
             'emailowner' => Yii::t('app', 'Correo elec. propietario'),
             'address' => Yii::t('app', 'Direccion'),
-            'references' => Yii::t('app', 'Direccion'),
+            'references' => Yii::t('app', 'Referencias'),
             'photos' => Yii::t('app', 'Fotos'),
             'map' => Yii::t('app', 'Mapa'),
             'priority' => Yii::t('app', 'Prioridad'),
+            'garages' => Yii::t('app', 'Estacionamientos'),
+            'yearsold' => Yii::t('app', 'Años de antigüedad'),
+            'furnished' => Yii::t('app', 'Amoblado'),
+            'description' => Yii::t('app', 'Descripcion'),
+            'extras' => Yii::t('app', 'Extras del inmueble'),
+            'imageFiles' => Yii::t('app', 'Imagenes'),
         ];
     }
 
@@ -147,6 +161,31 @@ class Property extends \yii\db\ActiveRecord {
      */
     public static function find() {
         return new PropertyQuery(get_called_class());
+    }
+
+    public function savePropertyDetails($arrayPropertyDetail) {
+        Accesspropertydetail::deleteAll(['property_id' => $this->primaryKey]);
+        foreach ($arrayPropertyDetail as $pd) {
+            $aod = new Accesspropertydetail();
+            $aod->property_id = $this->primaryKey;
+            $aod->property_detail_id = intval($pd);
+            $aod->active = 1;
+            $aod->save();
+        }
+    }
+
+    public function getPropertyDetail() {
+        $html = "";
+        $pds = $this->getAccesspropertydetails()->all();
+        if (count($pds) > 0) {
+            foreach ($pds as $pd) {
+                $name = $pd->getPropertyDetail()->one()->name;
+                $html .= "<span class='label label-success'>$name</span><br>";
+            }
+        } else {
+            $html = "<span class='label label-danger'>No tiene extras.</span>";
+        }
+        return $html;
     }
 
     public function deleteImages() {

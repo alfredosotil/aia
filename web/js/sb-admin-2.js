@@ -8,7 +8,7 @@ jQuery(window).load(function () {
 //    });
     $(".loader-bg").fadeOut('slow');
     $('div.property').on('shown.bs.modal', function () {
-        getMapProperty();
+//        getMapProperty();
 //        initOwlProperty();
     });
 });

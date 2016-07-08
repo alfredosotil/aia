@@ -38,9 +38,15 @@ use yii\web\JsExpression;
 
     <?= $form->field($model, 'area')->textInput() ?>
 
+    <?= $form->field($model, 'furnished')->checkbox() ?>
+
     <?= $form->field($model, 'bedrooms')->textInput() ?>
 
     <?= $form->field($model, 'bathrooms')->textInput() ?>
+
+    <?= $form->field($model, 'garages')->textInput() ?>
+
+    <?= $form->field($model, 'yearsold')->textInput() ?>
 
     <?= $form->field($model, 'active')->checkbox() ?>
 
@@ -95,13 +101,15 @@ use yii\web\JsExpression;
     $this->registerJsFile('@web/js/star-rating_locale_es.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
     ?>
 
+    <?= $form->field($model, 'description')->textArea(['maxlength' => true, 'rows' => '6']) ?>
+
     <?= $form->field($model, 'latitude')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
     <?= $form->field($model, 'longitude')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'readonly' => true]) ?>
-    
-    <?= $form->field($model, 'references')->textArea(['maxlength' => true, 'rows' => '6']) ?>
+
+    <?= $form->field($model, 'references')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group field-property-map">
         <label class="control-label col-md-2" for="map">Mapa</label>
@@ -110,7 +118,22 @@ use yii\web\JsExpression;
         </div>
         <div class="col-md-offset-2 col-md-10"></div>
         <div class="col-md-offset-2 col-md-10"><div class="help-block"></div></div>
-    </div>  
+    </div>
+    <?php $this->registerJs("getMapProperty();", yii\web\View::POS_END, uniqid());?>
+    <?php
+    if (!$model->isNewRecord) {
+        $model->extras = ArrayHelper::getColumn($model->getAccesspropertydetails()->all(), 'property_detail_id');
+    }
+    ?>
+    <?= $form->field($model, 'extras')->checkboxList(ArrayHelper::map(app\models\PropertyDetail::find()->all(), 'id', 'name'), ['inline' => false]) ?>
+    <!--    <div class="form-group field-extras">
+            <label class="control-label col-md-2" for="map">Mapa</label>
+            <div class="col-md-10">
+                <div id="property-map" class="loader-map"></div>
+            </div>
+            <div class="col-md-offset-2 col-md-10"></div>
+            <div class="col-md-offset-2 col-md-10"><div class="help-block"></div></div>
+        </div>  -->
 
     <?=
     $form->field($model, 'photos[]')->widget(FileInput::classname(), [

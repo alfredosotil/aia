@@ -110,7 +110,7 @@ class AppAsset extends AssetBundle {
                         $label = $module['label'];
                         $icon = $module['iconfa'];
                         $menu.= "<li>                               
-                                    <a href='$url'>*  <i class='fa $icon'></i>  $label</a>
+                                    <a href='$url'> <i class='fa $icon'></i>  $label</a>
                                  </li>";
                     }
                 }

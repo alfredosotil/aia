@@ -16,8 +16,16 @@ use kartik\widgets\StarRating;
         'hover' => true,
         'attributes' => [
             'id',
-            'type.type',
-            'state.state',
+            [
+                'attribute' => 'type',
+                'label' => 'Tipo de inmueble',
+                'value' => $model->getType()->one()->type,
+            ],
+            [
+                'attribute' => 'state',
+                'label' => 'Estado de inmueble',
+                'value' => $model->getState()->one()->state,
+            ],
             'price',
             'money',
             [
@@ -30,13 +38,26 @@ use kartik\widgets\StarRating;
 //                'format' => 'raw',
                 'value' => $model->area . "m2",
             ],
+            [
+                'attribute' => 'furnished',
+                'format' => 'raw',
+                'value' => ($model->furnished == 1) ? '<span class="label label-success">Si</span>' : '<span class="label label-danger">No</span>',
+            ],
             'bedrooms',
             'bathrooms',
-            'priority', 
+            'garages',
+            'yearsold',
+            'priority',
+            'description',
+            [
+                'attribute' => 'extras',
+                'format' => 'raw',
+                'value' => $model->getPropertyDetail(),
+            ],
             [
                 'attribute' => 'active',
                 'format' => 'raw',
-                'value' => ($model->active == 1)?'<span class="label label-success">Si</span>':'<span class="label label-danger">No</span>',
+                'value' => ($model->active == 1) ? '<span class="label label-success">Si</span>' : '<span class="label label-danger">No</span>',
             ],
             'datecreation',
             'datestart',
@@ -69,5 +90,5 @@ use kartik\widgets\StarRating;
         ],
     ])
     ?>
-
+    <?php $this->registerJs("getMapProperty();", yii\web\View::POS_END, uniqid());?>
 </div>
