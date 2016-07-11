@@ -162,9 +162,18 @@ class Property extends \yii\db\ActiveRecord {
     public static function find() {
         return new PropertyQuery(get_called_class());
     }
+    
+    public function getFirstImageFromProperty(){
+        return $this->getImagesProperties()->where(['order' => 1])->one()->name;
+    }
+    
+    public static function getPropertyByPriority($priority){
+        return Property::find()->where(['priority' => $priority])->limit(10)->all();
+    }
 
     public function savePropertyDetails($arrayPropertyDetail) {
         Accesspropertydetail::deleteAll(['property_id' => $this->primaryKey]);
+        if(is_array($arrayPropertyDetail))
         foreach ($arrayPropertyDetail as $pd) {
             $aod = new Accesspropertydetail();
             $aod->property_id = $this->primaryKey;

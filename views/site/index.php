@@ -161,12 +161,12 @@
 
 
 
-        <form class="adv-search-form" action="#">
+<!--        <form class="adv-search-form" action="#">
             <div class="adv-search-cont">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-lg-11 adv-search-icons">
-                            <!-- Nav tabs -->
+                             Nav tabs 
                             <ul class="nav nav-tabs adv-search-tabs" role="tablist">
                                 <li role="presentation" class="active" data-toggle="tooltip" data-placement="top" title="apartments"><a href="#apartments" aria-controls="apartments" role="tab" data-toggle="tab" id="adv-search-tab1"><i class="fa fa-building"></i></a></li>
                                 <li role="presentation" data-toggle="tooltip" data-placement="top" title="houses"><a href="#houses" aria-controls="houses" role="tab" data-toggle="tab" id="adv-search-tab2"><i class="fa fa-home"></i></a></li>
@@ -501,7 +501,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </form>-->
     </section>
 
 <!--    <section class="section-light bottom-padding-45 section-both-shadow">
@@ -560,8 +560,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-9">
-                    <h5 class="subtitle-margin second-color">highly recommended</h5>
-                    <h1 class="second-color">featured offers<span class="special-color">.</span></h1>
+                    <h5 class="subtitle-margin second-color">aia</h5>
+                    <h1 class="second-color">Recientemente agregadas<span class="special-color">.</span></h1>
                 </div>
                 <div class="col-xs-12 col-sm-3">
                     <a href="#" class="navigation-box navigation-box-next" id="featured-offers-owl-next"><div class="navigation-triangle"></div><div class="navigation-box-icon"><i class="jfont">&#xe802;</i></div></a>
@@ -574,293 +574,7 @@
         </div>
         <div class="featured-offers-container">
             <div class="owl-carousel" id="featured-offers-owl">
-                <div class="featured-offer-col">
-                    <div class="featured-offer-front">
-                        <div class="featured-offer-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/featured-offer1.jpg" alt="" />
-                            <div class="type-container">
-                                <div class="estate-type">apartment</div>
-                                <div class="transaction-type">sale</div>
-                            </div>
-                        </div>
-                        <div class="featured-offer-text">
-                            <h4 class="featured-offer-title">250 South Dr, Fort Collins, Colorado 80523, USA</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                        <div class="featured-offer-params">
-                            <div class="featured-area">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/area-icon.png" alt="" />54m<sup>2</sup>
-                            </div>
-                            <div class="featured-rooms">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/rooms-icon.png" alt="" />3
-                            </div>
-                            <div class="featured-baths">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/bathrooms-icon.png" alt="" />1
-                            </div>							
-                        </div>
-                        <div class="featured-price">
-                            $ 320 000
-                        </div>
-                    </div>
-                    <div class="featured-offer-back">
-                        <div id="featured-map1" class="featured-offer-map"></div>
-                        <div class="button">	
-                            <a href="estate-details-right-sidebar.html" class="button-primary">
-                                <span>read more</span>
-                                <div class="button-triangle"></div>
-                                <div class="button-triangle2"></div>
-                                <div class="button-icon"><i class="fa fa-search"></i></div>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="featured-offer-col">
-                    <div class="featured-offer-front">
-                        <div class="featured-offer-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/featured-offer2.jpg" alt="" />
-                            <div class="type-container">
-                                <div class="estate-type">apartment</div>
-                                <div class="transaction-type">sale</div>
-                            </div>
-                        </div>
-                        <div class="featured-offer-text">
-                            <h4 class="featured-offer-title">West Fourth Street, New York 10003, USA</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                        <div class="featured-offer-params">
-                            <div class="featured-area">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/area-icon.png" alt="" />70m<sup>2</sup>
-                            </div>
-                            <div class="featured-rooms">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/rooms-icon.png" alt="" />4
-                            </div>
-                            <div class="featured-baths">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/bathrooms-icon.png" alt="" />1
-                            </div>							
-                        </div>
-                        <div class="featured-price">
-                            $ 350 000
-                        </div>
-                    </div>
-                    <div class="featured-offer-back">
-                        <div id="featured-map2" class="featured-offer-map"></div>
-                        <div class="button">	
-                            <a href="estate-details-right-sidebar.html" class="button-primary">
-                                <span>read more</span>
-                                <div class="button-triangle"></div>
-                                <div class="button-triangle2"></div>
-                                <div class="button-icon"><i class="fa fa-search"></i></div>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="featured-offer-col">
-                    <div class="featured-offer-front">
-                        <div class="featured-offer-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/featured-offer3.jpg" alt="" />
-                            <div class="type-container">
-                                <div class="estate-type">house</div>
-                                <div class="transaction-type">sale</div>
-                            </div>
-                        </div>
-                        <div class="featured-offer-text">
-                            <h4 class="featured-offer-title">500 E. Elwood St. Phoenix, AZ 85034, USA</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                        <div class="featured-offer-params">
-                            <div class="featured-area">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/area-icon.png" alt="" />250m<sup>2</sup>
-                            </div>
-                            <div class="featured-rooms">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/rooms-icon.png" alt="" />7
-                            </div>
-                            <div class="featured-baths">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/bathrooms-icon.png" alt="" />3
-                            </div>							
-                        </div>
-                        <div class="featured-price">
-                            $ 650 000
-                        </div>
-                    </div>
-                    <div class="featured-offer-back">
-                        <div id="featured-map3" class="featured-offer-map"></div>
-                        <div class="button">	
-                            <a href="estate-details-right-sidebar.html" class="button-primary">
-                                <span>read more</span>
-                                <div class="button-triangle"></div>
-                                <div class="button-triangle2"></div>
-                                <div class="button-icon"><i class="fa fa-search"></i></div>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="featured-offer-col">
-                    <div class="featured-offer-front">
-                        <div class="featured-offer-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/featured-offer4.jpg" alt="" />
-                            <div class="type-container">
-                                <div class="estate-type">apartment</div>
-                                <div class="transaction-type">sale</div>
-                            </div>
-                        </div>
-                        <div class="featured-offer-text">
-                            <h4 class="featured-offer-title">N. Willamette Blvd., Portland, OR 97203-5798, USA</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                        <div class="featured-offer-params">
-                            <div class="featured-area">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/area-icon.png" alt="" />40m<sup>2</sup>
-                            </div>
-                            <div class="featured-rooms">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/rooms-icon.png" alt="" />2
-                            </div>
-                            <div class="featured-baths">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/bathrooms-icon.png" alt="" />1
-                            </div>							
-                        </div>
-                        <div class="featured-price">
-                            $ 299 000
-                        </div>
-                    </div>
-                    <div class="featured-offer-back">
-                        <div id="featured-map4" class="featured-offer-map"></div>
-                        <div class="button">	
-                            <a href="estate-details-right-sidebar.html" class="button-primary">
-                                <span>read more</span>
-                                <div class="button-triangle"></div>
-                                <div class="button-triangle2"></div>
-                                <div class="button-icon"><i class="fa fa-search"></i></div>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="featured-offer-col">
-                    <div class="featured-offer-front">
-                        <div class="featured-offer-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/featured-offer5.jpg" alt="" />
-                            <div class="type-container">
-                                <div class="estate-type">apartment</div>
-                                <div class="transaction-type">sale</div>
-                            </div>
-                        </div>
-                        <div class="featured-offer-text">
-                            <h4 class="featured-offer-title">One Brookings Drive St. Louis, Missouri 63130-4899, USA</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                        <div class="featured-offer-params">
-                            <div class="featured-area">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/area-icon.png" alt="" />80m<sup>2</sup>
-                            </div>
-                            <div class="featured-rooms">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/rooms-icon.png" alt="" />3
-                            </div>
-                            <div class="featured-baths">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/bathrooms-icon.png" alt="" />1
-                            </div>							
-                        </div>
-                        <div class="featured-price">
-                            $ 390 000
-                        </div>
-                    </div>
-                    <div class="featured-offer-back">
-                        <div id="featured-map5" class="featured-offer-map"></div>
-                        <div class="button">	
-                            <a href="estate-details-right-sidebar.html" class="button-primary">
-                                <span>read more</span>
-                                <div class="button-triangle"></div>
-                                <div class="button-triangle2"></div>
-                                <div class="button-icon"><i class="fa fa-search"></i></div>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="featured-offer-col">
-                    <div class="featured-offer-front">
-                        <div class="featured-offer-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/featured-offer6.jpg" alt="" />
-                            <div class="type-container">
-                                <div class="estate-type">apartment</div>
-                                <div class="transaction-type">sale</div>
-                            </div>
-                        </div>
-                        <div class="featured-offer-text">
-                            <h4 class="featured-offer-title">One Neumann Drive Aston, Philadelphia 19014-1298, USA</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                        <div class="featured-offer-params">
-                            <div class="featured-area">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/area-icon.png" alt="" />54m<sup>2</sup>
-                            </div>
-                            <div class="featured-rooms">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/rooms-icon.png" alt="" />3
-                            </div>
-                            <div class="featured-baths">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/bathrooms-icon.png" alt="" />1
-                            </div>							
-                        </div>
-                        <div class="featured-price">
-                            $ 320 000
-                        </div>
-                    </div>
-                    <div class="featured-offer-back">
-                        <div id="featured-map6" class="featured-offer-map"></div>
-                        <div class="button">	
-                            <a href="estate-details-right-sidebar.html" class="button-primary">
-                                <span>read more</span>
-                                <div class="button-triangle"></div>
-                                <div class="button-triangle2"></div>
-                                <div class="button-icon"><i class="fa fa-search"></i></div>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="featured-offer-col">
-                    <div class="featured-offer-front">
-                        <div class="featured-offer-photo">
-                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/featured-offer7.jpg" alt="" />
-                            <div class="type-container">
-                                <div class="estate-type">house</div>
-                                <div class="transaction-type">sale</div>
-                            </div>
-                        </div>
-                        <div class="featured-offer-text">
-                            <h4 class="featured-offer-title">200 South Dr, Fort Collins, Colorado 80523, USA</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                        <div class="featured-offer-params">
-                            <div class="featured-area">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/area-icon.png" alt="" />54m<sup>2</sup>
-                            </div>
-                            <div class="featured-rooms">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/rooms-icon.png" alt="" />3
-                            </div>
-                            <div class="featured-baths">
-                                <img src="<?= Yii::$app->request->baseUrl; ?>/images/bathrooms-icon.png" alt="" />1
-                            </div>							
-                        </div>
-                        <div class="featured-price">
-                            $ 320 000
-                        </div>
-                    </div>
-                    <div class="featured-offer-back">
-                        <div id="featured-map7" class="featured-offer-map"></div>
-                        <div class="button">	
-                            <a href="estate-details-right-sidebar.html" class="button-primary">
-                                <span>read more</span>
-                                <div class="button-triangle"></div>
-                                <div class="button-triangle2"></div>
-                                <div class="button-icon"><i class="fa fa-search"></i></div>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+                <?= $this->context->getPropertiesMainSlider();?>
             </div>
         </div>
     </section>
@@ -869,8 +583,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-9">
-                    <h5 class="subtitle-margin">meet our</h5>
-                    <h1>proffesional team<span class="special-color">.</span></h1>
+                    <h5 class="subtitle-margin">conoce nuestros</h5>
+                    <h1>equipo profesional<span class="special-color">.</span></h1>
                 </div>
                 <div class="col-xs-12 col-sm-3">
                     <a href="#" class="navigation-box navigation-box-next" id="team-owl-next"><div class="navigation-triangle"></div><div class="navigation-box-icon"><i class="jfont">&#xe802;</i></div></a>

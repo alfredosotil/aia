@@ -120,5 +120,26 @@ class SiteController extends Controller {
                     'model' => $model,
         ]);
     }
+    
+    public function getPropertiesMainSlider(){
+        $html = "";
+        $properties = \app\models\Property::getPropertyByPriority(5);//limit 20
+        foreach ($properties as $p) {
+            $html .= $this->renderPartial('propertymainslider', ['model' => $p]);
+        }
+        return $html;
+    }
+    
+    public function getRecentlyAdded(){
+        
+    }
+    
+    public function getAgents(){
+        
+    }
+    
+    public function showPropertyDetail($id){
+        
+    }
 
 }
