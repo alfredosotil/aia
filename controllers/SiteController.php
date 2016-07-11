@@ -70,7 +70,7 @@ class SiteController extends Controller {
                     'model' => $model,
         ]);
     }
-    
+
     public function actionServices() {
         return $this->render('services');
     }
@@ -91,13 +91,13 @@ class SiteController extends Controller {
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
-        }        
-        
+        }
+
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        
+
         return $this->render('login', [
                     'model' => $model,
         ]);
@@ -120,25 +120,42 @@ class SiteController extends Controller {
                     'model' => $model,
         ]);
     }
-    
-    public function getPropertiesMainSlider(){
+
+    public function getMainSlider() {
         $html = "";
-        $properties = \app\models\Property::getPropertyByPriority(5);//limit 20
+        $properties = \app\models\Property::getPropertyByPriority(5, 10); //limit 20
+        $cont = 1;
+        $position = 1;
         foreach ($properties as $p) {
-            $html .= $this->renderPartial('propertymainslider', ['model' => $p]);
+            if ($position > 3) {
+                $position = 1;
+            }
+            $html .= $this->renderPartial('propertymainslider', ['model' => $p, 'cont' => $cont, 'position' => $position]);
+            $cont++;
+            $position++;
         }
         return $html;
     }
-    
-    public function getRecentlyAdded(){
-        
+
+    public function getRecentlyAdded() {
+        $html = "";
+        $properties = \app\models\Property::getPropertiesRecentlyAdded(15, 20); //limit 20
+        foreach ($properties as $p) {
+            $html .= $this->renderPartial('propertyrecentlyaddedslider', ['model' => $p]);
+        }
+        return $html;
     }
-    
-    public function getAgents(){
-        
+
+    public function getAgentsSlider() {
+        $html = "";
+        $agents = \app\models\Agent::getAgents(10); //limit 20
+        foreach ($agents as $a) {
+            $html .= $this->renderPartial('agentslider', ['model' => $a]);
+        }
+        return $html;
     }
-    
-    public function showPropertyDetail($id){
+
+    public function showPropertyDetail($id) {
         
     }
 

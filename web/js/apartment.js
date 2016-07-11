@@ -281,7 +281,8 @@ jQuery(window).load(function () {
                 lazyLoading: true,
                 lazyLoadingInPrevNext: true,
                 loopAdditionalSlides: 0,
-                autoplay: 7000,
+                autoplayHoverPause:false,
+                autoplay: 4000,
                 speed: 700
             });
 

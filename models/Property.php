@@ -167,8 +167,12 @@ class Property extends \yii\db\ActiveRecord {
         return $this->getImagesProperties()->where(['order' => 1])->one()->name;
     }
     
-    public static function getPropertyByPriority($priority){
-        return Property::find()->where(['priority' => $priority])->limit(10)->all();
+    public static function getPropertyByPriority($priority, $limit){
+        return Property::find()->where(['priority' => $priority])->limit($limit)->all();
+    }
+    
+    public static function getPropertiesRecentlyAdded($daysold, $limit){
+        return Property::find()->where(['between','datecreation', date('Y-m-d H:i:s', strtotime("-$daysold day")),date('Y-m-d H:i:s')])->orderBy("datecreation DESC")->limit($limit)->all();
     }
 
     public function savePropertyDetails($arrayPropertyDetail) {

@@ -37,6 +37,10 @@ return [
     ],
     [
         'class' => '\kartik\grid\DataColumn',
+        'attribute' => 'priority',
+    ],
+    [
+        'class' => '\kartik\grid\DataColumn',
         'attribute' => 'price',
     ],
     [

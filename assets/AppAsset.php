@@ -54,10 +54,10 @@ class AppAsset extends AssetBundle {
     public function getAccess($controller) {
         $allow = false;
         if (Yii::$app->getUser()->isGuest &&
-            Yii::$app->getRequest()->url !== Url::to(Yii::$app->getUser()->loginUrl)) {
+                Yii::$app->getRequest()->url !== Url::to(Yii::$app->getUser()->loginUrl)) {
             Yii::$app->getResponse()->redirect(Yii::$app->getUser()->loginUrl);
-        }else{
-          $info = AppAsset::executeQuery(Yii::$app->db, "select m.id 
+        } else {
+            $info = AppAsset::executeQuery(Yii::$app->db, "select m.id 
             from access a, profile p, module m 
             where 
             a.profile_id=p.id 
@@ -66,7 +66,7 @@ class AppAsset extends AssetBundle {
             and m.controller=:CONTROLLER", [':PROFILE_ID' => Yii::$app->user->identity->profile_id, ':CONTROLLER' => $controller]);
             if (count($info) > 0) {
                 $allow = true;
-            }  
+            }
         }
         return $allow;
     }
@@ -126,6 +126,19 @@ class AppAsset extends AssetBundle {
 
     public function updateQuery($db, $query, $params) {
         return $db->createCommand($query, $params)->execute();
+    }
+
+    public function getIconPingProperty($type) {
+        if ($type === 'Casa' || $type === 'Casa de Campo' || $type === 'Casa de Playa') {
+            return "/images/pin-house.png";
+        } elseif ($type === 'Departamento') {
+            return "/images/pin-apartment.png";
+        } elseif ($type === 'Terreno') {
+            return "/images/pin-land.png";
+        } elseif ($type === 'Local' || $type === 'Oficina') {
+            return "/images/pin-commercial.png";
+        }
+        return "/images/pin-commercial.png";
     }
 
 }

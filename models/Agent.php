@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user".
@@ -23,6 +24,7 @@ use Yii;
  * @property string $accessToken
  * @property integer $parent
  * @property string $avatar
+ * @property string $phone
  *
  * @property ImagesUser[] $imagesUsers
  * @property Profile $profile
@@ -34,9 +36,27 @@ class Agent extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    
+    public $photo;
+    public $path = '/web/uploads/user/';
+    
     public static function tableName()
     {
         return 'user';
+    }
+    
+    public function behaviors() {
+        return [
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['lastupdate'],
+                ],
+                'value' => function() {
+            return date('Y-m-d H:i:s');
+        },
+            ],
+        ];
     }
 
     /**
@@ -49,8 +69,12 @@ class Agent extends \yii\db\ActiveRecord
             [['active', 'type_id', 'state_id', 'profile_id', 'parent'], 'integer'],
             [['lastupdate'], 'safe'],
             [['names', 'avatar'], 'string', 'max' => 100],
-            [['surnames', 'email', 'username', 'password', 'authKey', 'accessToken'], 'string', 'max' => 45],
+            [['surnames', 'email', 'username', 'password', 'authKey', 'accessToken', 'phone'], 'string', 'max' => 45],
             [['sex'], 'string', 'max' => 1],
+            [['email'], 'email'],
+            [['photo'], 'safe'],
+            [['photo'], 'file', 'extensions' => 'jpg, gif, png'],
+//            [['photo'], 'file', 'maxSize' => '2000000'],
             [['profile_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['profile_id' => 'id']],
             [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => State::className(), 'targetAttribute' => ['state_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
@@ -63,22 +87,24 @@ class Agent extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'names' => Yii::t('app', 'Names'),
-            'surnames' => Yii::t('app', 'Surnames'),
-            'email' => Yii::t('app', 'Email'),
-            'username' => Yii::t('app', 'Username'),
-            'password' => Yii::t('app', 'Password'),
-            'active' => Yii::t('app', 'Active'),
-            'lastupdate' => Yii::t('app', 'Lastupdate'),
-            'type_id' => Yii::t('app', 'Type ID'),
-            'state_id' => Yii::t('app', 'State ID'),
-            'sex' => Yii::t('app', 'Sex'),
-            'profile_id' => Yii::t('app', 'Profile ID'),
-            'authKey' => Yii::t('app', 'Auth Key'),
-            'accessToken' => Yii::t('app', 'Access Token'),
-            'parent' => Yii::t('app', 'Parent'),
-            'avatar' => Yii::t('app', 'Avatar'),
+            'id' => 'ID',
+            'names' => 'Nombres',
+            'surnames' => 'Apellidos',
+            'email' => 'Correo Electronico',
+            'username' => 'Nombre de usuario',
+            'password' => 'Clave',
+            'active' => 'Activo',
+            'lastupdate' => 'Ultima actualizacion',
+            'type_id' => 'Tipo ID',
+            'state_id' => 'Estado ID',
+            'sex' => 'Sexo',
+            'profile_id' => 'Perfil ID',
+            'authKey' => 'Auth Key',
+            'accessToken' => 'Acceso Token',
+            'parent' => 'Parent',
+            'photo' => 'Fotos',
+            'avatar' => 'Avatar',
+            'phone' => 'Telefono',
         ];
     }
 
@@ -121,5 +147,23 @@ class Agent extends \yii\db\ActiveRecord
     public static function find()
     {
         return new AgentQuery(get_called_class());
+    }
+    
+    public function deleteImage($path, $filename) {
+        $file = [];
+        $file[] = $path . $filename;
+        $file[] = $path . 'sqr_' . $filename;
+        $file[] = $path . 'sm_' . $filename;
+        foreach ($file as $f) {
+            // check if file exists on server
+            if (!empty($f) && file_exists($f)) {
+                // delete file
+                unlink($f);
+            }
+        }
+    }
+    
+    public static function getAgents($limit){
+        return Agent::find()->where(['profile_id' => 2])->orWhere(['profile_id' => 3])->orderBy("id DESC")->limit($limit)->all();
     }
 }

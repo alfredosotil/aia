@@ -20,6 +20,7 @@ class UserLogin extends \yii\base\Object implements \yii\web\IdentityInterface
     public $parent;
     public $avatar;
     public $active;
+    public $phone;
 
     /**
      * @inheritdoc
