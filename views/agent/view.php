@@ -14,6 +14,7 @@ use yii\widgets\DetailView;
             'id',
             'names',
             'surnames',
+            'phone',
             'email:email',
             'username',
 //            'password',

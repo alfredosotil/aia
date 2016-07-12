@@ -24,6 +24,7 @@ use yii\db\ActiveRecord;
  * @property string $accessToken
  * @property integer $parent
  * @property string $avatar
+ * @property string $phone
  *
  * @property Profile $profile
  * @property State $state
@@ -67,9 +68,12 @@ class User extends \yii\db\ActiveRecord {
             [['photo'], 'safe'],
             [['photo'], 'file', 'extensions' => 'jpg, gif, png'],
 //            [['photo'], 'file', 'maxSize' => '2000000'],
-            [['surnames', 'email', 'username', 'password', 'authKey', 'accessToken'], 'string', 'max' => 45],
+            [['surnames', 'email', 'username', 'password', 'authKey', 'accessToken', 'phone'], 'string', 'max' => 45],
             [['email'], 'email'],
-            [['sex'], 'string', 'max' => 1]
+            [['sex'], 'string', 'max' => 1],
+            [['profile_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['profile_id' => 'id']],
+            [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => State::className(), 'targetAttribute' => ['state_id' => 'id']],
+            [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
 
@@ -95,6 +99,7 @@ class User extends \yii\db\ActiveRecord {
             'parent' => 'Parent',
             'photo' => 'Fotos',
             'avatar' => 'Avatar',
+            'phone' => 'Telefono',
         ];
     }
 

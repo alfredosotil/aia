@@ -1,7 +1,7 @@
 <div class="team-member-cont">
     <div class="team-member">
         <div class="team-photo">
-            <img src="<?= Yii::$app->request->baseUrl . "/uploads/user/" . $model->avatar; ?>" alt="" />
+            <img src="<?= isset($model->avatar) ? Yii::$app->request->baseUrl . "/uploads/user/" . $model->avatar : Yii::$app->request->baseUrl . "/images/avatar-generic.jpg"; ?>" alt="" />
             <div class="big-triangle"></div>
             <div class="big-triangle2"></div>
             <!--<a class="big-icon big-icon-plus" href="agent-right-sidebar.html"><i class="jfont">&#xe804;</i></a>-->
