@@ -63,7 +63,7 @@ CREATE TABLE `accesspropertydetail` (
   KEY `fk_accesspropertydetail_property_detail1_idx` (`property_detail_id`),
   CONSTRAINT `fk_accesspropertydetail_property1` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `fk_accesspropertydetail_property_detail1` FOREIGN KEY (`property_detail_id`) REFERENCES `property_detail` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `accesspropertydetail` (
 
 LOCK TABLES `accesspropertydetail` WRITE;
 /*!40000 ALTER TABLE `accesspropertydetail` DISABLE KEYS */;
-INSERT INTO `accesspropertydetail` (`id`, `property_id`, `property_detail_id`, `active`) VALUES (5,1,1,1),(6,1,2,1),(7,1,3,1),(8,1,4,1),(9,1,5,1);
+INSERT INTO `accesspropertydetail` (`id`, `property_id`, `property_detail_id`, `active`) VALUES (41,4,3,1),(42,4,6,1),(43,4,7,1),(44,4,8,1),(45,4,9,1),(46,4,10,1),(47,4,11,1),(48,4,12,1),(49,6,1,1),(50,6,2,1),(51,6,3,1),(52,6,4,1),(53,6,5,1),(54,6,6,1),(55,6,7,1),(71,3,1,1),(72,3,2,1),(73,3,3,1),(74,3,4,1),(75,3,5,1),(76,3,6,1),(77,3,7,1),(78,3,8,1),(79,3,9,1),(80,3,10,1),(81,3,11,1),(82,3,12,1),(83,3,13,1),(84,3,14,1),(85,3,15,1);
 /*!40000 ALTER TABLE `accesspropertydetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +92,7 @@ CREATE TABLE `images_property` (
   PRIMARY KEY (`id`,`property_id`),
   KEY `fk_images_property_property1_idx` (`property_id`),
   CONSTRAINT `fk_images_property_property1` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +101,7 @@ CREATE TABLE `images_property` (
 
 LOCK TABLES `images_property` WRITE;
 /*!40000 ALTER TABLE `images_property` DISABLE KEYS */;
-INSERT INTO `images_property` (`id`, `property_id`, `name`, `order`, `active`) VALUES (1,1,'GuQ1-mic7R1EZPlUD2-DGqIZiaNgcFkS.jpg',1,1),(2,1,'p8NUnaQf3mQs3SuVI-TS5yvanIHzupuM.jpg',2,1),(3,2,'XJMmfpK5i6eC7Y9D6vTV70ypOpZIsPnV.jpg',1,1),(4,2,'uk8o4dUII4VcYkW8KbTozpLLafsGPLK0.jpg',2,1),(5,2,'9-oTgV8VJcRY7Jb4jidiEx5AJaFkNfkM.png',3,1),(6,2,'J-a7ussbZhwGG8a8A2fM7VOkCgGgOCXY.png',4,1);
+INSERT INTO `images_property` (`id`, `property_id`, `name`, `order`, `active`) VALUES (14,4,'qncp6Q5J5I2ONUHmNW3FaFLhEGyaCjyq.jpg',1,1),(15,5,'5z7AqEWKVS9z1-Ar1PuhzUQrx180SROX.png',1,1),(16,6,'6GoyZ40APfuFmiamg0imRg5M6Fiu7a-e.png',1,1),(21,3,'BetqrbDEdSj8YU6fQrhF1Opy5PME0hft.jpg',1,1),(22,3,'R99voHy2g7IX-c-q0IVpZVURupKWIzsW.jpg',2,1),(23,3,'t_AsVu8RrmTuO2zEo8hgL8BmUo0DSZN8.png',3,1),(24,3,'b4LFlw9uUMRtHHBhxi6GLsNOBRecq8pn.png',4,1);
 /*!40000 ALTER TABLE `images_property` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +130,7 @@ CREATE TABLE `images_user` (
 
 LOCK TABLES `images_user` WRITE;
 /*!40000 ALTER TABLE `images_user` DISABLE KEYS */;
-INSERT INTO `images_user` (`id`, `name`, `order`, `active`, `user_id`) VALUES (6,'ykMk3vJFa31xQQ8UVVxNxhUtBZMJMg87.png',1,1,31),(7,'dEsPeiNz3fzaJuTDK54I1blVrbTv3mkl.jpg',1,1,33);
+INSERT INTO `images_user` (`id`, `name`, `order`, `active`, `user_id`) VALUES (6,'5i2u4rCIGDtSX9xPMiWk8eOnkiiUjXRt.png',1,1,31),(7,'dEsPeiNz3fzaJuTDK54I1blVrbTv3mkl.jpg',1,1,33);
 /*!40000 ALTER TABLE `images_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,10 +224,15 @@ CREATE TABLE `property` (
   `yearsold` double DEFAULT NULL,
   `furnished` tinyint(1) DEFAULT NULL,
   `description` varchar(1000) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_property_type1_idx` (`type_id`),
-  CONSTRAINT `fk_property_type1` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  KEY `fk_property_state1_idx` (`state_id`),
+  KEY `fk_property_user1_idx` (`user_id`),
+  CONSTRAINT `fk_property_state1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_property_type1` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_property_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -236,7 +241,7 @@ CREATE TABLE `property` (
 
 LOCK TABLES `property` WRITE;
 /*!40000 ALTER TABLE `property` DISABLE KEYS */;
-INSERT INTO `property` (`id`, `type_id`, `state_id`, `price`, `money`, `commission`, `area`, `bedrooms`, `bathrooms`, `longitude`, `latitude`, `active`, `datecreation`, `datestart`, `datelastupdate`, `owner`, `phoneowner`, `emailowner`, `address`, `references`, `priority`, `garages`, `yearsold`, `furnished`, `description`) VALUES (1,6,3,130000,'S',3,34,4,3,'-77.03299261629581','-12.094717094881275',1,'2016-07-06 19:13:10','2016-07-07 05:00:00','2016-07-08 21:11:53','alfredo sotil ','997893527','alfredosotil@gmail.com','San Isidro, 15073, Perú','calle aricasan miguel',4,NULL,NULL,0,''),(2,5,2,3000,'S',3,200,4,3,'-77.0361645','-12.094376599999999',1,'2016-07-08 15:21:05','2016-07-13 05:00:00','2016-07-08 15:21:05','alfredo sotil ','997893527','alfredosotil@gmail.com','Sector 3, San Isidro, Perú','calle san miguel',4,1,5,1,'casa grande y acojedora');
+INSERT INTO `property` (`id`, `type_id`, `state_id`, `price`, `money`, `commission`, `area`, `bedrooms`, `bathrooms`, `longitude`, `latitude`, `active`, `datecreation`, `datestart`, `datelastupdate`, `owner`, `phoneowner`, `emailowner`, `address`, `references`, `priority`, `garages`, `yearsold`, `furnished`, `description`, `user_id`) VALUES (3,5,2,130000,'S',3,34,4,3,'-77.0361933','-12.094367499999999',1,'2016-07-11 15:16:11','2016-07-22 05:00:00','2016-07-12 22:18:39','alfredo sotil ','997893527','alfredosotil@gmail.com','Sector 3, San Isidro, Perú','',5,1,5,1,'casa grande y espaciosa',1),(4,6,3,3000,'D',2,200,3,3,'-77.0361933','-12.094367499999999',1,'2016-07-11 17:02:02','2016-07-15 05:00:00','2016-07-12 14:55:36','alfredo sotil ','997893527','alfredosotil@gmail.com','Sector 3, San Isidro, Perú','',5,1,5,1,'Departamento ubicado en zona comercial de san isidro.',1),(5,8,3,130000,'D',2,340,NULL,NULL,'-77.04211212694645','-12.079106502541777',1,'2016-07-11 17:39:08','2016-07-29 05:00:00','2016-07-12 14:55:59','alfredo sotil ','997893527','alfredosotil@gmail.com','Lince, Perú','',5,NULL,NULL,0,'terreno de construccionterreno de construccionterreno de construccionterreno de construccionterreno de construccionterreno de construccionterreno de construccionterreno de construccionterreno de construccionterreno de construccionterreno de construccionterreno de construccionterreno de construccionterreno de construccion',1),(6,10,2,300000,'D',4,2000,40,3,'-77.0361933','-12.094367499999999',1,'2016-07-11 17:40:25','2016-07-16 05:00:00','2016-07-12 14:56:23','alfredo sotil ','997893527','alfredosotil@gmail.com','Sector 3, San Isidro, Perú','',5,1,50,1,'oficinas comerciales, lince',1);
 /*!40000 ALTER TABLE `property` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -342,6 +347,7 @@ CREATE TABLE `user` (
   `accessToken` varchar(45) DEFAULT NULL,
   `parent` int(11) DEFAULT NULL,
   `avatar` varchar(100) DEFAULT NULL,
+  `phone` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_usuario_tipo1_idx` (`type_id`),
   KEY `fk_usuario_estado1_idx` (`state_id`),
@@ -359,7 +365,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`, `names`, `surnames`, `email`, `username`, `password`, `active`, `lastupdate`, `type_id`, `state_id`, `sex`, `profile_id`, `authKey`, `accessToken`, `parent`, `avatar`) VALUES (1,'Alfredo Antonios','Sotil Pastor','alfredosotil@gmail.com','asotilp','asotilp',1,'2016-07-04 17:45:36',1,1,'M',1,'','',NULL,NULL),(31,'anton','zonov','admin@aia.com.pe','admin','admin',1,'2016-06-30 23:29:56',9,1,'M',3,NULL,NULL,1,'ykMk3vJFa31xQQ8UVVxNxhUtBZMJMg87.png'),(32,'Claudia','Davila','cdavila@aia.com.pe','cdavila','123cdavila',1,'2016-07-04 17:49:26',1,1,'F',2,'','',NULL,NULL),(33,'Antonio','Pastor','test@aia.com.pe','apastor','test',1,'2016-07-06 22:06:43',9,1,'M',3,NULL,NULL,32,'dEsPeiNz3fzaJuTDK54I1blVrbTv3mkl.jpg');
+INSERT INTO `user` (`id`, `names`, `surnames`, `email`, `username`, `password`, `active`, `lastupdate`, `type_id`, `state_id`, `sex`, `profile_id`, `authKey`, `accessToken`, `parent`, `avatar`, `phone`) VALUES (1,'Alfredo Antonios','Sotil Pastor','alfredosotil@gmail.com','asotilp','asotilp',1,'2016-07-04 17:45:36',1,1,'M',1,'','',NULL,NULL,NULL),(31,'anton','zonov','admin@aia.com.pe','admin','admin',1,'2016-07-12 14:59:10',9,1,'M',3,NULL,NULL,1,'5i2u4rCIGDtSX9xPMiWk8eOnkiiUjXRt.png','999999999'),(32,'Claudia','Davila','cdavila@aia.com.pe','cdavila','123cdavila',1,'2016-07-04 17:49:26',1,1,'F',2,'','',NULL,NULL,NULL),(33,'Antonio','Pastor','test@aia.com.pe','apastor','test',1,'2016-07-12 14:59:25',9,1,'M',3,NULL,NULL,32,'dEsPeiNz3fzaJuTDK54I1blVrbTv3mkl.jpg','997893527');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -380,4 +386,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-08 17:57:30
+-- Dump completed on 2016-07-12 17:49:15

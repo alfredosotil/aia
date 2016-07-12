@@ -19,8 +19,8 @@ class SiteController extends Controller {
                 'only' => ['logout', 'submitproperty'],
                 'rules' => [
                     [
-                        'allow' => true,
                         'actions' => ['login'],
+                        'allow' => true,
                         'roles' => ['?'],
                     ],
                     [
@@ -121,6 +121,13 @@ class SiteController extends Controller {
         ]);
     }
 
+    public function actionViewproperty($id) {
+        $model = \app\models\Property::findOne($id);
+        return $this->render('viewproperty',[
+            'model' => $model
+        ]);
+    }
+    
     public function getMainSlider() {
         $html = "";
         $properties = \app\models\Property::getPropertyByPriority(5, 10); //limit 20
@@ -155,8 +162,5 @@ class SiteController extends Controller {
         return $html;
     }
 
-    public function showPropertyDetail($id) {
-        
-    }
 
 }

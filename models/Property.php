@@ -33,6 +33,7 @@ use yii\db\ActiveRecord;
  * @property double $yearsold
  * @property integer $furnished
  * @property string $description
+ * @property integer $user_id
  *
  * @property Accesspropertydetail[] $accesspropertydetails
  * @property ImagesProperty[] $imagesProperties
@@ -74,7 +75,7 @@ class Property extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['type_id', 'state_id', 'money', 'commission', 'longitude', 'latitude', 'address', 'owner', 'phoneowner'], 'required'],
-            [['priority', 'type_id', 'state_id', 'active', 'priority', 'furnished'], 'integer'],
+            [['priority', 'type_id', 'state_id', 'user_id', 'active', 'priority', 'furnished'], 'integer'],
             [['price', 'commission', 'area', 'bedrooms', 'bathrooms', 'garages', 'yearsold'], 'number'],
             [['datecreation', 'datestart', 'datelastupdate'], 'safe'],
             [['money'], 'string', 'max' => 1],
@@ -87,6 +88,8 @@ class Property extends \yii\db\ActiveRecord {
             [['photos'], 'file', 'extensions' => 'jpg, gif, png', 'maxFiles' => 10],
 //            [['photos'], 'file', 'maxSize' => '2000000'],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
+            [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => State::className(), 'targetAttribute' => ['state_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -124,6 +127,7 @@ class Property extends \yii\db\ActiveRecord {
             'description' => Yii::t('app', 'Descripcion'),
             'extras' => Yii::t('app', 'Extras del inmueble'),
             'imageFiles' => Yii::t('app', 'Imagenes'),
+            'user_id' => Yii::t('app', 'Agente encargado'),
         ];
     }
 
@@ -154,6 +158,13 @@ class Property extends \yii\db\ActiveRecord {
     public function getState() {
         return $this->hasOne(State::className(), ['id' => 'state_id']);
     }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAgent() {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
 
     /**
      * @inheritdoc
@@ -162,29 +173,29 @@ class Property extends \yii\db\ActiveRecord {
     public static function find() {
         return new PropertyQuery(get_called_class());
     }
-    
-    public function getFirstImageFromProperty(){
+
+    public function getFirstImageFromProperty() {
         return $this->getImagesProperties()->where(['order' => 1])->one()->name;
     }
-    
-    public static function getPropertyByPriority($priority, $limit){
-        return Property::find()->where(['priority' => $priority])->limit($limit)->all();
+
+    public static function getPropertyByPriority($priority, $limit) {
+        return Property::find()->where(['priority' => $priority])->andWhere(['active' => 1])->limit($limit)->all();
     }
-    
-    public static function getPropertiesRecentlyAdded($daysold, $limit){
-        return Property::find()->where(['between','datecreation', date('Y-m-d H:i:s', strtotime("-$daysold day")),date('Y-m-d H:i:s')])->orderBy("datecreation DESC")->limit($limit)->all();
+
+    public static function getPropertiesRecentlyAdded($daysold, $limit) {
+        return Property::find()->where(['between', 'datecreation', date('Y-m-d H:i:s', strtotime("-$daysold day")), date('Y-m-d H:i:s')])->andWhere(['active' => 1])->orderBy("datecreation DESC")->limit($limit)->all();
     }
 
     public function savePropertyDetails($arrayPropertyDetail) {
         Accesspropertydetail::deleteAll(['property_id' => $this->primaryKey]);
-        if(is_array($arrayPropertyDetail))
-        foreach ($arrayPropertyDetail as $pd) {
-            $aod = new Accesspropertydetail();
-            $aod->property_id = $this->primaryKey;
-            $aod->property_detail_id = intval($pd);
-            $aod->active = 1;
-            $aod->save();
-        }
+        if (is_array($arrayPropertyDetail))
+            foreach ($arrayPropertyDetail as $pd) {
+                $aod = new Accesspropertydetail();
+                $aod->property_id = $this->primaryKey;
+                $aod->property_detail_id = intval($pd);
+                $aod->active = 1;
+                $aod->save();
+            }
     }
 
     public function getPropertyDetail() {

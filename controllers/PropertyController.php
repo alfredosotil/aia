@@ -112,6 +112,7 @@ class PropertyController extends Controller {
                     Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
                 ];
             } else {
+                $model->user_id = Yii::$app->user->identity->id;
                 if ($model->load($request->post())) {
                     $extras = ArrayHelper::getValue($request->post(), 'Property.extras');
                     $images = UploadedFile::getInstances($model, 'photos');
@@ -132,7 +133,7 @@ class PropertyController extends Controller {
                                 $imageProperty->property_id = $property_id;
                                 $imageProperty->save();
                                 $image->saveAs($path);
-                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 120, 120)
+                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 140, 80)
                                         ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $imagename, ['quality' => 50]);
                                 Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 30, 30)
                                         ->save(Yii::$app->params['uploadPath'] . 'sm_' . $imagename, ['quality' => 50]);
@@ -252,7 +253,7 @@ class PropertyController extends Controller {
                                 $imageProperty->property_id = $property_id;
                                 $imageProperty->save();
                                 $image->saveAs($path);
-                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 120, 120)
+                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 140, 80)
                                         ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $imagename, ['quality' => 50]);
                                 Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 30, 30)
                                         ->save(Yii::$app->params['uploadPath'] . 'sm_' . $imagename, ['quality' => 50]);

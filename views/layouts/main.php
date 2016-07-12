@@ -109,9 +109,19 @@ AppAsset::register($this);
                                     </a>
                                 </div>
                                 <div class="top-social pull-right">
-                                    <a class="top-icon-circle" href="#">
+                                    <a class="top-icon-circle" href="skype:informesaia2?call">
                                         <i class="fa fa-skype"></i>
                                     </a>
+<!--                                    <script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
+                                    <div id="SkypeButton_Call_alfredo_sotil_1">
+                                        <script type="text/javascript">
+                                            Skype.ui({
+                                                "name": "call",
+                                                "element": "SkypeButton_Call_alfredo_sotil_1",
+                                                "participants": ["alfredo_sotil"]
+                                            });
+                                        </script>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -144,44 +154,44 @@ AppAsset::register($this);
                                                                             <li><a href="index3-street-view.html">One Page Single Propery - panorama!</a></li>
                                                                         </ul>-->
                                 </li>
-<!--                                <li class="button">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings</a>
-                                    <a href="<?= Url::toRoute("site/findproperty") ?>" class="" role="button" aria-haspopup="true" aria-expanded="true">Buscar Inmueble</a>
-                                                                        <ul class="dropdown-menu">
-                                                                            <li class="dropdown-submenu">
-                                                                                <a tabindex="-1" href="listing-grid-right-sidebar.html">Grid Listing</a>
-                                                                                <ul class="dropdown-menu">
-                                                                                    <li><a href="listing-grid-right-sidebar.html">Right Sidebar</a></li>
-                                                                                    <li><a href="listing-grid-left-sidebar.html">Left Sidebar</a></li>
-                                                                                    <li><a href="listing-grid-no-sidebar.html">No Sidebar</a></li>
-                                                                                </ul>
-                                                                            </li>
-                                                                            <li class="dropdown-submenu">
-                                                                                <a tabindex="-1" href="listing-masonry-right-sidebar.html">Masonry Listing</a>
-                                                                                <ul class="dropdown-menu">
-                                                                                    <li><a href="listing-masonry-right-sidebar.html">Right Sidebar</a></li>
-                                                                                    <li><a href="listing-masonry-left-sidebar.html">Left Sidebar</a></li>
-                                                                                    <li><a href="listing-masonry-no-sidebar.html">No Sidebar</a></li>
-                                                                                </ul>
-                                                                            </li>
-                                                                            <li class="dropdown-submenu">
-                                                                                <a tabindex="-1" href="listing-list-right-sidebar.html">Classic Listing</a>
-                                                                                <ul class="dropdown-menu">
-                                                                                    <li><a href="listing-list-right-sidebar.html">Right Sidebar</a></li>
-                                                                                    <li><a href="listing-list-left-sidebar.html">Left Sidebar</a></li>
-                                                                                    <li><a href="listing-list-no-sidebar.html">No Sidebar</a></li>
-                                                                                </ul>
-                                                                            </li>
-                                                                            <li class="dropdown-submenu">
-                                                                                <a tabindex="-1" href="estate-details-right-sidebar.html">Single Property</a>
-                                                                                <ul class="dropdown-menu">
-                                                                                    <li><a href="estate-details-right-sidebar.html">Right Sidebar</a></li>
-                                                                                    <li><a href="estate-details-left-sidebar.html">Left Sidebar</a></li>
-                                                                                    <li><a href="estate-details-no-sidebar.html">No Sidebar</a></li>
-                                                                                </ul>
-                                                                            </li>
-                                                                        </ul>
-                                </li>-->
+                                <!--                                <li class="button">
+                                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings</a>
+                                                                    <a href="<?= Url::toRoute("site/findproperty") ?>" class="" role="button" aria-haspopup="true" aria-expanded="true">Buscar Inmueble</a>
+                                                                                                        <ul class="dropdown-menu">
+                                                                                                            <li class="dropdown-submenu">
+                                                                                                                <a tabindex="-1" href="listing-grid-right-sidebar.html">Grid Listing</a>
+                                                                                                                <ul class="dropdown-menu">
+                                                                                                                    <li><a href="listing-grid-right-sidebar.html">Right Sidebar</a></li>
+                                                                                                                    <li><a href="listing-grid-left-sidebar.html">Left Sidebar</a></li>
+                                                                                                                    <li><a href="listing-grid-no-sidebar.html">No Sidebar</a></li>
+                                                                                                                </ul>
+                                                                                                            </li>
+                                                                                                            <li class="dropdown-submenu">
+                                                                                                                <a tabindex="-1" href="listing-masonry-right-sidebar.html">Masonry Listing</a>
+                                                                                                                <ul class="dropdown-menu">
+                                                                                                                    <li><a href="listing-masonry-right-sidebar.html">Right Sidebar</a></li>
+                                                                                                                    <li><a href="listing-masonry-left-sidebar.html">Left Sidebar</a></li>
+                                                                                                                    <li><a href="listing-masonry-no-sidebar.html">No Sidebar</a></li>
+                                                                                                                </ul>
+                                                                                                            </li>
+                                                                                                            <li class="dropdown-submenu">
+                                                                                                                <a tabindex="-1" href="listing-list-right-sidebar.html">Classic Listing</a>
+                                                                                                                <ul class="dropdown-menu">
+                                                                                                                    <li><a href="listing-list-right-sidebar.html">Right Sidebar</a></li>
+                                                                                                                    <li><a href="listing-list-left-sidebar.html">Left Sidebar</a></li>
+                                                                                                                    <li><a href="listing-list-no-sidebar.html">No Sidebar</a></li>
+                                                                                                                </ul>
+                                                                                                            </li>
+                                                                                                            <li class="dropdown-submenu">
+                                                                                                                <a tabindex="-1" href="estate-details-right-sidebar.html">Single Property</a>
+                                                                                                                <ul class="dropdown-menu">
+                                                                                                                    <li><a href="estate-details-right-sidebar.html">Right Sidebar</a></li>
+                                                                                                                    <li><a href="estate-details-left-sidebar.html">Left Sidebar</a></li>
+                                                                                                                    <li><a href="estate-details-no-sidebar.html">No Sidebar</a></li>
+                                                                                                                </ul>
+                                                                                                            </li>
+                                                                                                        </ul>
+                                                                </li>-->
                                 <li class="button">
                                     <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agencies</a>-->
                                     <a href="<?= Url::toRoute("site/aboutus") ?>" class="" role="button" aria-haspopup="true" aria-expanded="true">Quienes Somos?</a>
@@ -253,21 +263,21 @@ AppAsset::register($this);
                                     <a href="<?= Url::toRoute("site/services") ?>" class="" role="button" aria-haspopup="true" aria-expanded="false">Servicios</a>
                                     <!--<a href="#" class="" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>-->
                                     <!--<ul class="dropdown-menu">-->
-<!--                                        <li><a href="#">Servicio 1</a></li>
-                                        <li>
-                                            <a tabindex="-1" href="#">Servicio 2</a>
-                                        </li>
-                                        <li>
-                                            <a tabindex="-1" href="#">Servicio 3</a>
-                                        </li>-->
-                                        <!--                                        <li class="dropdown-submenu">
-                                                                                    <a tabindex="-1" href="blog-right-sidebar.html">Single Post</a>
-                                                                                    <ul class="dropdown-menu">
-                                                                                        <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
-                                                                                        <li><a href="blog-left-sidebar.html">Left Sidebar</a></li>
-                                                                                        <li><a href="blog-no-sidebar.html">No Sidebar</a></li>
-                                                                                    </ul>
-                                                                                </li>-->
+                                    <!--                                        <li><a href="#">Servicio 1</a></li>
+                                                                            <li>
+                                                                                <a tabindex="-1" href="#">Servicio 2</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a tabindex="-1" href="#">Servicio 3</a>
+                                                                            </li>-->
+                                    <!--                                        <li class="dropdown-submenu">
+                                                                                <a tabindex="-1" href="blog-right-sidebar.html">Single Post</a>
+                                                                                <ul class="dropdown-menu">
+                                                                                    <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
+                                                                                    <li><a href="blog-left-sidebar.html">Left Sidebar</a></li>
+                                                                                    <li><a href="blog-no-sidebar.html">No Sidebar</a></li>
+                                                                                </ul>
+                                                                            </li>-->
                                     <!--</ul>-->
                                 </li>
                                 <li class="button">

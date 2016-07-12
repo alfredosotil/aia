@@ -17,6 +17,11 @@ use kartik\widgets\StarRating;
         'attributes' => [
             'id',
             [
+                'attribute' => 'user_id',
+//                'label' => 'Agente encargado',
+                'value' => $model->getAgent()->one()->names . " " . $model->getAgent()->one()->surnames,
+            ],
+            [
                 'attribute' => 'type',
                 'label' => 'Tipo de inmueble',
                 'value' => $model->getType()->one()->type,
@@ -90,5 +95,5 @@ use kartik\widgets\StarRating;
         ],
     ])
     ?>
-    <?php $this->registerJs("getMapProperty();", yii\web\View::POS_END, uniqid());?>
+    <?php $this->registerJs("getMapProperty();", yii\web\View::POS_END, uniqid()); ?>
 </div>

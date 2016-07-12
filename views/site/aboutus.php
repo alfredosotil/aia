@@ -652,8 +652,8 @@ use kartik\form\ActiveForm;
                         <div class="contact3 wow fadeInUp">
                             <div class="row">
                                 <div class="col-xs-12 col-lg-12 text-center">
-                                    <h5 class="subtitle-margin">contacta al agente</h5>
-                                    <h1 class="">Agenda la visita<span class="special-color">.</span></h1>
+                                    <h5 class="subtitle-margin">contactanos</h5>
+                                    <h1 class="">Agenda una visita<span class="special-color">.</span></h1>
                                 </div>
                                 <div class="col-xs-8 col-xs-offset-2 col-sm-offset-4 col-sm-4">
                                     <div class="title-separator-primary2"></div>

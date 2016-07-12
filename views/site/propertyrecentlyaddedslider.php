@@ -29,7 +29,7 @@
     <div class="featured-offer-back">
         <div id="featured-map-<?= $model->id ?>" class="featured-offer-map"></div>
         <div class="button">    
-            <a href="estate-details-right-sidebar.html" class="button-primary">
+            <a target="_blank" href="<?= yii\helpers\Url::to(["viewproperty",'id'=>$model->id])?>" class="button-primary">
                 <span>Leer mas</span>
                 <div class="button-triangle"></div>
                 <div class="button-triangle2"></div>

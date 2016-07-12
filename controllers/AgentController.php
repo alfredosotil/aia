@@ -116,7 +116,6 @@ class AgentController extends Controller {
                 $model->profile_id = \app\models\Profile::find()->where(['name' => 'Agente', 'category' => 'user'])->one()->id;
                 $model->type_id = \app\models\Type::find()->where(['type' => 'Agente', 'category' => 'user'])->one()->id;
                 $model->parent = Yii::$app->user->identity->id;
-//                $model->email = $request->post('User')['username'] + '@aia.com.pe';
                 $username = ArrayHelper::getValue($request->post(), 'User.username');
                 $model->email = "$username@aia.com.pe";
                 if ($model->load($request->post())) {
