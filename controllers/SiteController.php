@@ -123,7 +123,15 @@ class SiteController extends Controller {
 
     public function actionViewproperty($id) {
         $model = \app\models\Property::findOne($id);
+//        $model->getAgent()->one()->email;
+        $modelContactForm = new ContactForm();
+        if ($modelContactForm->load(Yii::$app->request->post()) && $modelContactForm->contact($model->getAgent()->one()->email)) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            return $this->refresh();
+        }
         return $this->render('viewproperty',[
+            'modelcf' => $modelContactForm,
             'model' => $model
         ]);
     }

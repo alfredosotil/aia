@@ -15,6 +15,7 @@ use yii\web\UploadedFile;
 use app\assets\AppAsset;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
+use kartik\mpdf\Pdf;
 
 /**
  * PropertyController implements the CRUD actions for Property model.
@@ -75,6 +76,7 @@ class PropertyController extends Controller {
             return [
                 'title' => "Propiedad #" . $id,
                 'content' => $this->renderAjax('view', [
+                    'pdf' => false,
                     'model' => $this->findModel($id),
                 ]),
                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
@@ -82,6 +84,7 @@ class PropertyController extends Controller {
             ];
         } else {
             return $this->render('view', [
+                        'pdf' => false,
                         'model' => $this->findModel($id),
             ]);
         }
@@ -278,7 +281,7 @@ class PropertyController extends Controller {
                             ];
                         }
                     } else {
-                        if ($model->save()) { 
+                        if ($model->save()) {
                             $model->savePropertyDetails($extras);
                             return [
                                 'forceReload' => '#crud-datatable-pjax',
@@ -398,6 +401,25 @@ class PropertyController extends Controller {
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionPdfproperty($id) {
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE, // leaner size using standard fonts
+            'content' => $this->renderPartial('view', [
+                'pdf' => true,
+                'model' => $this->findModel($id),
+            ]),
+            'options' => [
+                'title' => 'Propiedad de AIA - www.aia.com.pe',
+                'subject' => '---'
+            ],
+            'methods' => [
+                'SetHeader' => ['Generado por AIA Asesoria Inmobiliaria||Generado el dia: ' . date("r")],
+                'SetFooter' => ['|Pagina {PAGENO}|'],
+            ]
+        ]);
+        return $pdf->render();
     }
 
 }

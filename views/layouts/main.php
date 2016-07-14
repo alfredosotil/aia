@@ -98,17 +98,17 @@ AppAsset::register($this);
                                     </div>                    
                                 <?php endif; ?>
 
-                                <div class="top-social pull-right">
+                                <div class="top-social pull-right" data-toggle="tooltip" data-placement="bottom" title="Youtube">
                                     <a class="top-icon-circle" href="#">
                                         <i class="fa fa-youtube-play"></i>
                                     </a>
                                 </div>
-                                <div class="top-social pull-right">
+                                <div class="top-social pull-right" data-toggle="tooltip" data-placement="bottom" title="Facebook">
                                     <a class="top-icon-circle" target="_blank" href="https://www.facebook.com/aia.agenciadeasesoriainmobiliaria">
                                         <i class="fa fa-facebook"></i>
                                     </a>
                                 </div>
-                                <div class="top-social pull-right">
+                                <div class="top-social pull-right" data-toggle="tooltip" data-placement="bottom" title="Skype">
                                     <a class="top-icon-circle" href="skype:informesaia2?call">
                                         <i class="fa fa-skype"></i>
                                     </a>
@@ -495,6 +495,6 @@ AppAsset::register($this);
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->              
         <?php $this->endBody() ?> 
-    </body>
+    </body>    
 </html>
 <?php $this->endPage() ?>

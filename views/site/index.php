@@ -2,6 +2,7 @@
 /* @var $this yii\web\View */
 
 //$this->title = 'My Yii Application';
+\yii\bootstrap\BootstrapPluginAsset::register($this);
 ?>
 <div class="site-index">
     <section class="no-padding adv-search-section">

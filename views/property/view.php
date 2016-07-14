@@ -2,13 +2,20 @@
 
 //use yii\widgets\DetailView;
 use kartik\detail\DetailView;
-use kartik\widgets\StarRating;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Property */
 ?>
 <div class="property-view">
-
+    <?php
+    if($pdf !== true)
+    echo yii\helpers\Html::a('<i class="fa fa-file-pdf-o"></i> PDF de esta propiedad', ['/property/pdfproperty', 'id' => $model->id], [
+        'class' => 'btn btn-danger',
+        'target' => '_blank',
+        'data-toggle' => 'tooltip',
+        'title' => 'Generar Pdf de esta propiedad'
+    ]);
+    ?>
     <?=
     DetailView::widget([
         'model' => $model,
