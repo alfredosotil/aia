@@ -12,9 +12,6 @@ use kartik\file\FileInput;
 /* @var $this yii\web\View */
 /* @var $model app\models\Agent */
 /* @var $form yii\widgets\ActiveForm */
-//echo var_dump(Yii::$app->request->post());
-//echo var_dump(ArrayHelper::getValue(Yii::$app->request->post(), 'User.username'));
-//echo var_dump($model);
 ?>
 
 <div class="agent-form">

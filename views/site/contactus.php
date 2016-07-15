@@ -30,13 +30,10 @@ use kartik\form\ActiveForm;
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-3 margin-top-45">
-                        <!--<p class="negative-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
-                        <!--<img src="<?= Yii::$app->request->baseUrl; ?>/images/contact-image.jpg" alt="" class="pull-left margin-top-45" />-->
                         <address class="contact-info pull-left">
                             <span><i class="fa fa-map-marker"></i>Calle Coronel Inclan 425 int. 104.</span>
                             <span><i class="fa fa-envelope"></i><a href="mailto:informes@aia.com.pe?Subject=Informes%20AIA">informes@aia.com.pe</a></span>
                             <span><i class="fa fa-phone"></i>+51(01)4785767</span>
-                            <!--<span><i class="fa fa-globe"></i><a href="#">http://somedmain.tld</a></span>-->
                             <span><i class="fa fa-clock-o"></i>Lunes - Viernes: 8:00 - 18:00</span>
                             <span class="span-last">S&aacute;bados: 10:00 - 16:00</span>
                         </address>
@@ -56,7 +53,6 @@ use kartik\form\ActiveForm;
                         <?= $form->field($model, 'email')->textInput(['class' => 'input-full contact-textarea main-input', 'placeholder' => 'Tu correo electronico'])->label(false) ?>
 
                         <?= $form->field($model, 'body')->textArea(['rows' => 6, 'class' => 'input-full contact-textarea main-input', 'placeholder' => 'Cual es tu consulta?'])->label(false) ?>
-                        <!--<div class="form-submit-cont">-->
                         <a href="javascript:document.getElementById('contactus-form').submit();" class="button-primary" id="form-submit">
                             <span>Enviar</span>
                             <div class="button-triangle"></div>
@@ -64,7 +60,6 @@ use kartik\form\ActiveForm;
                             <div class="button-icon"><i class="fa fa-paper-plane"></i></div>
                         </a>
                         <div class="clearfix"></div>
-                        <!--</div>-->
                         <?php ActiveForm::end(); ?>
 
                     </div>
@@ -78,10 +73,7 @@ use kartik\form\ActiveForm;
         </section>
     <?php endif; ?>
 </div>
-<!-- Google Maps -->
 
-
-<!-- google maps initialization -->	
 <script type="text/javascript">
     google.maps.event.addDomListener(window, 'load', init);
     function init() {

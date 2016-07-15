@@ -51,7 +51,7 @@ class AppAsset extends AssetBundle {
 //        'macgyer\yii2materializecss\assets\MaterializeAsset',
     ];
 
-    public function getAccess($controller) {
+    public static function getAccess($controller) {
         $allow = false;
         if (Yii::$app->getUser()->isGuest &&
                 Yii::$app->getRequest()->url !== Url::to(Yii::$app->getUser()->loginUrl)) {
@@ -71,7 +71,7 @@ class AppAsset extends AssetBundle {
         return $allow;
     }
 
-    public function menuDashboard() {
+    public static function menuDashboard() {
         $menu = "<li><a href=" . Url::toRoute("dashboard/index") . "><i class='fa fa-dashboard fa-fw'></i> Dashboard</a></li>";
         if (!Yii::$app->user->isGuest) {
             $typemodules = AppAsset::executeQuery(Yii::$app->db, "select distinct m.type_id, t.type
@@ -120,15 +120,15 @@ class AppAsset extends AssetBundle {
         return $menu;
     }
 
-    public function executeQuery($db, $query, $params) {
+    public static function executeQuery($db, $query, $params) {
         return $db->createCommand($query, $params)->queryAll();
     }
 
-    public function updateQuery($db, $query, $params) {
+    public static function updateQuery($db, $query, $params) {
         return $db->createCommand($query, $params)->execute();
     }
 
-    public function getIconPingProperty($type) {
+    public  static function getIconPingProperty($type) {
         if ($type === 'Casa' || $type === 'Casa de Campo' || $type === 'Casa de Playa') {
             return "/images/pin-house.png";
         } elseif ($type === 'Departamento') {

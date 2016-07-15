@@ -18,12 +18,12 @@ class PropertySearch extends Property {
      */
     public $type;
     public $state;
-    
+
     public function rules() {
         return [
-            [['id', 'type_id', 'state_id', 'active'], 'integer'],
-            [['price', 'commission', 'area', 'bedrooms', 'bathrooms'], 'number'],
-            [['money', 'longitude', 'latitude', 'datecreation', 'datestart', 'datelastupdate', 'owner', 'phoneowner', 'emailowner', 'type', 'state'], 'safe'],
+            [['id', 'type_id', 'state_id', 'active', 'user_id'], 'integer'],
+            [['price', 'commission', 'area', 'bedrooms', 'bathrooms', 'priority'], 'number'],
+            [['money', 'longitude', 'latitude', 'datecreation', 'datestart', 'datelastupdate', 'owner', 'phoneowner', 'emailowner', 'type', 'state', 'priority', 'user_id'], 'safe'],
         ];
     }
 
@@ -61,11 +61,13 @@ class PropertySearch extends Property {
             'id' => $this->id,
             'type_id' => $this->type_id,
             'state_id' => $this->state_id,
+            'user_id' => $this->user_id,
             'price' => $this->price,
             'commission' => $this->commission,
             'area' => $this->area,
             'bedrooms' => $this->bedrooms,
             'bathrooms' => $this->bathrooms,
+            'priority' => $this->priority,
             'active' => $this->active,
             'datecreation' => $this->datecreation,
             'datestart' => $this->datestart,

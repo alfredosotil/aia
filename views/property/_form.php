@@ -126,15 +126,7 @@ use yii\web\JsExpression;
     }
     ?>
     <?= $form->field($model, 'extras')->checkboxList(ArrayHelper::map(app\models\PropertyDetail::find()->all(), 'id', 'name'), ['inline' => false]) ?>
-    <!--    <div class="form-group field-extras">
-            <label class="control-label col-md-2" for="map">Mapa</label>
-            <div class="col-md-10">
-                <div id="property-map" class="loader-map"></div>
-            </div>
-            <div class="col-md-offset-2 col-md-10"></div>
-            <div class="col-md-offset-2 col-md-10"><div class="help-block"></div></div>
-        </div>  -->
-
+    
     <?=
     $form->field($model, 'photos[]')->widget(FileInput::classname(), [
         'pluginOptions' => [

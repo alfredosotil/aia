@@ -68,10 +68,16 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-// 'useFileTransport' to false and configure a transport
-// for the mailer to send real emails.
-            'useFileTransport' => true,
+            'viewPath' => '@app/mail',
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'mail.aia.com.pe',
+                'username' => 'tademetv@aia.com.pe',
+                'password' => 'leY517aL6l',
+//                'port' => '465',
+//                'encryption' => 'ssl',
+            ],
+            'useFileTransport' => false,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

@@ -28,7 +28,11 @@ use yii\widgets\DetailView;
             'type_id',
             'state_id',
             'sex',
-            'profile_id',
+//            'profile_id',
+            [
+                'attribute' => 'profile.name',
+                'label' => 'Perfil de Usuario',
+            ],
             'authKey',
             'accessToken',
             'parent',

@@ -208,14 +208,19 @@ class UserController extends Controller {
      */
     public function actionDelete($id) {
         $request = Yii::$app->request;
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $hasimage = $model->avatar;
+        $model->delete();
+        if (isset($hasimage)) {
+            $model->deleteImage(Yii::$app->basePath . '/web/uploads/user/', $hasimage);
+        }
 
         if ($request->isAjax) {
             /*
              *   Process for ajax request
              */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['forceClose' => true, 'forceReload' => true];
+            return ['forceClose' => true, 'forceReload' => '#crud-datatable-pjax'];
         } else {
             /*
              *   Process for non-ajax request
