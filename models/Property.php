@@ -34,6 +34,7 @@ use yii\db\ActiveRecord;
  * @property integer $furnished
  * @property string $description
  * @property integer $user_id
+ * @property integer $distrito_id
  *
  * @property Accesspropertydetail[] $accesspropertydetails
  * @property ImagesProperty[] $imagesProperties
@@ -75,7 +76,7 @@ class Property extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['type_id', 'state_id', 'money', 'commission', 'longitude', 'latitude', 'address', 'owner', 'phoneowner'], 'required'],
-            [['priority', 'type_id', 'state_id', 'user_id', 'active', 'priority', 'furnished'], 'integer'],
+            [['priority', 'type_id', 'state_id', 'user_id','distrito_id', 'active', 'priority', 'furnished'], 'integer'],
             [['price', 'commission', 'area', 'bedrooms', 'bathrooms', 'garages', 'yearsold'], 'number'],
             [['datecreation', 'datestart', 'datelastupdate'], 'safe'],
             [['money'], 'string', 'max' => 1],
@@ -104,7 +105,7 @@ class Property extends \yii\db\ActiveRecord {
             'price' => Yii::t('app', 'Precio'),
             'money' => Yii::t('app', 'Moneda'),
             'commission' => Yii::t('app', 'Comision'),
-            'area' => Yii::t('app', 'Area'),
+            'area' => Yii::t('app', 'Area mt2'),
             'bedrooms' => Yii::t('app', 'Cuartos'),
             'bathrooms' => Yii::t('app', 'Baños'),
             'longitude' => Yii::t('app', 'Longitud'),
@@ -128,6 +129,7 @@ class Property extends \yii\db\ActiveRecord {
             'extras' => Yii::t('app', 'Extras del inmueble'),
             'imageFiles' => Yii::t('app', 'Imagenes'),
             'user_id' => Yii::t('app', 'Agente encargado'),
+            'distrito_id' => Yii::t('app', 'Distrito'),
         ];
     }
 
@@ -157,6 +159,13 @@ class Property extends \yii\db\ActiveRecord {
      */
     public function getState() {
         return $this->hasOne(State::className(), ['id' => 'state_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDistrito() {
+        return $this->hasOne(Distrito::className(), ['idDist' => 'distrito_id']);
     }
     
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Url;
+use kartik\grid\GridView;
 
 return [
     [
@@ -38,6 +39,20 @@ return [
         'label' => 'Estado del inmueble',
         'attribute' => 'state',
         'value' => 'state.state',
+    ],
+    [
+//        'vAlign' => 'middle',
+        'width' => '180px',
+//        'class' => '\kartik\grid\DataColumn',
+        'value' => 'distrito.distrito',
+        'attribute' => 'distrito_id',
+        'filterType' => GridView::FILTER_SELECT2,
+        'filter' => \yii\helpers\ArrayHelper::map(app\models\Distrito::find()->orderBy('distrito')->asArray()->all(), 'idDist', 'distrito'),
+        'filterWidgetOptions' => [
+            'pluginOptions' => ['allowClear' => true],
+        ],
+        'filterInputOptions' => ['placeholder' => 'Distrito'],
+        'format' => 'raw'
     ],
     [
         'class' => '\kartik\grid\DataColumn',

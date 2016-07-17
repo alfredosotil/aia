@@ -32,8 +32,8 @@ DashboardAsset::register($this);
         <!--<link rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl; ?>/css/apartment-layout.css">-->
         <!--<link id="skin" rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl; ?>/css/apartment-colors-blue.css">-->
         <!-- Custom styles -->
-        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic,700,700italic&amp;subset=latin,latin-ext'>
-        <script src="http://maps.google.com/maps/api/js?sensor=true&amp;key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;libraries=places"></script>
+        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic,700,700italic&amp;subset=latin,latin-ext'>
+        <script src="https://maps.google.com/maps/api/js?sensor=true&amp;key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;libraries=places"></script>
         <?php $this->head() ?>
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -59,9 +59,9 @@ DashboardAsset::register($this);
 
                 <ul class="nav navbar-top-links navbar-right">              
                     <!-- /.dropdown -->
-                    <li class="dropdown">
+                    <li class="dropdown pull-right">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                            usuario(<?= Yii::$app->user->identity->username ?>)<i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="<?= Url::toRoute("site/index") ?>"><i class="fa fa-home fa-fw"></i> Inicio AIA</a>

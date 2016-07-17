@@ -164,6 +164,6 @@ class Agent extends \yii\db\ActiveRecord
     }
     
     public static function getAgents($limit){
-        return Agent::find()->where(['profile_id' => 2])->orWhere(['profile_id' => 3])->orderBy("id DESC")->limit($limit)->all();
+        return Agent::find()->where(['profile_id' => 3])->orderBy("id DESC")->limit($limit)->all();
     }
 }

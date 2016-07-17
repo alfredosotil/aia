@@ -22,8 +22,8 @@ AppAsset::register($this);
         <meta name="description" content="" />
         <link rel="shortcut icon" href="<?= Yii::$app->request->baseUrl; ?>/favicon.ico" type="image/x-icon">
         <link rel="icon" href="<?= Yii::$app->request->baseUrl; ?>/favicon.ico" type="image/x-icon">        
-        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic,700,700italic&amp;subset=latin,latin-ext'>
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;sensor=false&amp;libraries=places"></script>
+        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic,700,700italic&amp;subset=latin,latin-ext'>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;sensor=false&amp;libraries=places"></script>
         <?php $this->head() ?>
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -61,6 +61,11 @@ AppAsset::register($this);
                             </div>
                             <div class="col-xs-7 col-sm-4">
                                 <?php if (!Yii::$app->user->isGuest): ?>
+                                    <div class=" pull-right" style="margin-top: 8px; margin-left: 8px;" data-togle="tooltip" data-placement="bottom" title="Usuario">
+                                        <a class=""  href="#">
+                                            (<?= Yii::$app->user->identity->username ?>)<i class="fa fa-user fa-fw"></i>
+                                        </a>
+                                    </div>
                                     <div class="top-social-last pull-right" data-toggle="tooltip" data-placement="bottom" title="Admin Site">
                                         <a class="top-icon-circle" href="<?= Url::toRoute("dashboard/index") ?>">
                                             <i class="fa fa-tachometer"></i>
@@ -121,7 +126,7 @@ AppAsset::register($this);
                                     <a href="<?= Url::toRoute("site/index") ?>" class="" role="button" aria-haspopup="true" >Inicio</a>
                                 </li>
                                 <li class="button">
-                                    <a href="<?= Url::toRoute("site/aboutus") ?>" class="" role="button" aria-haspopup="true" aria-expanded="true">Quienes Somos?</a>
+                                    <a href="<?= Url::toRoute("site/aboutus") ?>" class="" role="button" aria-haspopup="true" aria-expanded="true">¿Quienes Somos?</a>
                                 </li>
                                 <li class="button">
                                     <a href="<?= Url::toRoute("site/services") ?>" class="" role="button" aria-haspopup="true" aria-expanded="false">Servicios</a>
@@ -143,6 +148,7 @@ AppAsset::register($this);
                         <div class="col-xs-6 col-sm-6 col-lg-3">
                             <h4 class="second-color">contactanos<span class="special-color">.</span></h4>
                             <div class="footer-title-separator"></div>
+                            <p class="footer-p">Te brindamos la informaci&oacute;n necesaria para que nos puedas contactar.</p>
                             <address>
                                 <span><i class="fa fa-map-marker"></i>Calle Coronel Inclan 425 int. 104.</span>
                                 <div class="footer-separator"></div>
@@ -151,6 +157,13 @@ AppAsset::register($this);
                                 <span><i class="fa fa-phone"></i>+51(01)4785767</span>
                             </address>
                             <div class="clear"></div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-lg-3">
+                            <h4 class="second-color">webmail<span class="special-color">.</span></h4>
+                            <div class="footer-title-separator"></div>
+                            <ul class="footer-ul">
+                                <li><span class="custom-ul-bullet"></span><a target="_blank" href="http://www.aia.com.pe/webmail">AIA Webmail</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -202,7 +215,7 @@ AppAsset::register($this);
 //                                    ],
                             ]);
                             ?>
-                            <?= $form->field($model, 'username')->textInput(['class' => 'input-full main-input', 'placeholder' => 'Correo electronico'])->label(false); ?>
+                            <?= $form->field($model, 'username')->textInput(['class' => 'input-full main-input', 'placeholder' => 'Usuario'])->label(false); ?>
                             <?= $form->field($model, 'password')->passwordInput(['class' => 'input-full main-input', 'placeholder' => 'Clave'])->label(false); ?>
     <!--                            <input name="login" type="email" class="input-full main-input" placeholder="Email" />
                             <input name="password" type="password" class="input-full main-input" placeholder="Your Password" />-->

@@ -5,12 +5,12 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use app\models\Type;
 use app\models\State;
+use app\models\Distrito;
 use app\models\Profile;
 use kartik\form\ActiveForm;
 use kartik\file\FileInput;
 use kartik\date\DatePicker;
 use kartik\widgets\StarRating;
-use yii\web\JsExpression;
 
 //LocateAsset::register($this);
 ?>
@@ -72,36 +72,39 @@ use yii\web\JsExpression;
 
     <?= $form->field($model, 'emailowner')->textInput(['maxlength' => true]) ?>
 
-    <?=
-    $form->field($model, 'priority')->widget(StarRating::classname(), [
-        'language' => 'es',
-        'pluginOptions' => [
-            'min' => 0,
-            'max' => 5,
-            'step' => 1,
-            'size' => 'lg',
-            'starCaptions' => [
-                0 => 'sin prioridad',
-                1 => 'baja',
-                2 => 'media baja',
-                3 => 'media',
-                4 => 'media alta',
-                5 => 'alta',
-            ],
-            'starCaptionClasses' => [
-                0 => 'text-danger',
-                1 => 'text-danger',
-                2 => 'text-danger',
-                3 => 'text-warning',
-                4 => 'text-info',
-                5 => 'text-success',
-            ],
-        ]
-    ]);
+    <?php
+    if (Yii::$app->user->identity->profile_id === 2 || Yii::$app->user->identity->profile_id === 1)
+        echo $form->field($model, 'priority')->widget(StarRating::classname(), [
+            'language' => 'es',
+            'pluginOptions' => [
+                'min' => 0,
+                'max' => 5,
+                'step' => 1,
+                'size' => 'lg',
+                'starCaptions' => [
+                    0 => 'sin prioridad',
+                    1 => 'baja',
+                    2 => 'media baja',
+                    3 => 'media',
+                    4 => 'media alta',
+                    5 => 'alta',
+                ],
+                'starCaptionClasses' => [
+                    0 => 'text-danger',
+                    1 => 'text-danger',
+                    2 => 'text-danger',
+                    3 => 'text-warning',
+                    4 => 'text-info',
+                    5 => 'text-success',
+                ],
+            ]
+        ]);
     $this->registerJsFile('@web/js/star-rating_locale_es.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
     ?>
 
     <?= $form->field($model, 'description')->textArea(['maxlength' => true, 'rows' => '6']) ?>
+
+    <?= $form->field($model, 'distrito_id')->dropDownList(ArrayHelper::map(Distrito::find()->where(["idProv" => 127])->orderBy('distrito')->all(), 'idDist', 'distrito')) ?>
 
     <?= $form->field($model, 'latitude')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
@@ -119,14 +122,14 @@ use yii\web\JsExpression;
         <div class="col-md-offset-2 col-md-10"></div>
         <div class="col-md-offset-2 col-md-10"><div class="help-block"></div></div>
     </div>
-    <?php $this->registerJs("getMapProperty();", yii\web\View::POS_END, uniqid());?>
+    <?php $this->registerJs("getMapProperty();", yii\web\View::POS_END, uniqid()); ?>
     <?php
     if (!$model->isNewRecord) {
         $model->extras = ArrayHelper::getColumn($model->getAccesspropertydetails()->all(), 'property_detail_id');
     }
     ?>
     <?= $form->field($model, 'extras')->checkboxList(ArrayHelper::map(app\models\PropertyDetail::find()->all(), 'id', 'name'), ['inline' => false]) ?>
-    
+
     <?=
     $form->field($model, 'photos[]')->widget(FileInput::classname(), [
         'pluginOptions' => [

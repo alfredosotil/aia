@@ -72,7 +72,7 @@ use kartik\form\ActiveForm;
                                 <h5 class="subtitle-margin">aia</h5>
                                 <h3>visi&Oacute;n<span class="special-color">.</span></h3>
                                 <div class="title-separator center-block feature-separator"></div>
-                                <p><?php echo htmlspecialchars("NUESTRA VISIÓN EN POSICIONARNOS EN EL MERCADO PERUANO DE BIENES RAICES COMO UNA EMPRESA LIDER, LLEGANDO A SER LA PRIMERA Y MEJOR OPCIÓN PARA QUIENES REQUIERAN REALIZAR OPERACIONES INMOBILIARIAS."); ?></p>
+                                <p><?php echo htmlspecialchars("NUESTRA VISIÓN EN POSICIONARNOS EN EL MERCADO PERUANO DE BIENES RAÍCES COMO UNA EMPRESA LIDER, LLEGANDO A SER LA PRIMERA Y MEJOR OPCIÓN PARA QUIENES REQUIERAN REALIZAR OPERACIONES INMOBILIARIAS."); ?></p>
                             </div>
                         </div>
                     </div>			
@@ -90,7 +90,7 @@ use kartik\form\ActiveForm;
                             <div class="contact3 wow fadeInUp">
                                 <div class="row">
                                     <div class="col-xs-12 col-lg-12 text-center">
-                                        <h5 class="subtitle-margin">contactanos</h5>
+                                        <h5 class="subtitle-margin">cont&Aacute;ctanos</h5>
                                         <h1 class="">Agenda una visita<span class="special-color">.</span></h1>
                                     </div>
                                     <div class="col-xs-8 col-xs-offset-2 col-sm-offset-4 col-sm-4">
@@ -102,7 +102,7 @@ use kartik\form\ActiveForm;
                                         <!--<h5 class="subtitle-margin">agent</h5>-->
                                         <h3 class="title-negative-margin">comunicate<span class="special-color">.</span></h3>
                                         <a href="#" class="agent-photo">
-                                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/agent.jpg" alt="" class="img-responsive" />
+                                            <img src="<?= Yii::$app->request->baseUrl; ?>/images/logo.png" alt="" class="img-responsive" />
                                         </a>
                                     </div>
                                     <div class="col-xs-12 col-sm-8">
@@ -126,7 +126,7 @@ use kartik\form\ActiveForm;
                                                     </a>
                                                 </div>                                                
                                                 <div class="pull-right">
-                                                    <a class="agent-icon-circle icon-margin" href="#">
+                                                    <a class="agent-icon-circle icon-margin" href="skype:informesaia2?call">
                                                         <i class="fa fa-skype"></i>
                                                     </a>
                                                 </div>
@@ -142,11 +142,11 @@ use kartik\form\ActiveForm;
                                         ?>
                                         <?= $form->field($model, 'name')->textInput(['class' => 'input-full main-input', 'placeholder' => 'Tu nombre'])->label(false) ?>
 
-                                        <?= $form->field($model, 'phone')->textInput(['class' => 'input-full main-input', 'placeholder' => 'Tu telefono'])->label(false) ?>
+                                        <?= $form->field($model, 'phone')->textInput(['class' => 'input-full main-input', 'placeholder' => 'Tu teléfono'])->label(false) ?>
 
-                                        <?= $form->field($model, 'email')->textInput(['class' => 'input-full contact-textarea main-input', 'placeholder' => 'Tu correo electronico'])->label(false) ?>
+                                        <?= $form->field($model, 'email')->textInput(['class' => 'input-full contact-textarea main-input', 'placeholder' => 'Tu correo electrónico'])->label(false) ?>
 
-                                        <?= $form->field($model, 'body')->textArea(['rows' => 6, 'class' => 'input-full contact-textarea main-input', 'placeholder' => 'Cual es tu consulta?'])->label(false) ?>
+                                        <?= $form->field($model, 'body')->textArea(['rows' => 6, 'class' => 'input-full contact-textarea main-input', 'placeholder' => '¿Cual es tu consulta?'])->label(false) ?>
                                         <a href="javascript:document.getElementById('contactus-form').submit();" class="button-primary" id="form-submit">
                                             <span>Enviar</span>
                                             <div class="button-triangle"></div>

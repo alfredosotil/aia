@@ -52,7 +52,7 @@ use kartik\form\ActiveForm;
 
                         <?= $form->field($model, 'email')->textInput(['class' => 'input-full contact-textarea main-input', 'placeholder' => 'Tu correo electronico'])->label(false) ?>
 
-                        <?= $form->field($model, 'body')->textArea(['rows' => 6, 'class' => 'input-full contact-textarea main-input', 'placeholder' => 'Cual es tu consulta?'])->label(false) ?>
+                        <?= $form->field($model, 'body')->textArea(['rows' => 6, 'class' => 'input-full contact-textarea main-input', 'placeholder' => '¿Cual es tu consulta?'])->label(false) ?>
                         <a href="javascript:document.getElementById('contactus-form').submit();" class="button-primary" id="form-submit">
                             <span>Enviar</span>
                             <div class="button-triangle"></div>

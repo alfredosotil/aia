@@ -587,7 +587,7 @@ jQuery(window).load(function () {
 
         if ($("#neighbourhood-owl").length) {
             $("#neighbourhood-owl").owlCarousel({
-                items: 1,
+                items: 3,
                 itemsDesktop: [1182, 2],
                 itemsDesktopSmall: [974, 2],
                 itemsTablet: [750, 2],
