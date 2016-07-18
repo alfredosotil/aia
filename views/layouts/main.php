@@ -67,7 +67,7 @@ AppAsset::register($this);
                                         </a>
                                     </div>
                                     <div class="top-social-last pull-right" data-toggle="tooltip" data-placement="bottom" title="Admin Site">
-                                        <a class="top-icon-circle" href="<?= Url::toRoute("dashboard/index") ?>">
+                                        <a class="top-icon-circle" href="<?= Url::toRoute("dashboard/index", 'https') ?>">
                                             <i class="fa fa-tachometer"></i>
                                         </a>
                                     </div>

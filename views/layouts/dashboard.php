@@ -64,7 +64,7 @@ DashboardAsset::register($this);
                             usuario(<?= Yii::$app->user->identity->username ?>)<i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="<?= Url::toRoute("site/index") ?>"><i class="fa fa-home fa-fw"></i> Inicio AIA</a>
+                            <li><a href="<?= Url::toRoute("site/index", 'http') ?>"><i class="fa fa-home fa-fw"></i> Inicio AIA</a>
                             </li>
                             <li class="divider"></li>
                             <li><a href="<?= Url::toRoute("site/logout") ?>" data-method="post"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesion</a>
