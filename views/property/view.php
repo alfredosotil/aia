@@ -2,19 +2,19 @@
 
 //use yii\widgets\DetailView;
 use kartik\detail\DetailView;
-
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model app\models\Property */
 ?>
 <div class="property-view">
     <?php
-    if($pdf !== true)
-    echo yii\helpers\Html::a('<i class="fa fa-file-pdf-o"></i> PDF de esta propiedad', ['/property/pdfproperty', 'id' => $model->id], [
-        'class' => 'btn btn-danger',
-        'target' => '_blank',
-        'data-toggle' => 'tooltip',
-        'title' => 'Generar Pdf de esta propiedad'
-    ]);
+    if ($pdf !== true)
+        echo yii\helpers\Html::a('<i class="fa fa-file-pdf-o"></i> PDF de esta propiedad', Url::toRoute(['property/pdfproperty', 'id' => $model->id], 'http'), [
+            'class' => 'btn btn-danger',
+            'target' => '_blank',
+            'data-toggle' => 'tooltip',
+            'title' => 'Generar Pdf de esta propiedad'
+        ]);
     ?>
     <?=
     DetailView::widget([
@@ -86,6 +86,10 @@ use kartik\detail\DetailView;
                 'attribute' => 'longitude',
                 'format' => 'raw',
                 'value' => "<div id='property-map-view-longitude'>$model->longitude</div>",
+            ],
+            [
+                'attribute' => 'distrito_id',
+                'value' => $model->getDistrito()->one()->distrito,
             ],
             'address',
             'references',

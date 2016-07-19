@@ -117,6 +117,7 @@ use kartik\widgets\StarRating;
     <div class="form-group field-property-map">
         <label class="control-label col-md-2" for="map">Mapa</label>
         <div class="col-md-10">
+            <input id="pac-input" class="controls" type="text" placeholder="Buscar lugar">
             <div id="property-map" class="loader-map"></div>
         </div>
         <div class="col-md-offset-2 col-md-10"></div>

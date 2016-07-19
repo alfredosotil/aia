@@ -265,6 +265,7 @@ class PropertyController extends Controller {
                                 'forceReload' => '#crud-datatable-pjax',
                                 'title' => "Propiedad #" . $id,
                                 'content' => $this->renderAjax('view', [
+                                    'pdf' => false,
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
@@ -287,6 +288,7 @@ class PropertyController extends Controller {
                                 'forceReload' => '#crud-datatable-pjax',
                                 'title' => "Propiedad #" . $id,
                                 'content' => $this->renderAjax('view', [
+                                    'pdf' => false,
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .

@@ -163,36 +163,36 @@ jQuery(document).ready(function ($) {
                 return false;
     };
     //agregar clase protectMe a todas las imagenes y evitar el drag de las imagenes
-    $(function () {
-            $("img").addClass("protectMe");
-
-            var pixelSource = 'http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif';
-            var useOnAllImages = true;
-            // Preload the pixel
-            var preload = new Image();
-            preload.src = pixelSource;
-            $('img').on('mouseenter touchstart', function (e) {
-                // Only execute if this is not an overlay or skipped
-                var img = $(this);
-                if (img.hasClass('protectionOverlay'))
-                    return;
-                if (!useOnAllImages && !img.hasClass('protectMe'))
-                    return;
-                // Get the real image's position, add an overlay
-                var pos = img.offset();
-                var overlay = $('<img class="protectionOverlay" src="' + pixelSource + '" width="' + img.width() + '" height="' + img.height() + '" />').css({position: 'absolute', zIndex: 9999999, left: pos.left, top: pos.top}).appendTo('body').bind('mouseleave', function () {
-                    setTimeout(function () {
-                        overlay.remove();
-                    }, 0, $(this));
-                });
-                if ('ontouchstart' in window)
-                    $(document).one('touchend', function () {
-                        setTimeout(function () {
-                            overlay.remove();
-                        }, 0, overlay);
-                    });
-            });
-        });
+//    $(function () {
+//            $("img").addClass("protectMe");
+//
+//            var pixelSource = 'http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif';
+//            var useOnAllImages = true;
+//            // Preload the pixel
+//            var preload = new Image();
+//            preload.src = pixelSource;
+//            $('img').on('mouseenter touchstart', function (e) {
+//                // Only execute if this is not an overlay or skipped
+//                var img = $(this);
+//                if (img.hasClass('protectionOverlay'))
+//                    return;
+//                if (!useOnAllImages && !img.hasClass('protectMe'))
+//                    return;
+//                // Get the real image's position, add an overlay
+//                var pos = img.offset();
+//                var overlay = $('<img class="protectionOverlay" src="' + pixelSource + '" width="' + img.width() + '" height="' + img.height() + '" />').css({position: 'absolute', zIndex: 9999999, left: pos.left, top: pos.top}).appendTo('body').bind('mouseleave', function () {
+//                    setTimeout(function () {
+//                        overlay.remove();
+//                    }, 0, $(this));
+//                });
+//                if ('ontouchstart' in window)
+//                    $(document).one('touchend', function () {
+//                        setTimeout(function () {
+//                            overlay.remove();
+//                        }, 0, overlay);
+//                    });
+//            });
+//        });
         
     if (boxed) {
         $('#wrapper').addClass("boxed");
