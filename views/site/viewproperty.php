@@ -190,7 +190,7 @@ $cont = 1;
                         </div>
                         <div class="row margin-top-60">
                             <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0">
-                                <h5 class="subtitle-margin"><?= $agent->getProfile()->one()->name ?></h5>
+                                <h5 class="subtitle-margin">Agente</h5>
                                 <h3 class="title-negative-margin"><?= $agent->names . " " . $agent->surnames ?><span class="special-color">.</span></h3>
                                 <a href="#" class="agent-photo">
                                     <img src="<?= isset($agent->avatar) ? Yii::$app->request->baseUrl . "/uploads/user/" . $agent->avatar : Yii::$app->request->baseUrl . "/images/avatar-generic.jpg"; ?>" alt="" class="img-responsive" />

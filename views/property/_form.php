@@ -73,7 +73,7 @@ use kartik\widgets\StarRating;
     <?= $form->field($model, 'emailowner')->textInput(['maxlength' => true]) ?>
 
     <?php
-    if (Yii::$app->user->identity->profile_id === 2 || Yii::$app->user->identity->profile_id === 1)
+    if (Yii::$app->user->identity->profile_id === 2 || Yii::$app->user->identity->profile_id === 1) {
         echo $form->field($model, 'priority')->widget(StarRating::classname(), [
             'language' => 'es',
             'pluginOptions' => [
@@ -99,7 +99,8 @@ use kartik\widgets\StarRating;
                 ],
             ]
         ]);
-    $this->registerJsFile('@web/js/star-rating_locale_es.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+        $this->registerJsFile('@web/js/star-rating_locale_es.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+    }
     ?>
 
     <?= $form->field($model, 'description')->textArea(['maxlength' => true, 'rows' => '6']) ?>
