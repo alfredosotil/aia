@@ -76,7 +76,6 @@ class PropertyController extends Controller {
             return [
                 'title' => "Propiedad #" . $id,
                 'content' => $this->renderAjax('view', [
-                    'pdf' => false,
                     'model' => $this->findModel($id),
                 ]),
                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
@@ -84,7 +83,6 @@ class PropertyController extends Controller {
             ];
         } else {
             return $this->render('view', [
-                        'pdf' => false,
                         'model' => $this->findModel($id),
             ]);
         }
@@ -265,7 +263,6 @@ class PropertyController extends Controller {
                                 'forceReload' => '#crud-datatable-pjax',
                                 'title' => "Propiedad #" . $id,
                                 'content' => $this->renderAjax('view', [
-                                    'pdf' => false,
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
@@ -288,7 +285,6 @@ class PropertyController extends Controller {
                                 'forceReload' => '#crud-datatable-pjax',
                                 'title' => "Propiedad #" . $id,
                                 'content' => $this->renderAjax('view', [
-                                    'pdf' => false,
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
@@ -406,10 +402,10 @@ class PropertyController extends Controller {
     }
 
     public function actionPdfproperty($id) {
+        $img = Html::img("@web/images/loader.png", ['width' => 40, 'class' => 'img-responsive', 'alt' => 'AIA Asesoria Inmobiliaria']);
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE, // leaner size using standard fonts
-            'content' => $this->renderPartial('view', [
-                'pdf' => true,
+            'content' => $this->renderPartial('pdfclient', [
                 'model' => $this->findModel($id),
             ]),
             'options' => [
@@ -417,8 +413,8 @@ class PropertyController extends Controller {
                 'subject' => '---'
             ],
             'methods' => [
-                'SetHeader' => ['Generado por AIA Asesoria Inmobiliaria||Generado el dia: ' . date("r")],
-                'SetFooter' => ['|Pagina {PAGENO}|'],
+                'SetHeader' => ['Generado por AIA Asesoria Inmobiliaria||Generado el día: ' . date("r")],
+                'SetFooter' => ["$img |Pagina {PAGENO}| Calle Coronel Inclan 425 int. 104. <br>telf: +51(01)4785767"],
             ]
         ]);
         return $pdf->render();

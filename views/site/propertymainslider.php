@@ -44,7 +44,7 @@ $classButtons[3] = 'slide-buttons slide-buttons-center';
                         </div>	
                     </div>
                     <div class="slide-desc-price">
-                        <?= ($model->money === 'D') ? '$' : 'S/.'; ?> <?= $model->price; ?>
+                        <?= Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.')?>
                     </div>
                     <div class="clearfix"></div>
                 </div>

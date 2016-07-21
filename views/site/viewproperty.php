@@ -42,7 +42,7 @@ $cont = 1;
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="gallery-slide-desc-price pull-right">
-                                                <?= ($model->money === 'D') ? '$' : 'S/.'; ?> <?= $model->price; ?>
+                                                <?= Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.')?>
                                             </div>	
                                             <div class="clearfix"></div>
                                         </div>	
@@ -107,7 +107,7 @@ $cont = 1;
                                 <p class="details-desc"><?= $model->description; ?></p>
                             </div>
                             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
-                                <div class="details-parameters-price"><?= ($model->money === 'D') ? '$' : 'S/.'; ?> <?= $model->price; ?></div>
+                                <div class="details-parameters-price"><?= Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.')?></div>
                                 <div class="details-parameters">
                                     <div class="details-parameters-cont">
                                         <div class="details-parameters-name">Area</div>

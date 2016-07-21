@@ -3,6 +3,7 @@
 //use yii\widgets\DetailView;
 use kartik\detail\DetailView;
 use yii\helpers\Url;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Property */
 ?>
@@ -20,6 +21,16 @@ use yii\helpers\Url;
                 'value' => $model->getAgent()->one()->names . " " . $model->getAgent()->one()->surnames,
             ],
             [
+                'attribute' => 'user_id',
+                'label' => 'Correo agente',
+                'value' => $model->getAgent()->one()->email,
+            ],
+            [
+                'attribute' => 'user_id',
+                'label' => 'Teléfono agente',
+                'value' => $model->getAgent()->one()->phone,
+            ],
+            [
                 'attribute' => 'type',
                 'label' => 'Tipo de inmueble',
                 'value' => $model->getType()->one()->type,
@@ -30,17 +41,11 @@ use yii\helpers\Url;
                 'value' => $model->getState()->one()->state,
             ],
             'price',
-            'money',
             [
-                'attribute' => 'commission',
-//                'format' => 'raw',
-                'value' => $model->commission . "%",
+                'attribute' => 'money',
+                'value' => ($model->money === 'D') ? 'USD' : 'S/.',
             ],
-            [
-                'attribute' => 'area',
-//                'format' => 'raw',
-                'value' => $model->area . "m2",
-            ],
+            'area',
             [
                 'attribute' => 'furnished',
                 'format' => 'raw',
@@ -50,7 +55,6 @@ use yii\helpers\Url;
             'bathrooms',
             'garages',
             'yearsold',
-            'priority',
             'description',
             [
                 'attribute' => 'extras',
@@ -62,12 +66,6 @@ use yii\helpers\Url;
                 'format' => 'raw',
                 'value' => ($model->active == 1) ? '<span class="label label-success">Si</span>' : '<span class="label label-danger">No</span>',
             ],
-            'datecreation',
-            'datestart',
-            'datelastupdate',
-            'owner',
-            'phoneowner',
-            'emailowner:email',
             [
                 'attribute' => 'latitude',
                 'format' => 'raw',
@@ -87,15 +85,11 @@ use yii\helpers\Url;
             [
                 'attribute' => 'map',
                 'format' => 'raw',
-                'value' => '<a id="link-photo-map" target="_blank"><div id="property-map-view" class="loader-map"></div></a>',
-            ],
-            [
-                'attribute' => 'imageFiles',
-                'format' => 'raw',
-                'value' => $model->getImagesCarousel(),
+                'value' => "<img class='img-responsive' src='http://maps.googleapis.com/maps/api/staticmap?center=$model->latitude,$model->longitude&zoom=16&scale=1&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C$model->latitude,$model->longitude' alt='Google Map of $model->latitude,$model->longitude'>",
             ],
         ],
     ])
     ?>
-    <?php $this->registerJs("getMapProperty();", yii\web\View::POS_END, uniqid()); ?>
+    <h1>Imagenes de la propiedad</h1>
+    <?= $model->getImagesCarousel('')?>
 </div>

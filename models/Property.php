@@ -76,7 +76,7 @@ class Property extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['type_id', 'state_id', 'money', 'commission', 'longitude', 'latitude', 'address', 'owner', 'phoneowner'], 'required'],
-            [['priority', 'type_id', 'state_id', 'user_id','distrito_id', 'active', 'priority', 'furnished'], 'integer'],
+            [['priority', 'type_id', 'state_id', 'user_id', 'distrito_id', 'active', 'priority', 'furnished'], 'integer'],
             [['price', 'commission', 'area', 'bedrooms', 'bathrooms', 'garages', 'yearsold'], 'number'],
             [['datecreation', 'datestart', 'datelastupdate'], 'safe'],
             [['money'], 'string', 'max' => 1],
@@ -160,14 +160,14 @@ class Property extends \yii\db\ActiveRecord {
     public function getState() {
         return $this->hasOne(State::className(), ['id' => 'state_id']);
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getDistrito() {
         return $this->hasOne(Distrito::className(), ['idDist' => 'distrito_id']);
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -240,12 +240,25 @@ class Property extends \yii\db\ActiveRecord {
         }
     }
 
-    public function getImagesCarousel() {
+    public function getImagesCarousel($size) {
         $images = $this->getImagesProperties()->orderBy('order')->all();
         if (count($images) > 0) {
             $divContent = "";
             foreach ($images as $image) {
-                $img = Html::img("@web/uploads/property/sqr_$image->name", ['class' => 'img-responsive', 'alt' => $image->order]);
+                $img = Html::img("@web/uploads/property/$size$image->name", ['class' => 'img-responsive', 'alt' => $image->order]);
+                $divContent .= Html::tag('div', $img, ['class' => 'item pull-left']);
+            }
+            return Html::tag('div', $divContent, ['id' => 'owl-images-property']);
+        }
+        return Html::tag('div', "No hay imagenes", ['id' => 'owl-images-property', 'class' => 'alert alert-warning']);
+    }
+
+    public function getImagesClient($size, $width) {
+        $images = $this->getImagesProperties()->orderBy('order')->all();
+        if (count($images) > 0) {
+            $divContent = "";
+            foreach ($images as $image) {
+                $img = Html::img("@web/uploads/property/$size$image->name", ['width' => $width, 'class' => 'img-responsive', 'alt' => $image->order]);
                 $divContent .= Html::tag('div', $img, ['class' => 'item pull-left']);
             }
             return Html::tag('div', $divContent, ['id' => 'owl-images-property']);

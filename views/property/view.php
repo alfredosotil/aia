@@ -3,18 +3,18 @@
 //use yii\widgets\DetailView;
 use kartik\detail\DetailView;
 use yii\helpers\Url;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Property */
 ?>
 <div class="property-view">
     <?php
-    if ($pdf !== true)
-        echo yii\helpers\Html::a('<i class="fa fa-file-pdf-o"></i> PDF de esta propiedad', Url::toRoute(['property/pdfproperty', 'id' => $model->id], 'http'), [
-            'class' => 'btn btn-danger',
-            'target' => '_blank',
-            'data-toggle' => 'tooltip',
-            'title' => 'Generar Pdf de esta propiedad'
-        ]);
+    echo yii\helpers\Html::a('<i class="fa fa-file-pdf-o"></i> PDF de esta propiedad', Url::toRoute(['property/pdfproperty', 'id' => $model->id], 'http'), [
+        'class' => 'btn btn-danger',
+        'target' => '_blank',
+        'data-toggle' => 'tooltip',
+        'title' => 'Generar Pdf de esta propiedad'
+    ]);
     ?>
     <?=
     DetailView::widget([
@@ -101,10 +101,10 @@ use yii\helpers\Url;
             [
                 'attribute' => 'imageFiles',
                 'format' => 'raw',
-                'value' => $model->getImagesCarousel(),
+                'value' => $model->getImagesCarousel(''),
             ],
         ],
     ])
     ?>
-    <?php $this->registerJs("getMapProperty();", yii\web\View::POS_END, uniqid()); ?>
+<?php $this->registerJs("getMapProperty();", yii\web\View::POS_END, uniqid()); ?>
 </div>

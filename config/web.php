@@ -17,6 +17,9 @@ $config = [
             'dateFormat' => 'php:d-M-Y',
             'datetimeFormat' => 'php:Y-m-d H:i:s',
             'timeFormat' => 'php:H:i:s',
+//            'decimalSeparator' => ',',
+//            'thousandSeparator' => ' ',
+//            'currencyCode' => 'PEN',
         ],
         'assetManager' => [
             'linkAssets' => true,

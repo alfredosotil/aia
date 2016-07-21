@@ -23,7 +23,7 @@
             </div>                          
         </div>
         <div class="featured-price">
-            <?= ($model->money === 'D') ? '$' : 'S/.'; ?> <?= $model->price; ?>
+            <?= Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.')?>
         </div>
     </div>
     <div class="featured-offer-back">
