@@ -42,8 +42,8 @@ class Access extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'profile_id' => 'Profile ID',
-            'module_id' => 'Module ID',
+            'profile_id' => 'Perfil ID',
+            'module_id' => 'Modulo ID',
         ];
     }
 

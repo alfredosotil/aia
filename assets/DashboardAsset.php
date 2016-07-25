@@ -40,11 +40,13 @@ class DashboardAsset extends AssetBundle {
     ];
     public $js = [
 //        'js/apartment.js',
+        'js/plugins.js',
         'js/sb-admin-2.js',
 //        'bootstrap/bootstrap.min.js',
         'js/metisMenu.min.js',
         'js/raphael-min.js',
         'js/wow.min.js',
+//        'js/star-rating_locale_es.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

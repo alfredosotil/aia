@@ -14,6 +14,7 @@ use yii\widgets\DetailView;
             'id',
             'names',
             'surnames',
+            'phone',
             'email:email',
             'username',
             'password',
@@ -27,10 +28,19 @@ use yii\widgets\DetailView;
             'type_id',
             'state_id',
             'sex',
-            'profile_id',
+//            'profile_id',
+            [
+                'attribute' => 'profile.name',
+                'label' => 'Perfil de Usuario',
+            ],
             'authKey',
             'accessToken',
             'parent',
+            [// the owner name of the model
+                'attribute' => 'avatar',
+                'format' => 'raw',
+                'value' => yii\helpers\Html::img(isset($model->avatar)?"@web/uploads/user/sqr_$model->avatar":"@web/images/avatar-generic.jpg", ['class' => 'pull-left img-responsive'])
+            ]
         ],
     ])
     ?>

@@ -31,8 +31,8 @@ class ImagesProperty extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'property_id'], 'required'],
-            [['id', 'property_id', 'order', 'active'], 'integer'],
+            [['property_id'], 'required'],
+            [['property_id', 'order', 'active'], 'integer'],
             [['name'], 'string', 'max' => 150],
             [['property_id'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['property_id' => 'id']],
         ];

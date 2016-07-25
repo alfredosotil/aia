@@ -43,9 +43,9 @@ class Type extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type' => 'Type',
-            'category' => 'Category',
-            'active' => 'Active',
+            'type' => 'Tipo',
+            'category' => 'Categoria',
+            'active' => 'Activo',
         ];
     }
 

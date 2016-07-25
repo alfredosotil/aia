@@ -46,10 +46,10 @@ class Profile extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'category' => 'Category',
-            'active' => 'Active',
+            'name' => 'Nombre',
+            'description' => 'Descripcion',
+            'category' => 'Categoria',
+            'active' => 'Activo',
         ];
     }
 

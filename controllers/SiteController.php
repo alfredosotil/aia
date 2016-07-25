@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\web\Response;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -18,8 +19,8 @@ class SiteController extends Controller {
                 'only' => ['logout', 'submitproperty'],
                 'rules' => [
                     [
-                        'allow' => true,
                         'actions' => ['login'],
+                        'allow' => true,
                         'roles' => ['?'],
                     ],
                     [
@@ -59,7 +60,19 @@ class SiteController extends Controller {
     }
 
     public function actionAboutus() {
-        return $this->render('aboutus');
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('aboutus', [
+                    'model' => $model,
+        ]);
+    }
+
+    public function actionServices() {
+        return $this->render('services');
     }
 
     public function actionWorkwithus() {
@@ -78,13 +91,13 @@ class SiteController extends Controller {
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
-        }        
-        
+        }
+
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        
+
         return $this->render('login', [
                     'model' => $model,
         ]);
@@ -107,5 +120,55 @@ class SiteController extends Controller {
                     'model' => $model,
         ]);
     }
+
+    public function actionViewproperty($id) {
+        $model = \app\models\Property::findOne($id);
+//        $model->getAgent()->one()->email;
+        $modelContactForm = new ContactForm();
+        if ($modelContactForm->load(Yii::$app->request->post()) && $modelContactForm->contact($model->getAgent()->one()->email)) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('viewproperty',[
+            'modelcf' => $modelContactForm,
+            'model' => $model
+        ]);
+    }
+    
+    public function getMainSlider() {
+        $html = "";
+        $properties = \app\models\Property::getPropertyByPriority(5, 10); //limit 20
+        $cont = 1;
+        $position = 1;
+        foreach ($properties as $p) {
+            if ($position > 3) {
+                $position = 1;
+            }
+            $html .= $this->renderPartial('propertymainslider', ['model' => $p, 'cont' => $cont, 'position' => $position]);
+            $cont++;
+            $position++;
+        }
+        return $html;
+    }
+
+    public function getRecentlyAdded() {
+        $html = "";
+        $properties = \app\models\Property::getPropertiesRecentlyAdded(15, 20); //limit 20
+        foreach ($properties as $p) {
+            $html .= $this->renderPartial('propertyrecentlyaddedslider', ['model' => $p]);
+        }
+        return $html;
+    }
+
+    public function getAgentsSlider() {
+        $html = "";
+        $agents = \app\models\Agent::getAgents(10); //limit 20
+        foreach ($agents as $a) {
+            $html .= $this->renderPartial('agentslider', ['model' => $a]);
+        }
+        return $html;
+    }
+
 
 }

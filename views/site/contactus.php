@@ -2,71 +2,81 @@
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\ContactForm */
+
+use kartik\form\ActiveForm;
 ?>
 
 <div class="site-contact">
-    <section class="short-image no-padding contact-short-title">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-lg-12 short-image-title">
-                    <h5 class="subtitle-margin second-color">get in touch</h5>
-                    <h1 class="second-color">Contact Us</h1>
-                    <div class="short-title-separator"></div>
-                </div>
-            </div>
+    <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
+
+        <div class="alert alert-success">
+            Gracias por contactarnos. Te responderemos lo mas pronto posibles.
         </div>
 
-    </section>
-
-    <section class="section-light section-both-shadow top-padding-45">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-6 margin-top-45">
-                    <p class="negative-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <img src="<?= Yii::$app->request->baseUrl; ?>/images/contact-image.jpg" alt="" class="pull-left margin-top-45" />
-                    <address class="contact-info pull-left">
-                        <span><i class="fa fa-map-marker"></i>00456 Some Address line</span>
-                        <span><i class="fa fa-envelope"></i><a href="#">email@domain.tld</a></span>
-                        <span><i class="fa fa-phone"></i>01-23456789</span>
-                        <span><i class="fa fa-globe"></i><a href="#">http://somedmain.tld</a></span>
-                        <span><i class="fa fa-clock-o"></i>mon-fri: 8:00 - 18:00</span>
-                        <span class="span-last">sat: 10:00 - 16:00</span>
-                    </address>
+    <?php else: ?>
+        <section class="short-image no-padding contact-short-title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-lg-12 short-image-title">
+                        <h5 class="subtitle-margin second-color">mantente en contacto</h5>
+                        <h1 class="second-color">Contactanos</h1>
+                        <div class="short-title-separator"></div>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-md-6 margin-top-45">
-                    <form name="contact-from" id="contact-form" action="#" method="get">
-                        <div id="form-result"></div>
-                        <input name="name" id="name" type="text" class="input-short main-input required,all" placeholder="Your name" />
-                        <input name="phone" id="phone" type="text" class="input-short pull-right main-input required,all" placeholder="Your phone" />
-                        <input name="mail" id="mail" type="email" class="input-full main-input required,email" placeholder="Your email" />
-                        <textarea name="message" id="message" class="input-full contact-textarea main-input required,email" placeholder="Your question"></textarea>
-                        <div class="form-submit-cont">
-                            <a href="#" class="button-primary pull-right" id="form-submit">
-                                <span>send</span>
-                                <div class="button-triangle"></div>
-                                <div class="button-triangle2"></div>
-                                <div class="button-icon"><i class="fa fa-paper-plane"></i></div>
-                            </a>
-                            <div class="clearfix"></div>
-                        </div>
-                    </form>
-                </div>
-
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="contact-map2" id="contact-map2">
-    </section>
+        <section class="section-light section-both-shadow top-padding-45">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-3 margin-top-45">
+                        <address class="contact-info pull-left">
+                            <span><i class="fa fa-map-marker"></i>Calle Coronel Inclan 425 int. 104.</span>
+                            <span><i class="fa fa-envelope"></i><a href="mailto:informes@aia.com.pe?Subject=Informes%20AIA">informes@aia.com.pe</a></span>
+                            <span><i class="fa fa-phone"></i>+51(01)4785767</span>
+                            <span><i class="fa fa-clock-o"></i>Lunes - Viernes: 8:00 - 18:00</span>
+                            <span class="span-last">S&aacute;bados: 10:00 - 16:00</span>
+                        </address>
+                    </div>
+                    <div class="col-xs-12 col-md-9 margin-top-45">
+                        <?php
+                        $form = ActiveForm::begin([
+                                    'id' => 'contactus-form',
+//                                'type' => ActiveForm::TYPE_HORIZONTAL,
+//                                'options' => ['enctype' => 'multipart/form-data']
+                        ]);
+                        ?>
+                        <?= $form->field($model, 'name')->textInput(['autofocus' => true, 'class' => 'input-full main-input', 'placeholder' => 'Tu nombre'])->label(false) ?>
+
+                        <?= $form->field($model, 'phone')->textInput(['class' => 'input-full main-input', 'placeholder' => 'Tu telefono'])->label(false) ?>
+
+                        <?= $form->field($model, 'email')->textInput(['class' => 'input-full contact-textarea main-input', 'placeholder' => 'Tu correo electronico'])->label(false) ?>
+
+                        <?= $form->field($model, 'body')->textArea(['rows' => 6, 'class' => 'input-full contact-textarea main-input', 'placeholder' => '¿Cual es tu consulta?'])->label(false) ?>
+                        <a href="javascript:document.getElementById('contactus-form').submit();" class="button-primary" id="form-submit">
+                            <span>Enviar</span>
+                            <div class="button-triangle"></div>
+                            <div class="button-triangle2"></div>
+                            <div class="button-icon"><i class="fa fa-paper-plane"></i></div>
+                        </a>
+                        <div class="clearfix"></div>
+                        <?php ActiveForm::end(); ?>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-map2" id="contact-map2">
+        </section>
+    <?php endif; ?>
 </div>
-<!-- Google Maps -->
 
-
-<!-- google maps initialization -->	
 <script type="text/javascript">
     google.maps.event.addDomListener(window, 'load', init);
     function init() {
-        mapInit(41.6926, -87.6021, "contact-map2", "<?= Yii::$app->request->baseUrl; ?>/images/pin-contact.png", true);
+        mapInit(-12.1156075, -77.0313685, "contact-map2", "<?= Yii::$app->request->baseUrl; ?>/images/pin-contact.png", true);
     }
 </script>

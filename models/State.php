@@ -43,9 +43,9 @@ class State extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'state' => 'State',
-            'category' => 'Category',
-            'active' => 'Active',
+            'state' => 'Estado',
+            'category' => 'Categoria',
+            'active' => 'Activo',
         ];
     }
 

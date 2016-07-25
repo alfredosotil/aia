@@ -12,15 +12,25 @@ $config = [
         ]
     ],
     'components' => [
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'php:d-M-Y',
+            'datetimeFormat' => 'php:Y-m-d H:i:s',
+            'timeFormat' => 'php:H:i:s',
+//            'decimalSeparator' => ',',
+//            'thousandSeparator' => ' ',
+//            'currencyCode' => 'PEN',
+        ],
         'assetManager' => [
+            'linkAssets' => true,
             'assetMap' => [
                 'bootstrap.js' => '@web/bootstrap/bootstrap.min.js',
                 'jquery.js' => '@web/js/jQuery/jquery.min.js',
             ],
-            'bundles' => [                
+            'bundles' => [
                 'yii\bootstrap\BootstrapAsset' => [
-                    'basePath' => '@webroot',   // do not publish the bundle
-                    'baseUrl' => '@web',   // do not publish the bundle
+                    'basePath' => '@webroot', // do not publish the bundle
+                    'baseUrl' => '@web', // do not publish the bundle
                     'css' => [
                         'bootstrap/bootstrap.min.css',
                     ],
@@ -46,7 +56,7 @@ $config = [
             ],
         ],
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'aZz5joDFfm5Gc5EBvzmjY8U-zAtkeKuC',
         ],
         'cache' => [
@@ -61,10 +71,16 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'viewPath' => '@app/mail',
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'mail.aia.com.pe',
+                'username' => 'tademetv@aia.com.pe',
+                'password' => 'leY517aL6l',
+//                'port' => '465',
+//                'encryption' => 'ssl',
+            ],
+            'useFileTransport' => false,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -100,7 +116,7 @@ $config = [
 ];
 
 if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
+// configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
@@ -113,7 +129,7 @@ if (YII_ENV_DEV) {
         'generators' => [
             'crud' => [
                 'class' => 'yii\gii\generators\crud\Generator',
-                'templates' => [ // setting materializecss templates
+                'templates' => [// setting materializecss templates
                     'materializecss' => '@vendor/macgyer/yii2-materializecss/src/gii-templates/generators/crud/materializecss',
                 ]
             ]

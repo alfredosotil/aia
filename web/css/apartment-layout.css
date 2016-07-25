@@ -322,7 +322,7 @@ header.header3 .navbar-brand {
 }
 
 .fix-image-brand {
-    max-width: 310px;
+    max-width: 250px;
 }
 
 /*@media screen and (min-width: 480px) {
@@ -4591,7 +4591,7 @@ section.contact-page-1 {
 }
 
 .contact1-cont {
-    bottom: 45px;
+    bottom: -60px;
     width: 100%;
     position: absolute;
     z-index: 30;
@@ -6448,7 +6448,7 @@ h4.neighbourhood-title {
 
     header.sticky .navbar-brand img {
         /*width: 75%;*/
-        max-width: 280px;
+        max-width: 250px;
         margin-top: 34px;
     }
 

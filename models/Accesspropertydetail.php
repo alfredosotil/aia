@@ -31,8 +31,8 @@ class Accesspropertydetail extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'property_id', 'property_detail_id'], 'required'],
-            [['id', 'property_id', 'property_detail_id', 'active'], 'integer'],
+            [['property_id', 'property_detail_id'], 'required'],
+            [['property_id', 'property_detail_id', 'active'], 'integer'],
             [['property_id'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['property_id' => 'id']],
             [['property_detail_id'], 'exist', 'skipOnError' => true, 'targetClass' => PropertyDetail::className(), 'targetAttribute' => ['property_detail_id' => 'id']],
         ];

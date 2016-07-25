@@ -39,9 +39,9 @@ class AppAsset extends AssetBundle {
 //        'js/jQuery/jquery.min.js',
 //        'js/jQuery/jquery-ui.min.js',
 //        'bootstrap/bootstrap.min.js',
+        'js/apartment.js',
         'js/plugins.js',
 //        'mail/validate.js',
-        'js/apartment.js',
         'js/wow.min.js',
     ];
     public $depends = [
@@ -51,22 +51,27 @@ class AppAsset extends AssetBundle {
 //        'macgyer\yii2materializecss\assets\MaterializeAsset',
     ];
 
-    public function getAccess($controller) {
+    public static function getAccess($controller) {
         $allow = false;
-        $info = AppAsset::executeQuery(Yii::$app->db, "select m.id 
+        if (Yii::$app->getUser()->isGuest &&
+                Yii::$app->getRequest()->url !== Url::to(Yii::$app->getUser()->loginUrl)) {
+            Yii::$app->getResponse()->redirect(Yii::$app->getUser()->loginUrl);
+        } else {
+            $info = AppAsset::executeQuery(Yii::$app->db, "select m.id 
             from access a, profile p, module m 
             where 
             a.profile_id=p.id 
             and a.module_id=m.id 
             and p.id=:PROFILE_ID 
             and m.controller=:CONTROLLER", [':PROFILE_ID' => Yii::$app->user->identity->profile_id, ':CONTROLLER' => $controller]);
-        if (count($info) > 0) {
-            $allow = true;
+            if (count($info) > 0) {
+                $allow = true;
+            }
         }
         return $allow;
     }
 
-    public function menuDashboard() {
+    public static function menuDashboard() {
         $menu = "<li><a href=" . Url::toRoute("dashboard/index") . "><i class='fa fa-dashboard fa-fw'></i> Dashboard</a></li>";
         if (!Yii::$app->user->isGuest) {
             $typemodules = AppAsset::executeQuery(Yii::$app->db, "select distinct m.type_id, t.type
@@ -105,7 +110,7 @@ class AppAsset extends AssetBundle {
                         $label = $module['label'];
                         $icon = $module['iconfa'];
                         $menu.= "<li>                               
-                                    <a href='$url'><i class='fa $icon'></i>  $label</a>
+                                    <a href='$url'> <i class='fa $icon'></i>  $label</a>
                                  </li>";
                     }
                 }
@@ -115,12 +120,25 @@ class AppAsset extends AssetBundle {
         return $menu;
     }
 
-    public function executeQuery($db, $query, $params) {
+    public static function executeQuery($db, $query, $params) {
         return $db->createCommand($query, $params)->queryAll();
     }
 
-    public function updateQuery($db, $query, $params) {
+    public static function updateQuery($db, $query, $params) {
         return $db->createCommand($query, $params)->execute();
+    }
+
+    public  static function getIconPingProperty($type) {
+        if ($type === 'Casa' || $type === 'Casa de Campo' || $type === 'Casa de Playa') {
+            return "/images/pin-house.png";
+        } elseif ($type === 'Departamento') {
+            return "/images/pin-apartment.png";
+        } elseif ($type === 'Terreno') {
+            return "/images/pin-land.png";
+        } elseif ($type === 'Local' || $type === 'Oficina') {
+            return "/images/pin-commercial.png";
+        }
+        return "/images/pin-commercial.png";
     }
 
 }

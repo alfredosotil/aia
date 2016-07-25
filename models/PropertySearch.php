@@ -5,30 +5,32 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use app\assets\AppAsset;
 use app\models\Property;
 
 /**
  * PropertySearch represents the model behind the search form about `app\models\Property`.
  */
-class PropertySearch extends Property
-{
+class PropertySearch extends Property {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public $type;
+    public $state;
+
+    public function rules() {
         return [
-            [['id', 'type_id', 'state_id', 'active'], 'integer'],
-            [['price', 'commission', 'area', 'bedrooms', 'bathrooms'], 'number'],
-            [['money', 'longitude', 'latitude'], 'safe'],
+            [['id', 'type_id', 'state_id', 'active', 'user_id', 'distrito_id'], 'integer'],
+            [['price', 'commission', 'area', 'bedrooms', 'bathrooms', 'priority'], 'number'],
+            [['money', 'longitude', 'latitude', 'datecreation', 'datestart', 'datelastupdate', 'owner', 'phoneowner', 'emailowner', 'type', 'state', 'priority', 'user_id', 'distrito_id'], 'safe'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -40,12 +42,9 @@ class PropertySearch extends Property
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Property::find();
-
-        // add conditions that should always apply here
-
+        $query->joinWith(['type', 'state']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -58,23 +57,34 @@ class PropertySearch extends Property
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'type_id' => $this->type_id,
             'state_id' => $this->state_id,
+            'user_id' => $this->user_id,
+            'distrito_id' => $this->distrito_id,
             'price' => $this->price,
             'commission' => $this->commission,
             'area' => $this->area,
             'bedrooms' => $this->bedrooms,
             'bathrooms' => $this->bathrooms,
+            'priority' => $this->priority,
             'active' => $this->active,
+            'datecreation' => $this->datecreation,
+            'datestart' => $this->datestart,
+            'datelastupdate' => $this->datelastupdate,
         ]);
 
         $query->andFilterWhere(['like', 'money', $this->money])
-            ->andFilterWhere(['like', 'longitude', $this->longitude])
-            ->andFilterWhere(['like', 'latitude', $this->latitude]);
+                ->andFilterWhere(['like', 'longitude', $this->longitude])
+                ->andFilterWhere(['like', 'latitude', $this->latitude])
+                ->andFilterWhere(['like', 'owner', $this->owner])
+                ->andFilterWhere(['like', 'phoneowner', $this->phoneowner])
+                ->andFilterWhere(['like', 'emailowner', $this->emailowner])
+                ->andFilterWhere(['like', 'type.type', $this->type])
+                ->andFilterWhere(['like', 'state.state', $this->state]);
 
         return $dataProvider;
     }
+
 }

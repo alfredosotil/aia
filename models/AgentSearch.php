@@ -18,7 +18,7 @@ class AgentSearch extends User
     public function rules()
     {
         return [
-            [['id', 'active', 'type_id', 'state_id', 'profile_id'], 'integer'],
+            [['id', 'active', 'type_id', 'state_id', 'profile_id', 'parent'], 'integer'],
             [['names', 'surnames', 'email', 'username', 'password', 'lastupdate', 'sex', 'authKey', 'accessToken'], 'safe'],
         ];
     }
@@ -43,8 +43,6 @@ class AgentSearch extends User
     {
         $query = User::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -57,14 +55,14 @@ class AgentSearch extends User
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'active' => $this->active,
             'lastupdate' => $this->lastupdate,
-            'type_id' => 9,
+            'type_id' => $this->type_id,
             'state_id' => $this->state_id,
-            'profile_id' => $this->profile_id,
+            'profile_id' => 3,//$this->profile_id,
+            'parent' => $this->parent,
         ]);
 
         $query->andFilterWhere(['like', 'names', $this->names])
