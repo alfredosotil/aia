@@ -67,7 +67,7 @@ DashboardAsset::register($this);
                             <li><a href="<?= Url::toRoute("site/index", 'http') ?>"><i class="fa fa-home fa-fw"></i> Inicio AIA</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="<?= Url::toRoute("site/logout") ?>" data-method="post"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesion</a>
+                            <li><a href="<?= Url::toRoute("site/logout", 'http') ?>" data-method="post"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesion</a>
                             </li>
                         </ul>
                         <!-- /.dropdown-user -->

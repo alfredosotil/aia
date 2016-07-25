@@ -1,4 +1,9 @@
 <?php
+
+use yii\helpers\ArrayHelper;
+use app\models\Distrito;
+use yii\helpers\Html;
+
 /* @var $this yii\web\View */
 
 //$this->title = 'My Yii Application';
@@ -13,8 +18,7 @@
                 <!-- Slides -->
                 <?= $this->context->getMainSlider(); ?>
             </div>
-        </div>
-    </section>
+        </div>        
     <section class="featured-offers parallax">
 
         <div class="container">

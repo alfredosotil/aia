@@ -126,13 +126,13 @@ AppAsset::register($this);
                                     <a href="<?= Url::toRoute("site/index") ?>" class="" role="button" aria-haspopup="true" >Inicio</a>
                                 </li>
                                 <li class="button">
-                                    <a href="<?= Url::toRoute("site/aboutus") ?>" class="" role="button" aria-haspopup="true" aria-expanded="true">¿Quienes Somos?</a>
+                                    <a href="<?= Url::toRoute("site/aboutus") ?>" class="" role="button" aria-haspopup="true" aria-expanded="true">¿Qui&Eacute;nes Somos?</a>
                                 </li>
                                 <li class="button">
                                     <a href="<?= Url::toRoute("site/services") ?>" class="" role="button" aria-haspopup="true" aria-expanded="false">Servicios</a>
                                 </li>
                                 <li class="button">
-                                    <a href="<?= Url::toRoute("site/contactus") ?>" class="" role="button" aria-haspopup="true" aria-expanded="false">Contactanos</a>
+                                    <a href="<?= Url::toRoute("site/contactus") ?>" class="" role="button" aria-haspopup="true" aria-expanded="false">Cont&Aacute;ctanos</a>
                                 </li>
                             </ul>
                         </div>
