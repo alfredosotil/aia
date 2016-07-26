@@ -1595,7 +1595,7 @@ function offersMapInit(id, locations) {
 
         var infoBoxContent = document.createElement("div");
         infoBoxContent.className = "infobox-wrapper";
-        infoBoxContent.innerHTML = "<a class='infobox-main' href='" + locations[i][3] + "'><div class='infobox-image'><img src='" + locations[i][4] + "' alt='" + locations[i][5] + "' /></div><div class='infobox-text'>" + locations[i][5] + "</div><div class='infobox-price'>" + locations[i][6] + "</div></a>";
+        infoBoxContent.innerHTML = "<a target='_blank' class='infobox-main' href='" + locations[i][3] + "'><div class='infobox-image'><img src='" + locations[i][4] + "' alt='" + locations[i][5] + "' /></div><div class='infobox-text'>" + locations[i][5] + "</div><div class='infobox-price'>" + locations[i][6] + "</div></a>";
         mapMarkers[i].infobox = new InfoBox({
             content: infoBoxContent,
             disableAutoPan: false,

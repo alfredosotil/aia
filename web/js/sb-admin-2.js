@@ -46,8 +46,8 @@ function initializeSearchBox(map) {
 //  });
 
     var defaultBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(-33.8902, 151.1759),
-            new google.maps.LatLng(-33.8474, 151.2631));
+            new google.maps.LatLng(-12.043333, -77.028333),
+            new google.maps.LatLng(-12.043333, -77.028333));
     map.fitBounds(defaultBounds);
     var listener = google.maps.event.addListener(map, "idle", function () {
         if (map.getZoom() > 15)

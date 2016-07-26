@@ -3,6 +3,7 @@
 use yii\helpers\ArrayHelper;
 use app\models\Distrito;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 
@@ -19,7 +20,7 @@ use yii\helpers\Html;
                 <?= $this->context->getMainSlider(); ?>
             </div>
         </div>   
-        <form class="adv-search-form" action="#">
+        <form id="formfindproperty" class="adv-search-form" action="<?= Url::toRoute("site/findproperty")?>">
             <div class="adv-search-cont">
                 <div class="container">
                     <div class="row">
@@ -43,8 +44,8 @@ use yii\helpers\Html;
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-lg-3">
                                     <select name="transaction1" class="bootstrap-select" title="Transaccion:" multiple>
-                                        <option>Venta</option>
-                                        <option>Alquiler</option>
+                                        <option value="3">Venta</option>
+                                        <option value="2">Alquiler</option>
                                     </select>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-lg-3">
@@ -93,7 +94,7 @@ use yii\helpers\Html;
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-lg-3 col-md-offset-6 col-lg-offset-9 adv-search-button-cont">
-                            <a href="#" class="button-primary pull-right">
+                            <a href="javascript:document.getElementById('formfindproperty').submit();" class="button-primary pull-right">
                                 <span>buscar</span>
                                 <div class="button-triangle"></div>
                                 <div class="button-triangle2"></div>
