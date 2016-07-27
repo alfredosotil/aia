@@ -56,7 +56,25 @@ class SiteController extends Controller {
     }
 
     public function actionFindproperty() {
-        return $this->render('findproperty');
+        $request = Yii::$app->request;
+        if ($request->isAjax) {
+            /*
+             *   Process for ajax request
+             */
+            Yii::$app->response->format = Response::FORMAT_JSON;
+        }else{
+            if ($request->isPost) {
+                $transaction = Yii::$app->request->post('transaction');
+                $district = Yii::$app->request->post('district');
+                $price = explode(" - ",Yii::$app->request->post('price'));
+                $area = explode(" - ",Yii::$app->request->post('area'));
+                $bedrooms = explode(" - ",Yii::$app->request->post('bedrooms'));
+                $bathrooms = explode(" - ",Yii::$app->request->post('bathrooms'));
+                $variables = Yii::$app->request->post();
+                echo json_encode($variables);
+            }
+        }
+//        return $this->render('findproperty');
     }
 
     public function actionAboutus() {
@@ -157,6 +175,15 @@ class SiteController extends Controller {
         $properties = \app\models\Property::getPropertiesRecentlyAdded(15, 20); //limit 20
         foreach ($properties as $p) {
             $html .= $this->renderPartial('propertyrecentlyaddedslider', ['model' => $p]);
+        }
+        return $html;
+    }
+    
+    public function getPropertyOffers(){
+        $html = "";
+        $properties = \app\models\Property::getPropertiesRecentlyAdded(15, 20); //limit 20
+        foreach ($properties as $p) {
+            $html .= $this->renderPartial('propertyoffer', ['model' => $p]);
         }
         return $html;
     }
