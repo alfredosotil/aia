@@ -64,14 +64,26 @@ class SiteController extends Controller {
             Yii::$app->response->format = Response::FORMAT_JSON;
         }else{
             if ($request->isPost) {
+                $propertyOffers = \app\models\Property::find()->where(['active' => 1]);
                 $transaction = Yii::$app->request->post('transaction');
                 $district = Yii::$app->request->post('district');
                 $price = explode(" - ",Yii::$app->request->post('price'));
                 $area = explode(" - ",Yii::$app->request->post('area'));
                 $bedrooms = explode(" - ",Yii::$app->request->post('bedrooms'));
                 $bathrooms = explode(" - ",Yii::$app->request->post('bathrooms'));
+                if(!is_null($transaction)){
+                    $propertyOffers->andWhere(['state_id' => $transaction]);
+                }
+                if(!is_null($district)){
+                    $propertyOffers->andWhere(['distrito_id' => $district]);
+                }
+                $propertyOffers->andWhere(['between', 'price', $price[0], $price[1]]);
+                $propertyOffers->andWhere(['between', 'area', $area[0], $area[1]]);
+                $propertyOffers->andWhere(['between', 'bedrooms', $bedrooms[0], $bedrooms[1]]);
+                $propertyOffers->andWhere(['between', 'bathrooms', $bathrooms[0], $bathrooms[1]]);
                 $variables = Yii::$app->request->post();
-                echo json_encode($variables);
+                return $this->render('findproperty', ['propertyOffers' => $this->getPropertyOffers($propertyOffers->all())]);
+//                echo json_encode($variables);
             }
         }
 //        return $this->render('findproperty');
@@ -179,9 +191,8 @@ class SiteController extends Controller {
         return $html;
     }
     
-    public function getPropertyOffers(){
+    public function getPropertyOffers($properties){
         $html = "";
-        $properties = \app\models\Property::getPropertiesRecentlyAdded(15, 20); //limit 20
         foreach ($properties as $p) {
             $html .= $this->renderPartial('propertyoffer', ['model' => $p]);
         }

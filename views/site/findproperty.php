@@ -126,57 +126,9 @@ use yii\helpers\Url;
                             <div class="title-separator-primary"></div>
                         </div>
                     </div> 
-                    <div class="row grid-offer-row">
-                        <div class="col-xs-12 col-sm-6 col-lg-4 grid-offer-col">
-                            <div class="grid-offer">
-                                <div class="grid-offer-front">
-
-                                    <div class="grid-offer-photo">
-                                        <img src="images/grid-offer1.jpg" alt="" />
-                                        <div class="type-container">
-                                            <div class="estate-type">apartment</div>
-                                            <div class="transaction-type">sale</div>
-                                        </div>
-                                    </div>
-                                    <div class="grid-offer-text">
-                                        <i class="fa fa-map-marker grid-offer-localization"></i>
-                                        <div class="grid-offer-h4"><h4 class="grid-offer-title">34 Fort Collins, Colorado 80523, USA</h4></div>
-                                        <div class="clearfix"></div>
-                                        <p>Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et [...]</p>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="price-grid-cont">
-                                        <div class="grid-price-label pull-left">Price:</div>
-                                        <div class="grid-price pull-right">
-                                            $ 320 000
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="grid-offer-params">
-                                        <div class="grid-area">
-                                            <img src="images/area-icon.png" alt="" />54m<sup>2</sup>
-                                        </div>
-                                        <div class="grid-rooms">
-                                            <img src="images/rooms-icon.png" alt="" />3
-                                        </div>
-                                        <div class="grid-baths">
-                                            <img src="images/bathrooms-icon.png" alt="" />1
-                                        </div>							
-                                    </div>	
-
-                                </div>
-                                <div class="grid-offer-back">
-                                    <div id="grid-map1" class="grid-offer-map"></div>
-                                    <div class="button">	
-                                        <a href="estate-details-right-sidebar.html" class="button-primary">
-                                            <span>read more</span>
-                                            <div class="button-triangle"></div>
-                                            <div class="button-triangle2"></div>
-                                            <div class="button-icon"><i class="fa fa-search"></i></div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>							
+                    <div class="row list-offer-row">
+                        <div class="col-xs-12">
+                            <?= $propertyOffers ?>
                         </div>
                     </div>
                     <div class="offer-pagination margin-top-30">
