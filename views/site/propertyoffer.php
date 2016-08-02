@@ -3,7 +3,7 @@
         <div class="list-offer-front">
 
             <div class="list-offer-photo">
-                <img src="<?= Yii::$app->request->baseUrl . "/uploads/property/" . $model->getFirstImageFromProperty(); ?>" alt="" />
+                <img src="<?= Yii::$app->request->baseUrl . "/uploads/property/sqr_" . $model->getFirstImageFromProperty(); ?>" alt="" />
                 <div class="type-container">
                     <div class="estate-type"><?= $model->getType()->one()->type; ?></div>
                 <div class="transaction-type"><?= $model->getState()->one()->state; ?></div>

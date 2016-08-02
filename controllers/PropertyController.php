@@ -134,7 +134,7 @@ class PropertyController extends Controller {
                                 $imageProperty->property_id = $property_id;
                                 $imageProperty->save();
                                 $image->saveAs($path);
-                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 140, 80)
+                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 524, 354)
                                         ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $imagename, ['quality' => 50]);
                                 Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 30, 30)
                                         ->save(Yii::$app->params['uploadPath'] . 'sm_' . $imagename, ['quality' => 50]);
@@ -254,7 +254,7 @@ class PropertyController extends Controller {
                                 $imageProperty->property_id = $property_id;
                                 $imageProperty->save();
                                 $image->saveAs($path);
-                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 140, 80)
+                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 524, 354)
                                         ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $imagename, ['quality' => 50]);
                                 Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 30, 30)
                                         ->save(Yii::$app->params['uploadPath'] . 'sm_' . $imagename, ['quality' => 50]);
