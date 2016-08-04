@@ -41,5 +41,8 @@
     </a>
     <div class="clearfix"></div>
 </div>
-<?php $this->registerJs("mapInit($model->latitude, $model->longitude, 'list-map$model->id', '" . Yii::$app->request->baseUrl . app\assets\AppAsset::getIconPingProperty($model->getType()->one()->type) . "', false);", yii\web\View::POS_LOAD, uniqid()); ?>
+<?php 
+if(!$ajax)
+$this->registerJs("mapInit($model->latitude, $model->longitude, 'list-map$model->id', '" . Yii::$app->request->baseUrl . \app\assets\AppAsset::getIconPingProperty($model->getType()->one()->type) . "', false);", yii\web\View::POS_LOAD, uniqid()); 
+?>
 <div class="clearfix"></div>

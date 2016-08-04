@@ -77,7 +77,7 @@ $cont = 1;
                                 <!-- Slides -->
                                 <?php foreach ($images as $i): ?>
                                     <div class="swiper-slide">
-                                        <img class="slide-thumb" src="<?= Yii::$app->request->baseUrl . "/uploads/property/sqr_" . $i->name; ?>" alt="">
+                                        <img class="slide-thumb" src="<?= Yii::$app->request->baseUrl . "/uploads/property/sm_" . $i->name; ?>" alt="">
                                     </div>
                                 <?php endforeach; ?>                        
                             </div>

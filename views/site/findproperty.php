@@ -11,24 +11,41 @@ use kartik\form\ActiveForm;
 
 //$this->title = 'My Yii Application';
 $this->registerJs("
-        $(document).on('submit', 'form#formfindproperty', function () {
-            var form = $(this);
+        $('.findproperty').on('click',function () {
+            var form = $('#'+ $(this).data('form'));
             // return false if form still have some validation errors
             if (form.find('.has-error').length) {
                  return false;
             }
-            // submit form
-//            $.ajax({
-//                 url: form.attr('action'),
-//                 type: 'post',
-//                 data: form.serialize(),
-//                 success: function (response) {
-//                      // do something with response
-//                 }
-//            });
-alert('hola');
+            // send form
+            $.ajax({
+                 url: form.attr('action'),
+                 type: 'post',
+                 data: form.serialize(),
+                 success: function (response) {
+                    $('#counterPropertyOffers').text(response.counterpropertyOffers);
+                    $('#propertyOffers').html(response.propertyOffers);
+                    response.mapInit.forEach(function(entry) {
+                        eval(entry);
+                    });
+                    $('.list-offer-left').each(function () {
+                        var gh = 0;
+                        gh += $(this).find('.list-offer-photo').outerHeight();
+                        gh += $(this).find('.list-offer-params').outerHeight();
+                        console.log($(this).find('.list-offer-photo img').innerHeight());
+                        console.log($(this).find('.list-offer-params').innerHeight());
+                        console.log(gh);
+                        $(this).stop(true, true).animate({height: gh - 30}, 0);
+                        $(this).find('.list-offer-back').stop(true, true).animate({height: gh + 20}, 0);
+                        $('html, body').animate({
+                            scrollTop: $('#propertyOffers').offset().top + -300
+                        }, 1000);
+                    });
+                 }
+            });
+//console.log( form.serialize() );
             return false;
-       });
+        });
     ", yii\web\View::POS_LOAD, uniqid());
 ?>
 <div class="site-findproperty">
@@ -116,7 +133,7 @@ alert('hola');
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-3 col-md-offset-6 col-lg-offset-9 adv-search-button-cont">
-                        <a href="javascript:document.getElementById('formfindproperty').submit();" class="button-primary pull-right">
+                        <a data-form="formfindproperty" class="findproperty button-primary pull-right">
                             <span>buscar</span>
                             <div class="button-triangle"></div>
                             <div class="button-triangle2"></div>
@@ -132,38 +149,7 @@ alert('hola');
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-9 col-md-push-3">
-                    <div class="row">
-                        <div class="col-xs-12 col-lg-6">
-                            <h5 class="subtitle-margin">apartments for sale, colorodo, usa</h5>
-                            <h1>42 estates found<span class="special-color">.</span></h1>
-                        </div>
-                        <div class="col-xs-12 col-lg-6">											
-                            <div class="view-icons-container">
-                                <a class="view-box view-box-active"><img src="<?= Yii::$app->request->baseUrl; ?>/images/grid-icon.png" alt="" /></a>
-                                <a class="view-box" href="listing-list.html"><img src="<?= Yii::$app->request->baseUrl; ?>/images/list-icon.png" alt="" /></a>
-                            </div>
-                            <div class="order-by-container">
-                                <select name="sort" class="bootstrap-select" title="Order By:">
-                                    <option>Price low to high</option>
-                                    <option>Price high to low</option>
-                                    <option>Area high to low</option>
-                                    <option>Area high to low</option>
-                                </select>
-                            </div>	
-                        </div>							
-                        <div class="col-xs-12">
-                            <div class="title-separator-primary"></div>
-                        </div>
-                    </div> 
-                    <div class="row list-offer-row">
-                        <div class="col-xs-12">
-                            <?= $propertyOffers ?>
-                        </div>
-                    </div>
-                    <div class="offer-pagination margin-top-30">
-                        <a href="#" class="prev"><i class="jfont">&#xe800;</i></a><a class="active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#" class="next"><i class="jfont">&#xe802;</i></a>
-                        <div class="clearfix"></div>
-                    </div>
+                    <?= $propertyListing ?>
                 </div>
                 <div class="col-xs-12 col-md-3 col-md-pull-9">
                     <div class="sidebar-left">
@@ -171,11 +157,11 @@ alert('hola');
                         <div class="title-separator-primary"></div>
                         <?php
                         $leftform = ActiveForm::begin([
-                        'id' => 'leftformfindproperty',
+                                    'id' => 'leftformfindproperty',
 //                                'type' => ActiveForm::TYPE_HORIZONTAL,
-                        'action' => Url::toRoute("site/findproperty"),
-                        'method' => 'post',
-                        'options' => ['class' => 'adv-search-form'],
+                                    'action' => Url::toRoute("site/findproperty"),
+                                    'method' => 'post',
+                                    'options' => ['class' => 'adv-search-form'],
                         ]);
                         ?>
                         <div class="sidebar-select-cont">
@@ -212,7 +198,7 @@ alert('hola');
                             <div id="slider-range-bathrooms-sidebar" data-min="1" data-max="10" class="slider-range"></div>
                         </div>
                         <div class="sidebar-search-button-cont">
-                            <a href="javascript:document.getElementById('leftformfindproperty').submit();" class="button-primary">
+                            <a data-form="leftformfindproperty" class="findproperty button-primary">
                                 <span>buscar</span>
                                 <div class="button-triangle"></div>
                                 <div class="button-triangle2"></div>

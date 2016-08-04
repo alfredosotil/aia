@@ -62,19 +62,43 @@ class SiteController extends Controller {
              *   Process for ajax request
              */
             Yii::$app->response->format = Response::FORMAT_JSON;
-        }else{
+            $propertyOffers = \app\models\Property::find()->where(['active' => 1]);
+            $transaction = Yii::$app->request->post('transaction');
+            $district = Yii::$app->request->post('district');
+            $price = explode(" - ", Yii::$app->request->post('price'));
+            $area = explode(" - ", Yii::$app->request->post('area'));
+            $bedrooms = explode(" - ", Yii::$app->request->post('bedrooms'));
+            $bathrooms = explode(" - ", Yii::$app->request->post('bathrooms'));
+            if (!is_null($transaction)) {
+                $propertyOffers->andWhere(['state_id' => $transaction]);
+            }
+            if (!is_null($district)) {
+                $propertyOffers->andWhere(['distrito_id' => $district]);
+            }
+            $propertyOffers->andWhere(['between', 'price', $price[0], $price[1]]);
+            $propertyOffers->andWhere(['between', 'area', $area[0], $area[1]]);
+            $propertyOffers->andWhere(['between', 'bedrooms', $bedrooms[0], $bedrooms[1]]);
+            $propertyOffers->andWhere(['between', 'bathrooms', $bathrooms[0], $bathrooms[1]]);
+            $variables = Yii::$app->request->post();
+            $po = $propertyOffers->all();
+            return [
+                'counterpropertyOffers' => count($po),
+                'propertyOffers' => $this->getPropertyOffers($po, true),
+                'mapInit' => $this->generateMapInit($po)
+            ];
+        } else {
             if ($request->isPost) {
                 $propertyOffers = \app\models\Property::find()->where(['active' => 1]);
                 $transaction = Yii::$app->request->post('transaction');
                 $district = Yii::$app->request->post('district');
-                $price = explode(" - ",Yii::$app->request->post('price'));
-                $area = explode(" - ",Yii::$app->request->post('area'));
-                $bedrooms = explode(" - ",Yii::$app->request->post('bedrooms'));
-                $bathrooms = explode(" - ",Yii::$app->request->post('bathrooms'));
-                if(!is_null($transaction)){
+                $price = explode(" - ", Yii::$app->request->post('price'));
+                $area = explode(" - ", Yii::$app->request->post('area'));
+                $bedrooms = explode(" - ", Yii::$app->request->post('bedrooms'));
+                $bathrooms = explode(" - ", Yii::$app->request->post('bathrooms'));
+                if (!is_null($transaction)) {
                     $propertyOffers->andWhere(['state_id' => $transaction]);
                 }
-                if(!is_null($district)){
+                if (!is_null($district)) {
                     $propertyOffers->andWhere(['distrito_id' => $district]);
                 }
                 $propertyOffers->andWhere(['between', 'price', $price[0], $price[1]]);
@@ -82,7 +106,8 @@ class SiteController extends Controller {
                 $propertyOffers->andWhere(['between', 'bedrooms', $bedrooms[0], $bedrooms[1]]);
                 $propertyOffers->andWhere(['between', 'bathrooms', $bathrooms[0], $bathrooms[1]]);
                 $variables = Yii::$app->request->post();
-                return $this->render('findproperty', ['propertyOffers' => $this->getPropertyOffers($propertyOffers->all())]);
+                $po = $propertyOffers->all();
+                return $this->render('findproperty', ['propertyListing' => $this->renderPartial('propertylisting', ['properties' => $propertyOffers->all()])]);
 //                echo json_encode($variables);
             }
         }
@@ -90,14 +115,14 @@ class SiteController extends Controller {
     }
 
     public function actionAboutus() {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+        $p = new ContactForm();
+        if ($p->load(Yii::$app->request->post()) && $p->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
 
             return $this->refresh();
         }
         return $this->render('aboutus', [
-                    'model' => $model,
+                    'model' => $p,
         ]);
     }
 
@@ -118,18 +143,18 @@ class SiteController extends Controller {
             return $this->goHome();
         }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        $p = new LoginForm();
+        if ($p->load(Yii::$app->request->post()) && $p->login()) {
             return $this->goBack();
         }
 
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+        if (Yii::$app->request->isAjax && $p->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
+            return ActiveForm::validate($p);
         }
 
         return $this->render('login', [
-                    'model' => $model,
+                    'model' => $p,
         ]);
     }
 
@@ -140,32 +165,32 @@ class SiteController extends Controller {
     }
 
     public function actionContactus() {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+        $p = new ContactForm();
+        if ($p->load(Yii::$app->request->post()) && $p->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
 
             return $this->refresh();
         }
         return $this->render('contactus', [
-                    'model' => $model,
+                    'model' => $p,
         ]);
     }
 
     public function actionViewproperty($id) {
-        $model = \app\models\Property::findOne($id);
-//        $model->getAgent()->one()->email;
-        $modelContactForm = new ContactForm();
-        if ($modelContactForm->load(Yii::$app->request->post()) && $modelContactForm->contact($model->getAgent()->one()->email)) {
+        $p = \app\models\Property::findOne($id);
+//        $p->getAgent()->one()->email;
+        $pContactForm = new ContactForm();
+        if ($pContactForm->load(Yii::$app->request->post()) && $pContactForm->contact($p->getAgent()->one()->email)) {
             Yii::$app->session->setFlash('contactFormSubmitted');
 
             return $this->refresh();
         }
-        return $this->render('viewproperty',[
-            'modelcf' => $modelContactForm,
-            'model' => $model
+        return $this->render('viewproperty', [
+                    'modelcf' => $pContactForm,
+                    'model' => $p
         ]);
     }
-    
+
     public function getMainSlider() {
         $html = "";
         $properties = \app\models\Property::getPropertyByPriority(5, 10); //limit 20
@@ -190,13 +215,21 @@ class SiteController extends Controller {
         }
         return $html;
     }
-    
-    public function getPropertyOffers($properties){
+
+    public function getPropertyOffers($properties, $ajax) {
         $html = "";
         foreach ($properties as $p) {
-            $html .= $this->renderPartial('propertyoffer', ['model' => $p]);
+            $html .= $this->renderPartial('propertyoffer', ['model' => $p, 'ajax' => $ajax]);
         }
         return $html;
+    }
+
+    public function generateMapInit($properties) {
+        $mapInit = [];
+        foreach ($properties as $p) {
+            $mapInit[] = "mapInit($p->latitude, $p->longitude, 'list-map$p->id', '" . Yii::$app->request->baseUrl . \app\assets\AppAsset::getIconPingProperty($p->getType()->one()->type) . "', false)";
+        }
+        return $mapInit;
     }
 
     public function getAgentsSlider() {
@@ -207,6 +240,5 @@ class SiteController extends Controller {
         }
         return $html;
     }
-
 
 }

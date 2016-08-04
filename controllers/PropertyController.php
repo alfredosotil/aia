@@ -135,9 +135,9 @@ class PropertyController extends Controller {
                                 $imageProperty->save();
                                 $image->saveAs($path);
                                 Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 524, 354)
-                                        ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $imagename, ['quality' => 50]);
-                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 30, 30)
-                                        ->save(Yii::$app->params['uploadPath'] . 'sm_' . $imagename, ['quality' => 50]);
+                                        ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $imagename, ['quality' => 100]);
+                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 140, 80)
+                                        ->save(Yii::$app->params['uploadPath'] . 'sm_' . $imagename, ['quality' => 100]);
                             }
                             return [
                                 'forceReload' => '#crud-datatable-pjax',
@@ -255,9 +255,9 @@ class PropertyController extends Controller {
                                 $imageProperty->save();
                                 $image->saveAs($path);
                                 Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 524, 354)
-                                        ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $imagename, ['quality' => 50]);
-                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 30, 30)
-                                        ->save(Yii::$app->params['uploadPath'] . 'sm_' . $imagename, ['quality' => 50]);
+                                        ->save(Yii::$app->params['uploadPath'] . 'sqr_' . $imagename, ['quality' => 100]);
+                                Image::thumbnail(Yii::$app->params['uploadPath'] . $imagename, 140, 80)
+                                        ->save(Yii::$app->params['uploadPath'] . 'sm_' . $imagename, ['quality' => 100]);
                             }
                             return [
                                 'forceReload' => '#crud-datatable-pjax',
