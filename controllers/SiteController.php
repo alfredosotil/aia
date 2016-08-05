@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Property;
 
 class SiteController extends Controller {
 
@@ -57,18 +58,14 @@ class SiteController extends Controller {
 
     public function actionFindproperty() {
         $request = Yii::$app->request;
-        if ($request->isAjax) {
-            /*
-             *   Process for ajax request
-             */
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            $propertyOffers = \app\models\Property::find()->where(['active' => 1]);
-            $transaction = Yii::$app->request->post('transaction');
-            $district = Yii::$app->request->post('district');
-            $price = explode(" - ", Yii::$app->request->post('price'));
-            $area = explode(" - ", Yii::$app->request->post('area'));
-            $bedrooms = explode(" - ", Yii::$app->request->post('bedrooms'));
-            $bathrooms = explode(" - ", Yii::$app->request->post('bathrooms'));
+        $propertyOffers = Property::find()->where(['active' => 1]);
+        if ($request->isPost) {
+            $transaction = $request->post('transaction');
+            $district = $request->post('district');
+            $price = explode(" - ", $request->post('price'));
+            $area = explode(" - ", $request->post('area'));
+            $bedrooms = explode(" - ", $request->post('bedrooms'));
+            $bathrooms = explode(" - ", $request->post('bathrooms'));
             if (!is_null($transaction)) {
                 $propertyOffers->andWhere(['state_id' => $transaction]);
             }
@@ -79,39 +76,24 @@ class SiteController extends Controller {
             $propertyOffers->andWhere(['between', 'area', $area[0], $area[1]]);
             $propertyOffers->andWhere(['between', 'bedrooms', $bedrooms[0], $bedrooms[1]]);
             $propertyOffers->andWhere(['between', 'bathrooms', $bathrooms[0], $bathrooms[1]]);
-            $variables = Yii::$app->request->post();
-            $po = $propertyOffers->all();
-            return [
-                'counterpropertyOffers' => count($po),
-                'propertyOffers' => $this->getPropertyOffers($po, true),
-                'mapInit' => $this->generateMapInit($po)
-            ];
-        } else {
-            if ($request->isPost) {
-                $propertyOffers = \app\models\Property::find()->where(['active' => 1]);
-                $transaction = Yii::$app->request->post('transaction');
-                $district = Yii::$app->request->post('district');
-                $price = explode(" - ", Yii::$app->request->post('price'));
-                $area = explode(" - ", Yii::$app->request->post('area'));
-                $bedrooms = explode(" - ", Yii::$app->request->post('bedrooms'));
-                $bathrooms = explode(" - ", Yii::$app->request->post('bathrooms'));
-                if (!is_null($transaction)) {
-                    $propertyOffers->andWhere(['state_id' => $transaction]);
-                }
-                if (!is_null($district)) {
-                    $propertyOffers->andWhere(['distrito_id' => $district]);
-                }
-                $propertyOffers->andWhere(['between', 'price', $price[0], $price[1]]);
-                $propertyOffers->andWhere(['between', 'area', $area[0], $area[1]]);
-                $propertyOffers->andWhere(['between', 'bedrooms', $bedrooms[0], $bedrooms[1]]);
-                $propertyOffers->andWhere(['between', 'bathrooms', $bathrooms[0], $bathrooms[1]]);
-                $variables = Yii::$app->request->post();
+            $variables = $request->post();
+            if ($request->isAjax) {
+                /*
+                 *   Process for ajax request
+                 */
+                Yii::$app->response->format = Response::FORMAT_JSON;
                 $po = $propertyOffers->all();
+                return [
+                    'counterpropertyOffers' => count($po),
+                    'propertyOffers' => $this->getPropertyOffers($po, true),
+                    'mapInit' => $this->generateMapInit($po)
+                ];
+            } else {
                 return $this->render('findproperty', ['propertyListing' => $this->renderPartial('propertylisting', ['properties' => $propertyOffers->all()])]);
-//                echo json_encode($variables);
             }
+        } else {
+            return $this->render('findproperty', ['propertyListing' => $this->renderPartial('propertylisting', ['properties' => $propertyOffers->all()])]);
         }
-//        return $this->render('findproperty');
     }
 
     public function actionAboutus() {
@@ -209,7 +191,7 @@ class SiteController extends Controller {
 
     public function getRecentlyAdded() {
         $html = "";
-        $properties = \app\models\Property::getPropertiesRecentlyAdded(15, 20); //limit 20
+        $properties = \app\models\Property::getPropertiesRecentlyAdded(60, 20); //limit 20
         foreach ($properties as $p) {
             $html .= $this->renderPartial('propertyrecentlyaddedslider', ['model' => $p]);
         }
