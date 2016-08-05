@@ -9,7 +9,7 @@
                                         <a class="view-box" href=""><img src="<?= Yii::$app->request->baseUrl; ?>/images/list-icon.png" alt="" /></a>
                                     </div>-->
         <div class="order-by-container">
-            <select name="sort" class="bootstrap-select" title="Ordenar:">
+            <select id="sortProperties" class="bootstrap-select" title="Ordenar:">
                 <option value="1">Precio menos a mas</option>
                 <option value="2">Precio mas a menos</option>
                 <option value="3">Area menos a mas</option>

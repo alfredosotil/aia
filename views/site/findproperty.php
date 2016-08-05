@@ -10,6 +10,11 @@ use kartik\form\ActiveForm;
 /* @var $this yii\web\View */
 
 //$this->title = 'My Yii Application';
+$price = (new \yii\db\Query())->from('property')->max('price');
+$area = (new \yii\db\Query())->from('property')->max('area');
+$bedrooms = (new \yii\db\Query())->from('property')->max('bedrooms');
+$bathrooms = (new \yii\db\Query())->from('property')->max('bathrooms');
+
 $this->registerJs("
         $('.findproperty').on('click',function () {
             var form = $('#'+ $(this).data('form'));
@@ -40,13 +45,35 @@ $this->registerJs("
                         $('html, body').animate({
                             scrollTop: $('#propertyOffers').offset().top + -300
                         }, 1000);
+                        $('#sortProperties').selectpicker('deselectAll');
                     });
                  }
             });
-//console.log( form.serialize() );
+            return false;
+        });
+        
+        $('#sortProperties').on('change',function () {
+            var valueOrder = $('#sortProperties').val();
+            switch(valueOrder) {
+                case '1':
+                    tinysort('div#propertyOffers>div.orderCommand',{selector:'div.list-offer', data:'price'});
+                    break;
+                case '2':
+                    tinysort('div#propertyOffers>div.orderCommand',{selector:'div.list-offer', data:'price', order:'desc'});
+                    break;
+                case '3':
+                    tinysort('div#propertyOffers>div.orderCommand',{selector:'div.list-offer', data:'area'});
+                    break;
+                case '4':
+                    tinysort('div#propertyOffers>div.orderCommand',{selector:'div.list-offer', data:'area', order:'desc'});
+                    break;
+            }
             return false;
         });
     ", yii\web\View::POS_LOAD, uniqid());
+$this->registerJsFile('@web/js/tinysort/tinysort.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('@web/js/tinysort/tinysort.charorder.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('@web/js/tinysort/jquery.tinysort.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 ?>
 <div class="site-findproperty">
     <section class="adv-search-section no-padding">
@@ -98,7 +125,7 @@ $this->registerJs("
                                     <span>$</span>
                                     <input type="text" name="price" id="slider-range-price-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-price" data-min="0" data-max="500000" class="slider-range"></div>
+                                    <div id="slider-range-price" data-min="0" data-max="<?= $price ?>" class="slider-range"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">
@@ -107,7 +134,7 @@ $this->registerJs("
                                     <span>m<sup>2</sup></span>
                                     <input type="text" name="area" id="slider-range-area-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-area" data-min="0" data-max="1000" class="slider-range"></div>
+                                    <div id="slider-range-area" data-min="0" data-max="<?= $area ?>" class="slider-range"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">
@@ -115,7 +142,7 @@ $this->registerJs("
                                     <label for="slider-range-bedrooms-value" class="adv-search-label">Cuartos:</label>
                                     <input type="text" name="bedrooms" id="slider-range-bedrooms-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-bedrooms" data-min="1" data-max="10" class="slider-range"></div>
+                                    <div id="slider-range-bedrooms" data-min="1" data-max="<?= $bedrooms ?>" class="slider-range"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">
@@ -123,7 +150,7 @@ $this->registerJs("
                                     <label for="slider-range-bathrooms-value" class="adv-search-label">Ba&ntilde;os:</label>
                                     <input type="text" name="bathrooms" id="slider-range-bathrooms-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-bathrooms" data-min="1" data-max="10" class="slider-range"></div>
+                                    <div id="slider-range-bathrooms" data-min="1" data-max="<?= $bathrooms ?>" class="slider-range"></div>
                                 </div>
                             </div>
                         </div>
@@ -176,26 +203,26 @@ $this->registerJs("
                             <span>$</span>
                             <input type="text" name="price" id="slider-range-price-sidebar-value" readonly class="adv-search-amount">
                             <div class="clearfix"></div>
-                            <div id="slider-range-price-sidebar" data-min="0" data-max="500000" class="slider-range"></div>
+                            <div id="slider-range-price-sidebar" data-min="0" data-max="<?= $price ?>" class="slider-range"></div>
                         </div>
                         <div class="adv-search-range-cont">	
                             <label for="slider-range-area-sidebar-value" class="adv-search-label">Area:</label>
                             <span>m<sup>2</sup></span>
                             <input type="text" name="area" id="slider-range-area-sidebar-value" readonly class="adv-search-amount">
                             <div class="clearfix"></div>
-                            <div id="slider-range-area-sidebar" data-min="0" data-max="1000" class="slider-range"></div>
+                            <div id="slider-range-area-sidebar" data-min="0" data-max="<?= $area ?>" class="slider-range"></div>
                         </div>
                         <div class="adv-search-range-cont">	
                             <label for="slider-range-bedrooms-sidebar-value" class="adv-search-label">Cuartos:</label>
                             <input type="text" name="bedrooms" id="slider-range-bedrooms-sidebar-value" readonly class="adv-search-amount">
                             <div class="clearfix"></div>
-                            <div id="slider-range-bedrooms-sidebar" data-min="1" data-max="10" class="slider-range"></div>
+                            <div id="slider-range-bedrooms-sidebar" data-min="1" data-max="<?= $bedrooms ?>" class="slider-range"></div>
                         </div>
                         <div class="adv-search-range-cont">	
                             <label for="slider-range-bathrooms-sidebar-value" class="adv-search-label">Ba&ntilde;os:</label>
                             <input type="text" name="bathrooms" id="slider-range-bathrooms-sidebar-value" readonly class="adv-search-amount">
                             <div class="clearfix"></div>
-                            <div id="slider-range-bathrooms-sidebar" data-min="1" data-max="10" class="slider-range"></div>
+                            <div id="slider-range-bathrooms-sidebar" data-min="1" data-max="<?= $bathrooms ?>" class="slider-range"></div>
                         </div>
                         <div class="sidebar-search-button-cont">
                             <a data-form="leftformfindproperty" class="findproperty button-primary">

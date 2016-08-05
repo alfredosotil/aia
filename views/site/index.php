@@ -10,6 +10,10 @@ use kartik\form\ActiveForm;
 
 //$this->title = 'My Yii Application';
 \yii\bootstrap\BootstrapPluginAsset::register($this);
+$price = (new \yii\db\Query())->from('property')->max('price');
+$area = (new \yii\db\Query())->from('property')->max('area');
+$bedrooms = (new \yii\db\Query())->from('property')->max('bedrooms');
+$bathrooms = (new \yii\db\Query())->from('property')->max('bathrooms');
 ?>
 <div class="site-index">
     <section class="no-padding adv-search-section">
@@ -68,7 +72,7 @@ use kartik\form\ActiveForm;
                                     <span>$</span>
                                     <input type="text" name="price" id="slider-range-price-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-price" data-min="0" data-max="500000" class="slider-range"></div>
+                                    <div id="slider-range-price" data-min="0" data-max="<?= $price ?>" class="slider-range"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">
@@ -77,7 +81,7 @@ use kartik\form\ActiveForm;
                                     <span>m<sup>2</sup></span>
                                     <input type="text" name="area" id="slider-range-area-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-area" data-min="0" data-max="1000" class="slider-range"></div>
+                                    <div id="slider-range-area" data-min="0" data-max="<?= $area ?>" class="slider-range"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">
@@ -85,7 +89,7 @@ use kartik\form\ActiveForm;
                                     <label for="slider-range-bedrooms-value" class="adv-search-label">Cuartos:</label>
                                     <input type="text" name="bedrooms" id="slider-range-bedrooms-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-bedrooms" data-min="1" data-max="10" class="slider-range"></div>
+                                    <div id="slider-range-bedrooms" data-min="1" data-max="<?= $bedrooms ?>" class="slider-range"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">
@@ -93,7 +97,7 @@ use kartik\form\ActiveForm;
                                     <label for="slider-range-bathrooms-value" class="adv-search-label">Ba&ntilde;os:</label>
                                     <input type="text" name="bathrooms" id="slider-range-bathrooms-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-bathrooms" data-min="1" data-max="10" class="slider-range"></div>
+                                    <div id="slider-range-bathrooms" data-min="1" data-max="<?= $bathrooms ?>" class="slider-range"></div>
                                 </div>
                             </div>
                         </div>

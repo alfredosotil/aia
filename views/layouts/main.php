@@ -129,6 +129,9 @@ AppAsset::register($this);
                                     <a href="<?= Url::toRoute("site/aboutus") ?>" class="" role="button" aria-haspopup="true" aria-expanded="true">¿Qui&Eacute;nes Somos?</a>
                                 </li>
                                 <li class="button">
+                                    <a href="<?= Url::toRoute("site/findproperty") ?>" class="" role="button" aria-haspopup="true" aria-expanded="true">Buscar Propiedad</a>
+                                </li>
+                                <li class="button">
                                     <a href="<?= Url::toRoute("site/services") ?>" class="" role="button" aria-haspopup="true" aria-expanded="false">Servicios</a>
                                 </li>
                                 <li class="button">
