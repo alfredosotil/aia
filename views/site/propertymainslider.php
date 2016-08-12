@@ -44,13 +44,18 @@ $classButtons[3] = 'slide-buttons slide-buttons-center';
                         </div>	
                     </div>
                     <div class="slide-desc-price">
-                        <?= Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.')?>
+                        <?=
+                        Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.', [
+                            \NumberFormatter::MIN_FRACTION_DIGITS => 0,
+                            \NumberFormatter::MAX_FRACTION_DIGITS => 0,
+                        ])
+                        ?>
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="<?= $classButtons[$position] ?>">
                     <a href="#" class="navigation-box navigation-box-next slide-next"><div class="navigation-triangle"></div><div class="navigation-box-icon"><i class="jfont">&#xe802;</i></div></a>
-                    <a target="_blank" href="<?= yii\helpers\Url::to(["viewproperty",'id'=>$model->id])?>" class="navigation-box navigation-box-more slide-more"><div class="navigation-triangle"></div><div class="navigation-box-icon"><i class="jfont fa-lg">&#xe813;</i></div></a>
+                    <a target="_blank" href="<?= yii\helpers\Url::to(["viewproperty", 'id' => $model->id]) ?>" class="navigation-box navigation-box-more slide-more"><div class="navigation-triangle"></div><div class="navigation-box-icon"><i class="jfont fa-lg">&#xe813;</i></div></a>
                     <a href="#" class="navigation-box navigation-box-prev slide-prev"><div class="navigation-triangle"></div><div class="navigation-box-icon"><i class="jfont">&#xe800;</i></div></a>
                 </div>
             </div>

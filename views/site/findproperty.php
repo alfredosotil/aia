@@ -319,7 +319,10 @@ foreach ($properties as $p) {
         yii\helpers\Url::to(["viewproperty", 'id' => $p->id]),
         Yii::$app->request->baseUrl . "/uploads/property/" . $p->getFirstImageFromProperty(),
         $p->address,
-        Yii::$app->formatter->asCurrency($p->price, ($p->money === 'D') ? 'USD' : 'S/.')
+        Yii::$app->formatter->asCurrency($p->price, ($p->money === 'D') ? 'USD' : 'S/.', [
+            \NumberFormatter::MIN_FRACTION_DIGITS => 0,
+            \NumberFormatter::MAX_FRACTION_DIGITS => 0,
+        ])
     ];
 }
 $this->registerJs("offersMapInit('offers-map', " . json_encode($locations) . ");", yii\web\View::POS_LOAD, uniqid());

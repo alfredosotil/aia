@@ -35,7 +35,12 @@
             </div>
             <div class="price-list-cont">
                 <div class="list-price">
-                    <?= Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.') ?>
+                    <?=
+                    Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.', [
+                        \NumberFormatter::MIN_FRACTION_DIGITS => 0,
+                        \NumberFormatter::MAX_FRACTION_DIGITS => 0,
+                    ])
+                    ?>
                 </div>	
             </div>
         </a>

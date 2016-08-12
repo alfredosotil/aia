@@ -9,6 +9,12 @@ $config = [
     'modules' => [
         'gridview' => [
             'class' => '\kartik\grid\Module'
+        ],
+        'social' => [
+            'class' => 'kartik\social\Module',
+            'facebook' => [
+                'appId' => '1682765562047834',
+            ],
         ]
     ],
     'components' => [

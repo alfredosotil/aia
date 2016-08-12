@@ -2,11 +2,24 @@
 
 use kartik\form\ActiveForm;
 
+//use kartik\social\FacebookPlugin;
+
 $agent = $model->getAgent()->one();
 $images = $model->getImagesProperties()->orderBy('order')->all();
 $extras = $model->getAccesspropertydetails()->all();
 $cont = 1;
+//echo yii\helpers\Url::base(true) ."<br>";
+//echo yii\helpers\Url::canonical() ."<br>";
+//echo yii\helpers\Url::current() ."<br>";
+//echo yii\helpers\Url::home() ."<br>";
+//echo yii\helpers\Url::base() ."<br>";
 ?>
+<meta property="og:url"           content="<?= yii\helpers\Url::to(["viewproperty", 'id' => $model->id], 'http') ?>" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="<?= $model->getType()->one()->type; ?> en <?= $model->getState()->one()->state ?>" />
+<meta property="og:description"   content="<?= $model->description ?>" />
+<meta property="og:image"         content="<?= yii\helpers\Url::base(true) . "/uploads/property/" . $model->getFirstImageFromProperty(); ?>" />
+</head>
 <div class="site-viewproperty">
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
@@ -42,7 +55,12 @@ $cont = 1;
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="gallery-slide-desc-price pull-right">
-                                                <?= Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.')?>
+                                                <?=
+                                                Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.', [
+                                                    \NumberFormatter::MIN_FRACTION_DIGITS => 0,
+                                                    \NumberFormatter::MAX_FRACTION_DIGITS => 0,
+                                                ])
+                                                ?>
                                             </div>	
                                             <div class="clearfix"></div>
                                         </div>	
@@ -102,12 +120,30 @@ $cont = 1;
                                     <h5 class="subtitle-margin"><?= $model->getType()->one()->type; ?> en <?= $model->getState()->one()->state; ?></h5>
                                     <h3><?= $model->address; ?><span class="special-color">.</span></h3>
                                 </div>
+                                <div class="pull-right">
+                                    <div class="fb-share-button" data-href="<?= yii\helpers\Url::to(["viewproperty", 'id' => $model->id]) ?>" data-layout="button" data-size="large" data-mobile-iframe="true">
+                                        <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Compartir</a>
+                                    </div>
+                                    <!--?=
+                                    FacebookPlugin::widget(['type' => FacebookPlugin::SHARE, 'settings' => [
+                                            'href' => yii\helpers\Url::to(["viewproperty", 'id' => $model->id]),
+                                            'layout' => 'button',
+                                            'size' => 'large',
+                                            'mobile_iframe' => true,
+                                ]])
+                                    ?!-->
+                                </div>
                                 <div class="clearfix"></div>	
                                 <div class="title-separator-primary"></div>
                                 <p class="details-desc"><?= $model->description; ?></p>
                             </div>
                             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
-                                <div class="details-parameters-price"><?= Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.')?></div>
+                                <div class="details-parameters-price"><?=
+                                    Yii::$app->formatter->asCurrency($model->price, ($model->money === 'D') ? 'USD' : 'S/.', [
+                                        \NumberFormatter::MIN_FRACTION_DIGITS => 0,
+                                        \NumberFormatter::MAX_FRACTION_DIGITS => 0,
+                                    ])
+                                    ?></div>
                                 <div class="details-parameters">
                                     <div class="details-parameters-cont">
                                         <div class="details-parameters-name">Area</div>
@@ -270,3 +306,14 @@ $cont = 1;
 ", yii\web\View::POS_LOAD, uniqid()); ?>
     <?php endif; ?>
 </div>
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id))
+            return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.7&appId=1682765562047834";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
