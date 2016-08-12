@@ -61,6 +61,7 @@ class SiteController extends Controller {
         $propertyOffers = Property::find()->where(['active' => 1]);
         if ($request->isPost) {
             $transaction = $request->post('transaction');
+            $inmueble = $request->post('inmueble');
             $district = $request->post('district');
             $price = explode(" - ", $request->post('price'));
             $area = explode(" - ", $request->post('area'));
@@ -68,6 +69,9 @@ class SiteController extends Controller {
             $bathrooms = explode(" - ", $request->post('bathrooms'));
             if (!is_null($transaction)) {
                 $propertyOffers->andWhere(['state_id' => $transaction]);
+            }
+            if (!is_null($inmueble)) {
+                $propertyOffers->andWhere(['type_id' => $inmueble]);
             }
             if (!is_null($district)) {
                 $propertyOffers->andWhere(['distrito_id' => $district]);
@@ -77,6 +81,7 @@ class SiteController extends Controller {
             $propertyOffers->andWhere(['between', 'bedrooms', $bedrooms[0], $bedrooms[1]]);
             $propertyOffers->andWhere(['between', 'bathrooms', $bathrooms[0], $bathrooms[1]]);
             $variables = $request->post();
+//            echo json_encode($variables);
             if ($request->isAjax) {
                 /*
                  *   Process for ajax request

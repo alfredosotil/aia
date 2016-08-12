@@ -5,6 +5,7 @@ use app\models\Distrito;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\form\ActiveForm;
+use app\models\Type;
 
 /* @var $this yii\web\View */
 
@@ -14,6 +15,12 @@ $price = (new \yii\db\Query())->from('property')->max('price');
 $area = (new \yii\db\Query())->from('property')->max('area');
 $bedrooms = (new \yii\db\Query())->from('property')->max('bedrooms');
 $bathrooms = (new \yii\db\Query())->from('property')->max('bathrooms');
+$this->registerJs("
+//        $( '#slider-range-price-value' ).change(function() {
+////            $( '#slider-range-price-value' ).slider( 'value', 1000 );
+//                alert('hola');
+//        });
+    ", yii\web\View::POS_LOAD, uniqid());
 ?>
 <div class="site-index">
     <section class="no-padding adv-search-section">
@@ -62,6 +69,9 @@ $bathrooms = (new \yii\db\Query())->from('property')->max('bathrooms');
                                 </select>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">
+                                <?= Html::dropDownList('inmueble[]', null, ArrayHelper::map(Type::find()->where(["category" => "property"])->all(), 'id', 'type'), ['class' => 'bootstrap-select', 'title' => 'Tipo inmueble:', 'data-actions-box' => 'true', 'multiple' => '']) ?>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-lg-3">
                                 <?= Html::dropDownList('district[]', null, ArrayHelper::map(Distrito::find()->where(["idProv" => 127])->orderBy('distrito')->all(), 'idDist', 'distrito'), ['class' => 'bootstrap-select', 'title' => 'Distrito:', 'data-actions-box' => 'true', 'multiple' => '']) ?>
                             </div>
                         </div>
@@ -72,7 +82,7 @@ $bathrooms = (new \yii\db\Query())->from('property')->max('bathrooms');
                                     <span>$</span>
                                     <input type="text" name="price" id="slider-range-price-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-price" data-min="0" data-max="<?= $price ?>" class="slider-range"></div>
+                                    <div id="slider-range-price" data-min="0" data-max="<?= $price ?>" class="slider-range-price"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">
@@ -89,7 +99,7 @@ $bathrooms = (new \yii\db\Query())->from('property')->max('bathrooms');
                                     <label for="slider-range-bedrooms-value" class="adv-search-label">Cuartos:</label>
                                     <input type="text" name="bedrooms" id="slider-range-bedrooms-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-bedrooms" data-min="1" data-max="<?= $bedrooms ?>" class="slider-range"></div>
+                                    <div id="slider-range-bedrooms" data-min="0" data-max="<?= $bedrooms ?>" class="slider-range"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">
@@ -97,7 +107,7 @@ $bathrooms = (new \yii\db\Query())->from('property')->max('bathrooms');
                                     <label for="slider-range-bathrooms-value" class="adv-search-label">Ba&ntilde;os:</label>
                                     <input type="text" name="bathrooms" id="slider-range-bathrooms-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-bathrooms" data-min="1" data-max="<?= $bathrooms ?>" class="slider-range"></div>
+                                    <div id="slider-range-bathrooms" data-min="0" data-max="<?= $bathrooms ?>" class="slider-range"></div>
                                 </div>
                             </div>
                         </div>
@@ -166,3 +176,5 @@ $bathrooms = (new \yii\db\Query())->from('property')->max('bathrooms');
         </div>
     </section>
 </div>
+<script>
+</script>

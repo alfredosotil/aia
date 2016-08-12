@@ -6,6 +6,7 @@ use app\models\Property;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\form\ActiveForm;
+use app\models\Type;
 
 /* @var $this yii\web\View */
 
@@ -115,6 +116,9 @@ $this->registerJsFile('@web/js/tinysort/jquery.tinysort.min.js', ['depends' => [
                                 </select>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">
+                                <?= Html::dropDownList('inmueble[]', null, ArrayHelper::map(Type::find()->where(["category" => "property"])->all(), 'id', 'type'), ['class' => 'bootstrap-select', 'title' => 'Tipo inmueble:', 'data-actions-box' => 'true', 'multiple' => '']) ?>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-lg-3">
                                 <?= Html::dropDownList('district[]', null, ArrayHelper::map(Distrito::find()->where(["idProv" => 127])->orderBy('distrito')->all(), 'idDist', 'distrito'), ['class' => 'bootstrap-select', 'title' => 'Distrito:', 'data-actions-box' => 'true', 'multiple' => '']) ?>
                             </div>
                         </div>
@@ -142,7 +146,7 @@ $this->registerJsFile('@web/js/tinysort/jquery.tinysort.min.js', ['depends' => [
                                     <label for="slider-range-bedrooms-value" class="adv-search-label">Cuartos:</label>
                                     <input type="text" name="bedrooms" id="slider-range-bedrooms-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-bedrooms" data-min="1" data-max="<?= $bedrooms ?>" class="slider-range"></div>
+                                    <div id="slider-range-bedrooms" data-min="0" data-max="<?= $bedrooms ?>" class="slider-range"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">
@@ -150,7 +154,7 @@ $this->registerJsFile('@web/js/tinysort/jquery.tinysort.min.js', ['depends' => [
                                     <label for="slider-range-bathrooms-value" class="adv-search-label">Ba&ntilde;os:</label>
                                     <input type="text" name="bathrooms" id="slider-range-bathrooms-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-bathrooms" data-min="1" data-max="<?= $bathrooms ?>" class="slider-range"></div>
+                                    <div id="slider-range-bathrooms" data-min="0" data-max="<?= $bathrooms ?>" class="slider-range"></div>
                                 </div>
                             </div>
                         </div>
@@ -196,6 +200,7 @@ $this->registerJsFile('@web/js/tinysort/jquery.tinysort.min.js', ['depends' => [
                                 <option value="3">Venta</option>
                                 <option value="2">Alquiler</option>
                             </select>
+                            <?= Html::dropDownList('inmueble[]', null, ArrayHelper::map(Type::find()->where(["category" => "property"])->all(), 'id', 'type'), ['class' => 'bootstrap-select', 'title' => 'Tipo inmueble:', 'data-actions-box' => 'true', 'multiple' => '']) ?>
                             <?= Html::dropDownList('district[]', null, ArrayHelper::map(Distrito::find()->where(["idProv" => 127])->orderBy('distrito')->all(), 'idDist', 'distrito'), ['class' => 'bootstrap-select', 'title' => 'Distrito:', 'data-actions-box' => 'true', 'multiple' => '']) ?>
                         </div>
                         <div class="adv-search-range-cont">	
@@ -216,13 +221,13 @@ $this->registerJsFile('@web/js/tinysort/jquery.tinysort.min.js', ['depends' => [
                             <label for="slider-range-bedrooms-sidebar-value" class="adv-search-label">Cuartos:</label>
                             <input type="text" name="bedrooms" id="slider-range-bedrooms-sidebar-value" readonly class="adv-search-amount">
                             <div class="clearfix"></div>
-                            <div id="slider-range-bedrooms-sidebar" data-min="1" data-max="<?= $bedrooms ?>" class="slider-range"></div>
+                            <div id="slider-range-bedrooms-sidebar" data-min="0" data-max="<?= $bedrooms ?>" class="slider-range"></div>
                         </div>
                         <div class="adv-search-range-cont">	
                             <label for="slider-range-bathrooms-sidebar-value" class="adv-search-label">Ba&ntilde;os:</label>
                             <input type="text" name="bathrooms" id="slider-range-bathrooms-sidebar-value" readonly class="adv-search-amount">
                             <div class="clearfix"></div>
-                            <div id="slider-range-bathrooms-sidebar" data-min="1" data-max="<?= $bathrooms ?>" class="slider-range"></div>
+                            <div id="slider-range-bathrooms-sidebar" data-min="0" data-max="<?= $bathrooms ?>" class="slider-range"></div>
                         </div>
                         <div class="sidebar-search-button-cont">
                             <a data-form="leftformfindproperty" class="findproperty button-primary">
@@ -319,8 +324,3 @@ foreach ($properties as $p) {
 }
 $this->registerJs("offersMapInit('offers-map', " . json_encode($locations) . ");", yii\web\View::POS_LOAD, uniqid());
 ?>
-
-<!--google maps initialization--> 
-<script type="text/javascript">
-
-</script>

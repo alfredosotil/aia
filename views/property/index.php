@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 CrudAsset::register($this);
 
 ?>
-<script src="<?php echo Yii::$app->request->baseUrl?>/js/gmaps.min.js"></script>
+<!--<script src="<?php echo Yii::$app->request->baseUrl?>/js/gmaps.min.js"></script>-->
 <div class="row property-index">
     <div id="title-module" class="page-header wow fadeIn" style=""  data-wow-duration="1000ms">
         <h1><i class='fa fa-fw fa fa-building'></i><span><?= $this->title; ?></span></h1>    

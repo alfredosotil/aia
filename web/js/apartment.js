@@ -154,7 +154,7 @@ var panorama = false;
 var staticDescHeight = 0;
 
 jQuery(document).ready(function ($) {
-
+    
     /********** BOXED LAYOUT **********/
     //desactivar el click derecho sobre las imagenes
     document.oncontextmenu = function (e) {
@@ -488,6 +488,20 @@ jQuery(window).load(function () {
                 }
             });
             $("#" + sliderId + "-value").val($(this).slider("values", 0) + " - " + $(this).slider("values", 1));
+        });
+        
+        $(".slider-range-price").each(function (index) {
+            var sliderId = $(this).attr('id');
+            $(this).slider({
+                range: true,
+                min: parseFloat($(this).attr("data-min")),
+                max: parseFloat($(this).attr("data-max")),
+                values: [parseFloat($(this).attr("data-min")), parseFloat($(this).attr("data-max"))],
+                slide: function (event, ui) {
+                    $("#" + sliderId + "-value").val(ui.values[ 0 ].toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + " - " + ui.values[ 1 ].toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                }
+            });
+            $("#" + sliderId + "-value").val($(this).slider("values", 0).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + " - " + $(this).slider("values", 1).toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
         });
 
 

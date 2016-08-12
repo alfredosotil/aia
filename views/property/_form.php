@@ -11,6 +11,7 @@ use kartik\form\ActiveForm;
 use kartik\file\FileInput;
 use kartik\date\DatePicker;
 use kartik\widgets\StarRating;
+use kartik\widgets\TouchSpin;
 
 //LocateAsset::register($this);
 ?>
@@ -40,13 +41,53 @@ use kartik\widgets\StarRating;
 
     <?= $form->field($model, 'furnished')->checkbox() ?>
 
-    <?= $form->field($model, 'bedrooms')->textInput() ?>
+    <!--?= $form->field($model, 'bedrooms')->input('number', ['value' => isset($model->bedrooms) ? $model->bedrooms : 0, 'min' => 1, 'max' => 10, 'step' => 1, 'placeholder' => 'Cantidad de cuartos 1-10...']) ?!-->
 
-    <?= $form->field($model, 'bathrooms')->textInput() ?>
+    <?=
+    $form->field($model, 'bedrooms')->widget(TouchSpin::classname(), [
+        'readonly' => true,
+        'options' => [
+//            'placeholder' => 'Cantidad de cuartos ...',
+            'value' => isset($model->bedrooms) ? $model->bedrooms : 0,
+        ],
+    ]);
+    ?>
 
-    <?= $form->field($model, 'garages')->textInput() ?>
+    <!--?= $form->field($model, 'bathrooms')->textInput() ?!-->
+    
+    <?=
+    $form->field($model, 'bathrooms')->widget(TouchSpin::classname(), [
+        'readonly' => true,
+        'options' => [
+//            'placeholder' => 'Cantidad de baños ...',
+            'value' => isset($model->bathrooms) ? $model->bathrooms : 0,
+        ],
+    ]);
+    ?>
 
-    <?= $form->field($model, 'yearsold')->textInput() ?>
+    <!--?= $form->field($model, 'garages')->textInput() ?!-->
+    
+    <?=
+    $form->field($model, 'garages')->widget(TouchSpin::classname(), [
+        'readonly' => true,
+        'options' => [
+//            'placeholder' => 'Cantidad de estacionamientos ...',
+            'value' => isset($model->garages) ? $model->garages : 0,
+        ],
+    ]);
+    ?>
+
+    <!--?= $form->field($model, 'yearsold')->textInput() ?!-->
+    
+    <?=
+    $form->field($model, 'yearsold')->widget(TouchSpin::classname(), [
+        'readonly' => true,
+        'options' => [
+//            'placeholder' => 'Cantidad de años ...',
+            'value' => isset($model->yearsold) ? $model->yearsold : 0,
+        ],
+    ]);
+    ?>
 
     <?= $form->field($model, 'active')->checkbox() ?>
 

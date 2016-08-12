@@ -1140,6 +1140,16 @@ div.cs-skin-border {
     box-shadow:         inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
 }
 
+.slider-range-price {
+    border-radius: 0;
+    height: 3px;
+    border: none;
+    margin: 15px 14px 0 9px;
+    -webkit-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow:    inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+    box-shadow:         inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+}
+
 .ui-slider-range {
     -webkit-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow:    inset 0px 1px 1px 0px rgba(0, 0, 0, 0.1);

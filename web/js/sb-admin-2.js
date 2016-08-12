@@ -146,27 +146,6 @@ function getMapProperty() {
                 map: map,
                 draggable: false,
             });
-
-//            var lat = document.getElementById('property-map-view-latitude').innerHTML;
-//            var lng = document.getElementById('property-map-view-longitude').innerHTML;
-//            var url = GMaps.staticMapURL({
-//                lat: lat,
-//                lng: lng,
-//                markers: [
-//                    {
-//                        lat: lat,
-//                        lng: lng,
-////                    size: 'medium', 
-//                        color: 'blue'},
-//                ]
-//            });
-//            document.getElementById('property-map-view').className = "";
-//            var img = document.createElement("img");
-//            img.src = url;
-//            img.class = "img-responsive";
-//            img.style.width = "100%";
-//            document.getElementById('link-photo-map').href = url;
-//            document.getElementById('property-map-view').appendChild(img);
         } else {
             var map;
             var marker;
@@ -192,8 +171,9 @@ function getMapProperty() {
             if (document.getElementById('property-latitude').value === '' &&
                     document.getElementById('property-longitude').value === '' &&
                     document.getElementById('property-address').value === '') {
-                GMaps.geolocate({
-                    success: function (position) {
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
                         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
                         map.setCenter(latlng);
                         marker = new google.maps.Marker({
@@ -220,17 +200,12 @@ function getMapProperty() {
                         document.getElementById('property-latitude').value = position.coords.latitude;
                         document.getElementById('property-longitude').value = position.coords.longitude;
                         codeLatLng(position.coords.latitude, position.coords.longitude, document.getElementById('property-address'));
-                    },
-                    error: function (error) {
-                        alert('Geolocation failed: ' + error.message);
-                    },
-                    not_supported: function () {
-                        alert('Your browser does not support geolocation');
-                    },
-                    always: function () {
-                        //alert('Done!');
-                    }
-                });
+                    }, function () {
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    alert('Geolocation failed');
+                }
             } else {
                 var lat = document.getElementById('property-latitude').value;
                 var lng = document.getElementById('property-longitude').value;
