@@ -1,7 +1,6 @@
 <?php
 
 use kartik\form\ActiveForm;
-
 use kartik\social\FacebookPlugin;
 
 $agent = $model->getAgent()->one();
