@@ -2,7 +2,7 @@
 
 use kartik\form\ActiveForm;
 
-//use kartik\social\FacebookPlugin;
+use kartik\social\FacebookPlugin;
 
 $agent = $model->getAgent()->one();
 $images = $model->getImagesProperties()->orderBy('order')->all();
@@ -13,13 +13,28 @@ $cont = 1;
 //echo yii\helpers\Url::current() ."<br>";
 //echo yii\helpers\Url::home() ."<br>";
 //echo yii\helpers\Url::base() ."<br>";
+Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => $model->getType()->one()->type . " en " . $model->getState()->one()->state . " - " . $model->getDistrito()->one()->distrito . " | www.aia.com.pe"]);
+Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->description]);
+Yii::$app->view->registerMetaTag(['name' => 'author', 'content' => "http://www.aia.com.pe/"]);
+Yii::$app->view->registerMetaTag(['name' => 'DC.Title', 'content' => $model->getType()->one()->type . " en " . $model->getState()->one()->state . " - " . $model->getDistrito()->one()->distrito . " | www.aia.com.pe"]);
+Yii::$app->view->registerMetaTag(['name' => 'DC.Contributor', 'content' => "http://www.aia.com.pe/"]);
+Yii::$app->view->registerMetaTag(['name' => 'DC.Creator', 'content' => "http://www.aia.com.pe/"]);
+Yii::$app->view->registerMetaTag(['name' => 'DC.Description', 'content' => $model->description]);
+Yii::$app->view->registerMetaTag(['name' => 'DC.Language', 'content' => "es"]);
+Yii::$app->view->registerMetaTag(['name' => 'DC.Publisher', 'content' => "http://www.aia.com.pe/"]);
+Yii::$app->view->registerMetaTag(['name' => 'geo.placename', 'content' => $model->address]);
+Yii::$app->view->registerMetaTag(['name' => 'geo.position', 'content' => $model->latitude . ";" . $model->longitude]);
+Yii::$app->view->registerMetaTag(['name' => 'og:site_name', 'content' => "http://www.aia.com.pe/"]);
+Yii::$app->view->registerMetaTag(['name' => 'og:type', 'content' => "website"]);
+Yii::$app->view->registerMetaTag(['name' => 'og:title', 'content' => $model->getType()->one()->type . " en " . $model->getState()->one()->state . " - " . $model->getDistrito()->one()->distrito . " | www.aia.com.pe"]);
+Yii::$app->view->registerMetaTag(['name' => 'og:description', 'content' => '']);
+Yii::$app->view->registerMetaTag(['name' => 'og:url', 'content' => yii\helpers\Url::to(["viewproperty", 'id' => $model->id], 'http')]);
+Yii::$app->view->registerMetaTag(['name' => 'og:image', 'content' => yii\helpers\Url::base(true) . "/uploads/property/" . $model->getFirstImageFromProperty()]);
+Yii::$app->view->registerMetaTag(['name' => 'og:image:type', 'content' => "image/jpg"]);
+Yii::$app->view->registerMetaTag(['name' => 'og:image:height', 'content' => "429"]);
+Yii::$app->view->registerMetaTag(['name' => 'og:image:width', 'content' => "572"]);
 ?>
-<meta property="og:url"           content="<?= yii\helpers\Url::to(["viewproperty", 'id' => $model->id], 'http') ?>" />
-<meta property="og:type"          content="website" />
-<meta property="og:title"         content="<?= $model->getType()->one()->type; ?> en <?= $model->getState()->one()->state ?>" />
-<meta property="og:description"   content="<?= $model->description ?>" />
-<meta property="og:image"         content="<?= yii\helpers\Url::base(true) . "/uploads/property/" . $model->getFirstImageFromProperty(); ?>" />
-</head>
+
 <div class="site-viewproperty">
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
@@ -121,17 +136,19 @@ $cont = 1;
                                     <h3><?= $model->address; ?><span class="special-color">.</span></h3>
                                 </div>
                                 <div class="pull-right">
-                                    <div class="fb-share-button" data-href="<?= yii\helpers\Url::to(["viewproperty", 'id' => $model->id]) ?>" data-layout="button" data-size="large" data-mobile-iframe="true">
+<!--                                    <div class="fb-share-button" data-href="<?= yii\helpers\Url::to(["viewproperty", 'id' => $model->id]) ?>" data-layout="button" data-size="large" data-mobile-iframe="true">
                                         <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Compartir</a>
-                                    </div>
-                                    <!--?=
-                                    FacebookPlugin::widget(['type' => FacebookPlugin::SHARE, 'settings' => [
+                                    </div>-->
+                                    <?=
+                                    FacebookPlugin::widget(['type' => FacebookPlugin::SHARE,
+                                        'language' => 'es_LA',
+                                        'settings' => [
                                             'href' => yii\helpers\Url::to(["viewproperty", 'id' => $model->id]),
                                             'layout' => 'button',
                                             'size' => 'large',
                                             'mobile_iframe' => true,
                                 ]])
-                                    ?!-->
+                                    ?>
                                 </div>
                                 <div class="clearfix"></div>	
                                 <div class="title-separator-primary"></div>
@@ -306,7 +323,7 @@ $cont = 1;
 ", yii\web\View::POS_LOAD, uniqid()); ?>
     <?php endif; ?>
 </div>
-<div id="fb-root"></div>
+<!--<div id="fb-root"></div>
 <script>(function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id))
@@ -316,4 +333,4 @@ $cont = 1;
         js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.7&appId=1682765562047834";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-</script>
+</script>-->

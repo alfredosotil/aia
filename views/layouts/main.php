@@ -18,7 +18,7 @@ AppAsset::register($this);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="alquiler, venta, casas, departamentos, habitaciones,  terrenos, casas de playa y campo, aia, clasificados, inmobiliarios">
         <meta name="description" content="" />
         <link rel="shortcut icon" href="<?= Yii::$app->request->baseUrl; ?>/favicon.ico" type="image/x-icon">
         <link rel="icon" href="<?= Yii::$app->request->baseUrl; ?>/favicon.ico" type="image/x-icon">        
