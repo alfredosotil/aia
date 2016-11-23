@@ -89,9 +89,9 @@ class SiteController extends Controller {
                 Yii::$app->response->format = Response::FORMAT_JSON;
                 $po = $propertyOffers->all();
                 return [
-                    'counterpropertyOffers' => count($po),
-                    'propertyOffers' => $this->getPropertyOffers($po, true),
-                    'mapInit' => $this->generateMapInit($po)
+                    "counterpropertyOffers" => count($po),
+                    "propertyOffers" => $this->getPropertyOffers($po, true),
+                    "mapInit" => $this->generateMapInit($po)
                 ];
             } else {
                 return $this->render('findproperty', ['propertyListing' => $this->renderPartial('propertylisting', ['properties' => $propertyOffers->all()])]);
@@ -196,7 +196,7 @@ class SiteController extends Controller {
 
     public function getRecentlyAdded() {
         $html = "";
-        $properties = \app\models\Property::getPropertiesRecentlyAdded(60, 20); //limit 20
+        $properties = \app\models\Property::getPropertiesRecentlyAdded(90, 20); //limit 20
         foreach ($properties as $p) {
             $html .= $this->renderPartial('propertyrecentlyaddedslider', ['model' => $p]);
         }

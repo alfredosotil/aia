@@ -20,8 +20,9 @@ use kartik\widgets\TouchSpin;
 
     <?php
     $form = ActiveForm::begin([
+                'id' => 'propertyForm',
                 'type' => ActiveForm::TYPE_HORIZONTAL,
-                'options' => ['enctype' => 'multipart/form-data']
+                'options' => ['enctype' => 'multipart/form-data' , 'class' => 'rememberproperty']
     ]);
     ?>
 

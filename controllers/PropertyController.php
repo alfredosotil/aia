@@ -110,7 +110,7 @@ class PropertyController extends Controller {
                         'model' => $model,
                     ]),
                     'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                    Html::button('Guardar', ['id' => 'saveButton', 'class' => 'btn btn-primary', "data-loading-text" => "<i class='fa fa-circle-o-notch fa-spin'></i> Subiendo Propiedad", 'type' => "submit"])
                 ];
             } else {
                 $model->user_id = Yii::$app->user->identity->id;
@@ -153,7 +153,7 @@ class PropertyController extends Controller {
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                                Html::button('Guardar', ['id' => 'saveButton', 'class' => 'btn btn-primary', 'type' => "submit", "data-loading-text" => "<i class='fa fa-circle-o-notch fa-spin'></i> Subiendo Propiedad"])
                             ];
                         }
                     } else {
@@ -173,7 +173,7 @@ class PropertyController extends Controller {
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                                Html::button('Guardar', ['id' => 'saveButton', 'class' => 'btn btn-primary', 'type' => "submit", "data-loading-text" => "<i class='fa fa-circle-o-notch fa-spin'></i> Subiendo Propiedad"])
                             ];
                         }
                     }
@@ -184,7 +184,7 @@ class PropertyController extends Controller {
                             'model' => $model,
                         ]),
                         'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                        Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                        Html::button('Guardar', ['id' => 'saveButton', 'class' => 'btn btn-primary', 'type' => "submit", "data-loading-text" => "<i class='fa fa-circle-o-notch fa-spin'></i> Subiendo Propiedad"])
                     ];
                 }
             }
@@ -225,7 +225,7 @@ class PropertyController extends Controller {
                         'model' => $model,
                     ]),
                     'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                    Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                    Html::button('Guardar', ['id' => 'saveButton', 'class' => 'btn btn-primary', 'type' => "submit", "data-loading-text" => "<i class='fa fa-circle-o-notch fa-spin'></i> Subiendo Propiedad"])
                 ];
             } else {
 
@@ -275,7 +275,7 @@ class PropertyController extends Controller {
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                                Html::button('Guardar', ['id' => 'saveButton', 'class' => 'btn btn-primary', 'type' => "submit", "data-loading-text" => "<i class='fa fa-circle-o-notch fa-spin'></i> Subiendo Propiedad"])
                             ];
                         }
                     } else {
@@ -297,7 +297,7 @@ class PropertyController extends Controller {
                                     'model' => $model,
                                 ]),
                                 'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                                Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                                Html::button('Guardar', ['id' => 'saveButton', 'class' => 'btn btn-primary', 'type' => "submit", "data-loading-text" => "<i class='fa fa-circle-o-notch fa-spin'></i> Subiendo Propiedad"])
                             ];
                         }
                     }
@@ -308,7 +308,7 @@ class PropertyController extends Controller {
                             'model' => $model,
                         ]),
                         'footer' => Html::button('Cerrar', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                        Html::button('Guardar', ['class' => 'btn btn-primary', 'type' => "submit"])
+                        Html::button('Guardar', ['id' => 'saveButton', 'class' => 'btn btn-primary', 'type' => "submit", "data-loading-text" => "<i class='fa fa-circle-o-notch fa-spin'></i> Subiendo Propiedad"])
                     ];
                 }
             }

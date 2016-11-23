@@ -9,7 +9,7 @@
         </div>
         <div class="featured-offer-text">
             <h4 class="featured-offer-title"><?= $model->address; ?></h4>
-            <p><?= $model->description; ?></p>
+            <p><?= \app\assets\AppAsset::custom_echo($model->description, 140) ?></p>
         </div>
         <div class="featured-offer-params">
             <div class="featured-area">

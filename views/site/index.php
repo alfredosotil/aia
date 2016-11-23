@@ -15,12 +15,6 @@ $price = (new \yii\db\Query())->from('property')->max('price');
 $area = (new \yii\db\Query())->from('property')->max('area');
 $bedrooms = (new \yii\db\Query())->from('property')->max('bedrooms');
 $bathrooms = (new \yii\db\Query())->from('property')->max('bathrooms');
-$this->registerJs("
-//        $( '#slider-range-price-value' ).change(function() {
-////            $( '#slider-range-price-value' ).slider( 'value', 1000 );
-//                alert('hola');
-//        });
-    ", yii\web\View::POS_LOAD, uniqid());
 ?>
 <div class="site-index">
     <section class="no-padding adv-search-section">
@@ -82,7 +76,7 @@ $this->registerJs("
                                     <span>$</span>
                                     <input type="text" name="price" id="slider-range-price-value" readonly class="adv-search-amount">
                                     <div class="clearfix"></div>
-                                    <div id="slider-range-price" data-min="0" data-max="<?= $price ?>" class="slider-range-price"></div>
+                                    <div id="slider-range-price" data-min="0" data-max="<?= $price ?>" class="slider-range"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-3">

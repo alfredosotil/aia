@@ -42,6 +42,9 @@ $config = [
                     ],
                     'js' => [
                         'bootstrap/bootstrap.min.js',
+                    ],
+                    'depends' => [                  
+                        'yii\jui\JuiAsset',
                     ]
                 ],
 //                'yii\web\JqueryAsset' => [

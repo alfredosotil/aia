@@ -1189,13 +1189,13 @@ div.cs-skin-border {
     float: right;
     font-size: 1.08em;
     display: block;
-    width: 48%;
+    /*width: 48%;*/
 }
 
 .adv-search-label {
     font-size: 1.08em;
     float: left;
-    width: 43%;
+    /*width: 43%;*/
 }
 
 .adv-search-range-cont {

@@ -37,6 +37,7 @@ class DashboardAsset extends AssetBundle {
         'css/morris.css',
         'css/sb-admin-2.css',
         'css/timeline.css',
+        'css/pace-theme.css',
     ];
     public $js = [
 //        'js/apartment.js',

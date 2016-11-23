@@ -29,8 +29,14 @@ $this->registerJs("
                  type: 'post',
                  data: form.serialize(),
                  success: function (response) {
+                    console.log(response);
                     $('#counterPropertyOffers').text(response.counterpropertyOffers);
-                    $('#propertyOffers').html(response.propertyOffers);
+                    $('#propertyOffers').html(response.propertyOffers.replace(
+                        /\\\\u([0-9a-f]{4})/g, 
+                        function (whole, group1) {
+                            return String.fromCharCode(parseInt(group1, 16));
+                        }
+                    ).replace(/(?:\\\\[rn]|[\\r\\n]+)+/g, ''));
                     response.mapInit.forEach(function(entry) {
                         eval(entry);
                     });
@@ -45,7 +51,7 @@ $this->registerJs("
                         $(this).find('.list-offer-back').stop(true, true).animate({height: gh + 20}, 0);
                         $('html, body').animate({
                             scrollTop: $('#propertyOffers').offset().top + -300
-                        }, 1000);
+                        }, 10);
                         $('#sortProperties').selectpicker('deselectAll');
                     });
                  }

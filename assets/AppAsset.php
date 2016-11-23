@@ -33,6 +33,7 @@ class AppAsset extends AssetBundle {
         'css/plugins.css',
         'css/apartment-layout.css',
         'css/apartment-colors-blue.css',
+//        'css/pace-theme.css',
 //        'css/site.css',
     ];
     public $js = [
@@ -128,7 +129,7 @@ class AppAsset extends AssetBundle {
         return $db->createCommand($query, $params)->execute();
     }
 
-    public  static function getIconPingProperty($type) {
+    public static function getIconPingProperty($type) {
         if ($type === 'Casa' || $type === 'Casa de Campo' || $type === 'Casa de Playa') {
             return "/images/pin-house.png";
         } elseif ($type === 'Departamento') {
@@ -141,4 +142,12 @@ class AppAsset extends AssetBundle {
         return "/images/pin-commercial.png";
     }
 
+    public static function custom_echo($x, $length) {
+        if (strlen($x) <= $length) {
+            echo $x;
+        } else {
+            $y = substr($x, 0, $length) . '...';
+            echo $y;
+        }
+    }
 }

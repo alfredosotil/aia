@@ -22,19 +22,13 @@ DashboardAsset::register($this);
         <meta name="description" content="" />
         <link rel="shortcut icon" href="<?= Yii::$app->request->baseUrl; ?>/favicon.ico" type="image/x-icon">
         <link rel="icon" href="<?= Yii::$app->request->baseUrl; ?>/favicon.ico" type="image/x-icon">
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
-        <!-- Bootstrap -->
-        <!--<link rel="stylesheet" href="<?= Yii::$app->request->baseUrl; ?>/bootstrap/bootstrap.min.css">-->    
-        <!-- Font awesome styles -->    
-        <!--<link rel="stylesheet" href="<?= Yii::$app->request->baseUrl; ?>/apartment-font/css/font-awesome.min.css">-->  
-        <!-- Custom styles -->
-        <!--<link rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl; ?>/css/plugins.css">-->
-        <!--<link rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl; ?>/css/apartment-layout.css">-->
-        <!--<link id="skin" rel="stylesheet" type="text/css" href="<?= Yii::$app->request->baseUrl; ?>/css/apartment-colors-blue.css">-->
         <!-- Custom styles -->
         <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,500italic,700,700italic&amp;subset=latin,latin-ext'>
-        <script src="https://maps.google.com/maps/api/js?sensor=true&amp;key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;libraries=places"></script>
+        <script src="https://maps.google.com/maps/api/js?sensor=true&amp;key=AIzaSyCmMpdRHIBFlnUCmXElc1yjHYxPdEAsJCc&amp;libraries=places"></script>
         <?php $this->head() ?>
+        <script>paceOptions = {ajax: true};</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.js"></script>
+        <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/red/pace-theme-minimal.css" rel="stylesheet" />-->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>

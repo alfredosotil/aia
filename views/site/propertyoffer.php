@@ -28,9 +28,9 @@
         <a class="list-offer-right" target="_blank" href="<?= yii\helpers\Url::to(["viewproperty", 'id' => $model->id]) ?>">
             <div class="list-offer-text">
                 <i class="fa fa-map-marker list-offer-localization hidden-xs"></i>
-                <div class="list-offer-h4"><h4 class="list-offer-title"><?= $model->address; ?></h4></div>
+                <div class="list-offer-h4"><h4 class="list-offer-title"><?= htmlspecialchars($model->address); ?></h4></div>
                 <div class="clearfix"></div>
-                <?= $model->description; ?>
+                <?= \app\assets\AppAsset::custom_echo(($ajax ? substr(json_encode($model->description), 1) : htmlspecialchars($model->description)), 350) ?>
                 <div class="clearfix"></div>
             </div>
             <div class="price-list-cont">

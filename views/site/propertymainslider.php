@@ -27,7 +27,7 @@ $classButtons[3] = 'slide-buttons slide-buttons-center';
                         <h4><?= $model->address; ?></h4>
                         <div class="clearfix"></div>
 
-                        <p><?= $model->description; ?></p>
+                        <p><?= \app\assets\AppAsset::custom_echo($model->description, 233) ?></p>
                     </div>
                     <div class="slide-desc-params">	
                         <div class="slide-desc-area">

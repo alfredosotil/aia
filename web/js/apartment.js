@@ -157,11 +157,11 @@ jQuery(document).ready(function ($) {
     
     /********** BOXED LAYOUT **********/
     //desactivar el click derecho sobre las imagenes
-    document.oncontextmenu = function (e) {
-            e = e || window.event;
-            if (/^img$/i.test((e.target || e.srcElement).nodeName))
-                return false;
-    };
+//    document.oncontextmenu = function (e) {
+//            e = e || window.event;
+//            if (/^img$/i.test((e.target || e.srcElement).nodeName))
+//                return false;
+//    };
     //agregar clase protectMe a todas las imagenes y evitar el drag de las imagenes
 //    $(function () {
 //            $("img").addClass("protectMe");
